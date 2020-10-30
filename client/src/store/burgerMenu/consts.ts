@@ -1,0 +1,1 @@
+export const TOGGLE_BURGER_MENU = "TOGGLE_BURGER_MENU";

@@ -14,9 +14,15 @@ export const LogoContainer = styled.div`
   font-weight: 700;
 
   @media only screen and (max-width: 1300px) {
+    width: 200px;
     font-size: 0.7em;
     margin-top: 15px;
     transform: translate(0px, 0px);
     margin-left: 10px;
+  }
+
+  @media only screen and (max-width: 500px) {
+    width: 150px;
+    margin-left: 0px;
   }
 `;
