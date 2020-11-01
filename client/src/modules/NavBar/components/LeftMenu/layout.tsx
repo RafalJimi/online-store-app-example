@@ -13,22 +13,23 @@ export const LeftMenuLayout = () => {
   const MenuForWoman = (
     <DropdownMenuContainer>
       <DropdownMenuColumn>
-        <DropdownMenuColumnTitle>NOWOŚCI</DropdownMenuColumnTitle>
+        <DropdownMenuColumnTitle>NEW PRODUCTS</DropdownMenuColumnTitle>
       </DropdownMenuColumn>
       <DropdownMenuColumn>
-        <DropdownMenuColumnTitle>KOLEKCJA</DropdownMenuColumnTitle>
+        <DropdownMenuColumnTitle>COLLECTION</DropdownMenuColumnTitle>
         <DropdownMenuColumnItem>
-          Płaszcze i kurtki puchowe
+          Down coats and jackets
         </DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Marynarki</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Garnitury</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Koszulki</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Spódnice</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Jackets</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Suits</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>T-shirts</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Skirts</DropdownMenuColumnItem>
       </DropdownMenuColumn>
       <DropdownMenuColumn>
-        <DropdownMenuColumnTitle>BUTY I TOREBKI</DropdownMenuColumnTitle>
-        <DropdownMenuColumnItem>Buty</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Torebki</DropdownMenuColumnItem>
+        <DropdownMenuColumnTitle>SHOES AND BAGS</DropdownMenuColumnTitle>
+        <DropdownMenuColumnItem>See it all</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Shoes</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Handbags</DropdownMenuColumnItem>
       </DropdownMenuColumn>
     </DropdownMenuContainer>
   );
@@ -36,24 +37,24 @@ export const LeftMenuLayout = () => {
   const MenuForMan = (
     <DropdownMenuContainer>
       <DropdownMenuColumn>
-        <DropdownMenuColumnTitle>NOWOŚCI</DropdownMenuColumnTitle>
+        <DropdownMenuColumnTitle>NEW PRODUCTS</DropdownMenuColumnTitle>
       </DropdownMenuColumn>
       <DropdownMenuColumn>
-        <DropdownMenuColumnTitle>KOLEKCJA</DropdownMenuColumnTitle>
-        <DropdownMenuColumnItem>Płaszcze</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Kurtki</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Marynarki</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Kardigany</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Koszule</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Spodnie</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Garnitury</DropdownMenuColumnItem>
+        <DropdownMenuColumnTitle>COLLECTION</DropdownMenuColumnTitle>
+        <DropdownMenuColumnItem>Coats</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Jackets</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Jackets</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Cardigans</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Shirts</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Trousers</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Suits</DropdownMenuColumnItem>
       </DropdownMenuColumn>
       <DropdownMenuColumn>
-        <DropdownMenuColumnTitle>BUTY</DropdownMenuColumnTitle>
-        <DropdownMenuColumnItem>Zobacz wszystko</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Buty sportowe</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Buty casual</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Buty eleganckie</DropdownMenuColumnItem>
+        <DropdownMenuColumnTitle>Shoes</DropdownMenuColumnTitle>
+        <DropdownMenuColumnItem>See it all</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Sport shoes</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Casual shoes</DropdownMenuColumnItem>
+        <DropdownMenuColumnItem>Elegant shoes</DropdownMenuColumnItem>
       </DropdownMenuColumn>
     </DropdownMenuContainer>
   );
@@ -61,11 +62,11 @@ export const LeftMenuLayout = () => {
   return (
     <LeftMenu>
       <LeftMenuItem>
-        <span>KOBIETA</span>
+        <span>WOMAN</span>
         <DropdownMenu>{MenuForWoman}</DropdownMenu>
       </LeftMenuItem>
       <LeftMenuItem>
-        <span>MĘŻCZYZNA</span>
+        <span>MAN</span>
         <DropdownMenu>{MenuForMan}</DropdownMenu>
       </LeftMenuItem>
     </LeftMenu>

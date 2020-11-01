@@ -8,14 +8,16 @@ import {
 
 type RightMenuLayoutProps = {
   ChangeLayout: boolean;
-  BurgerMenuIsOpen: boolean;
+  burgerMenuIsOpen: boolean;
   handleToggleBurgerMenuButton: (e: React.MouseEvent) => void;
+  handleOpenLoginMenuButton: (e: React.MouseEvent) => void;
 };
 
 export const RightMenuLayout = ({
   ChangeLayout,
-  BurgerMenuIsOpen,
+  burgerMenuIsOpen,
   handleToggleBurgerMenuButton,
+  handleOpenLoginMenuButton,
 }: RightMenuLayoutProps) => (
   <RightMenu>
     <RightMenuItem>
@@ -24,27 +26,27 @@ export const RightMenuLayout = ({
       ) : (
         <span>
           <i className="fas fa-search" style={{ paddingRight: "8px" }}></i>{" "}
-          Szukaj
+          Search
         </span>
       )}
     </RightMenuItem>
-    <RightMenuItem>
-      {ChangeLayout ? <i className="far fa-user"></i> : "Zaloguj się"}
+    <RightMenuItem onClick={handleOpenLoginMenuButton}>
+      {ChangeLayout ? <i className="far fa-user"></i> : "Sign in"}
     </RightMenuItem>
     <RightMenuItem>
       {ChangeLayout ? (
         <i className="fas fa-clipboard-list"></i>
       ) : (
-        "Moje zamówienia"
+        "My orders"
       )}
     </RightMenuItem>
     <RightMenuItem>
-      {ChangeLayout ? <i className="fas fa-shopping-bag"></i> : "Mój koszyk"}
+      {ChangeLayout ? <i className="fas fa-shopping-bag"></i> : "My basket"}
     </RightMenuItem>
     {ChangeLayout && (
       <BurgerButtonContainer>
         <BurgerButton
-          isOpen={BurgerMenuIsOpen}
+          isOpen={burgerMenuIsOpen}
           onClick={handleToggleBurgerMenuButton}
         >
           <div />
