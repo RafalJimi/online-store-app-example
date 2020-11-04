@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { width } from "../../../../helpers/mediaQueries";
 
 export const LeftMenu = styled.div`
   display: flex;
@@ -10,7 +11,7 @@ export const LeftMenu = styled.div`
   height: 60px;
   padding-bottom: 7.5px;
 
-  @media only screen and (max-width: 1300px) {
+  @media only screen and ${width[1300]} {
     position: fixed;
     left: 0;
     top: 70px;
@@ -68,7 +69,7 @@ export const LeftMenuItem = styled.div`
     left: 0;
   }
 
-  @media only screen and (max-width: 1300px) {
+  @media only screen and ${width[1300]} {
     width: 50%;
     border-bottom: 1px solid #00000050;
     display: flex;
@@ -118,7 +119,7 @@ export const DropdownMenu = styled.div`
   overflow: hidden;
   transition: height 0.1;
 
-  @media only screen and (max-width: 1300px) {
+  @media only screen and ${width[1300]} {
     display: none;
 
     :hover > div {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { width } from "../../../../helpers/mediaQueries";
 
 export const RightMenu = styled.ul`
   display: flex;
@@ -9,7 +10,7 @@ export const RightMenu = styled.ul`
   width: 460px;
   height: 67.5px;
 
-  @media only screen and (max-width: 1300px) {
+  @media only screen and ${width[1300]} {
     font-size: 0.7em;
     margin-top: 10px;
     transform: translate(0px, 0px);
@@ -18,12 +19,12 @@ export const RightMenu = styled.ul`
     margin-right: 20px;
   }
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and ${width[500]} {
     width: 200px;
     margin-right: -20px;
   }
 
-  @media only screen and (max-width: 380px) {
+  @media only screen and ${width[380]} {
     width: 150px;
     margin-right: -10px;
   }
@@ -44,18 +45,18 @@ export const RightMenuItem = styled.div`
     cursor: pointer;
   }
 
-  @media only screen and (max-width: 1300px) {
+  @media only screen and ${width[1300]} {
     font-size: 1.5em;
     width: 30px;
     flex: 0 0 auto;
   }
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and ${width[500]} {
     font-size: 1.1em;
     width: 20px;
   }
 
-  @media only screen and (max-width: 380px) {
+  @media only screen and ${width[380]} {
     font-size: 1.1em;
     width: 15px;
   }
@@ -87,7 +88,7 @@ export const BurgerButtonContainer = styled.div`
     cursor: pointer;
   }
 
-  @media only screen and (max-width: 1300px) {
+  @media only screen and ${width[1300]} {
     font-size: 1.5em;
     width: 30px;
     flex: 0 0 auto;
@@ -114,7 +115,7 @@ export const BurgerButton = styled.button<BurgerButtonProps>`
   &:focus {
     outline: none;
   }
-@media only screen and (max-width: 1300px) {
+@media only screen and ${width[1300]} {
   button {
     display: none;
   }

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { width } from "../../../../helpers/mediaQueries";
 
 export const LogoContainer = styled.div`
   width: 200px;
@@ -13,7 +14,7 @@ export const LogoContainer = styled.div`
   font-family: Dancing Script, cursive;
   font-weight: 700;
 
-  @media only screen and (max-width: 1300px) {
+  @media only screen and ${width[1300]} {
     width: 200px;
     font-size: 0.7em;
     margin-top: 15px;
@@ -21,7 +22,7 @@ export const LogoContainer = styled.div`
     margin-left: 10px;
   }
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and ${width[500]} {
     width: 150px;
     margin-left: 0px;
   }
