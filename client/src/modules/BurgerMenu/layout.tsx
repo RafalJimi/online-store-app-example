@@ -1,12 +1,29 @@
 import React from "react";
-import { BurgerMenuContainer } from "./layout.styled";
+import { CollectionMenu } from "./components/CollectionMenu/index";
+import {
+  BurgerMenuContainer,
+  Menu,
+  MenuElement,
+  RegisterOrLoginReference,
+  Contact,
+} from "./layout.styled";
 
 type BurgerMenuLayoutProps = {
   isOpen: boolean;
+  handleOpenContactWindow: (e: React.MouseEvent) => void;
 };
 
-export const BurgerMenuLayout = ({ isOpen }: BurgerMenuLayoutProps) => (
+export const BurgerMenuLayout = ({
+  isOpen,
+  handleOpenContactWindow,
+}: BurgerMenuLayoutProps) => (
   <BurgerMenuContainer isOpen={isOpen}>
-    <h1>Close</h1>
+    <Menu>
+      <MenuElement>WOMAN</MenuElement>
+      <MenuElement>MAN</MenuElement>
+    </Menu>
+    <RegisterOrLoginReference>Log in/Register</RegisterOrLoginReference>
+    <CollectionMenu />
+    <Contact onClick={handleOpenContactWindow}>Contact</Contact>
   </BurgerMenuContainer>
 );

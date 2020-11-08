@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { width } from "../../helpers/mediaQueries";
+import { width, height } from "../../helpers/mediaQueries";
 
-type LoginContainerProps = {
-  isOpen: boolean;
+type Prop = {
+  prop: boolean;
 };
 
-export const LoginContainer = styled.main<LoginContainerProps>`
+export const LoginContainer = styled.main<Prop>`
   display: flex;
   position: fixed;
   top: 0;
@@ -19,32 +19,27 @@ export const LoginContainer = styled.main<LoginContainerProps>`
   height: 100%;
   text-align: left;
   z-index: 5;
-  opacity: ${({ isOpen }) => (isOpen ? "1" : "0")};
-  transition: ${({ isOpen }) =>
-    isOpen
+  opacity: ${({ prop }) => (prop ? "1" : "0")};
+  transition: ${({ prop }) =>
+    prop
       ? "transform .5s ease-in-out"
       : "transform .5s ease-in-out, opacity .01s ease-in .5s"};
   transform: translateX(-100%);
-  transform: ${({ isOpen }) =>
-    isOpen ? "translateX(0%)" : "translateX(100%)"};
+  transform: ${({ prop }) => (prop ? "translateX(0%)" : "translateX(100%)")};
   font-family: "Ubuntu", sans-serif;
 
   @media only screen and ${width[1000]} {
     justify-content: center;
     align-items: center;
-    transition: ${({ isOpen }) =>
-      isOpen
+    transition: ${({ prop }) =>
+      prop
         ? "opacity .5s ease-in-out, transform .01s ease-in"
-        : "opacity .5s ease-in-out, transform .01s ease-in .4s"};
+        : "opacity .5s ease-in-out, transform .01s ease-in .5s"};
   }
 
-  @media only screen and ${width[750]} {
-    justify-content: center;
-    align-items: center;
-    transition: ${({ isOpen }) =>
-      isOpen
-        ? "transform .5s ease-in-out"
-        : "transform .5s ease-in-out, opacity .01s ease-in .5s"};
+  @media only screen and ${width[750]}, ${height[730]} {
+    transition: none;
+    transform: ${({ prop }) => (prop ? "translateX(0%)" : "translateX(100%)")};
   }
 `;
 
@@ -57,7 +52,7 @@ export const CloseLoginMenu = styled.div`
   background-color: transparent;
 
   @media only screen and ${width[1000]} {
-    background-color: #00000070;
+    background-color: #00000050;
   }
 `;
 
@@ -79,15 +74,10 @@ export const LoginMenuContainer = styled.div`
     -webkit-box-shadow: none;
     box-shadow: none;
     padding-bottom: 60px;
+    overflow-y: scroll;
   }
 
-  @media only screen and ${width[750]} {
-    width: 100%;
-    height: 100%;
-    padding: 0px 30px;
-  }
-
-  @media only screen and ${width[540]} {
+  @media screen and ${width[750]}, ${height[730]} {
     width: 100%;
     height: 100%;
     padding: 0px 30px;
@@ -109,5 +99,10 @@ export const CloseLoginMenuButton = styled.div`
   :hover {
     cursor: pointer;
     color: #00000050;
+  }
+
+  @media only screen and ${width[750]}, ${height[730]} {
+    margin-top: 20px;
+    margin-right: 0px;
   }
 `;

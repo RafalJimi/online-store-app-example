@@ -18,28 +18,55 @@ import {
 } from "./layout.styled";
 
 type RegisterFormProps = {
-  handleChange: (text: string) => (e: ChangeEvent<HTMLInputElement>) => void;
+  handleGender: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleFirstNameInput: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleLastNameInput: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleEmailInput: (e: ChangeEvent<HTMLInputElement>) => void;
+  handlePasswordInput: (
+    text: string
+  ) => (e: ChangeEvent<HTMLInputElement>) => void;
+  handleToggleShowPassword: (e: React.MouseEvent) => void;
+  handleConfirmRules: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleLoginButton: (e: React.MouseEvent) => void;
   gender: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
+  showPassword: boolean;
+  confirmRules: boolean;
+  firstNameError: string;
+  lastNameError: string;
   emailError: string;
   passwordError: string;
-  showPassword: boolean;
-  handleToggleShowPassword: (e: React.MouseEvent) => void;
-  handleCreateAnAccountButton: (e: React.MouseEvent) => void;
+  confirmRulesError: string;
 };
 
 export const RegisterFormLayout = ({
-  handleChange,
+  handleGender,
+  handleFirstNameInput,
+  handleLastNameInput,
+  handleEmailInput,
+  handlePasswordInput,
+  handleToggleShowPassword,
+  handleConfirmRules,
+  handleSubmit,
+  handleLoginButton,
   gender,
+  firstName,
+  lastName,
   email,
   password,
+  confirmRules,
+  firstNameError,
+  lastNameError,
   emailError,
   passwordError,
+  confirmRulesError,
   showPassword,
-  handleToggleShowPassword,
 }: RegisterFormProps) => (
-  <RegisterFormContainer>
+  <RegisterFormContainer onSubmit={handleSubmit}>
     <RegisterMenuTitle>Create an account</RegisterMenuTitle>
     <InputsContainer>
       <RadioInputContainer>
@@ -48,7 +75,7 @@ export const RegisterFormLayout = ({
           value="man"
           name="gender"
           checked={gender === "man"}
-          onChange={handleChange("gender")}
+          onChange={handleGender}
         />
         <span>Man</span>
       </RadioInputContainer>
@@ -58,7 +85,7 @@ export const RegisterFormLayout = ({
           value="woman"
           name="gender"
           checked={gender === "woman"}
-          onChange={handleChange("gender")}
+          onChange={handleGender}
         />
         <span>Woman</span>
       </RadioInputContainer>
@@ -66,30 +93,30 @@ export const RegisterFormLayout = ({
     <FullNameContainer>
       <FullNameInputContainer>
         <FullNameInput
-          firstName={""}
+          prop={firstName}
           type="text"
           placeholder="First name"
-          onChange={handleChange("email")}
-          value={""}
+          onChange={handleFirstNameInput}
+          value={firstName}
         />
-        <FullNameInputError>Test</FullNameInputError>
+        <FullNameInputError>{firstNameError}</FullNameInputError>
       </FullNameInputContainer>
       <FullNameInputContainer>
         <FullNameInput
-          firstName={""}
+          prop={lastName}
           type="text"
           placeholder="Last name"
-          onChange={handleChange("email")}
-          value={""}
+          onChange={handleLastNameInput}
+          value={lastName}
         />
-        <FullNameInputError>Test</FullNameInputError>
+        <FullNameInputError>{lastNameError}</FullNameInputError>
       </FullNameInputContainer>
     </FullNameContainer>
     <RegisterFormInputContainer prop={email}>
       <RegisterFormInput
         type="email"
         placeholder="E-mail adress"
-        onChange={handleChange("email")}
+        onChange={handleEmailInput}
         value={email}
       />
       {email && (
@@ -109,7 +136,7 @@ export const RegisterFormLayout = ({
       <RegisterFormInput
         type={showPassword ? "text" : "password"}
         placeholder="Password"
-        onChange={handleChange("password")}
+        onChange={handlePasswordInput("value")}
         value={password}
       />
       {showPassword ? (
@@ -122,16 +149,25 @@ export const RegisterFormLayout = ({
       <p>{passwordError}</p>
     </RegisterFormInputErrorMessage>
     <RegisterFormCheckboxContainer>
-      <input name="rules" type="checkbox" checked={true} onChange={() => {}} />
+      <input
+        name="rules"
+        type="checkbox"
+        checked={confirmRules}
+        onChange={handleConfirmRules}
+      />
       <span>
         I have read and uderstood the information on the use of my personal data
         set out in <b>Privacy policy</b>.
       </span>
     </RegisterFormCheckboxContainer>
     <RegisterFormInputErrorMessage>
-      <p>{emailError}</p>
+      <p>{confirmRulesError}</p>
     </RegisterFormInputErrorMessage>
-    <RegisterFormSubmitButton>Create an account</RegisterFormSubmitButton>
-    <LoginButton>Begin the session</LoginButton>
+    <RegisterFormSubmitButton type="submit">
+      Create an account
+    </RegisterFormSubmitButton>
+    <LoginButton type="button" onClick={handleLoginButton}>
+      Begin the session
+    </LoginButton>
   </RegisterFormContainer>
 );

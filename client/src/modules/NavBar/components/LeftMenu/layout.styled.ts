@@ -9,15 +9,13 @@ export const LeftMenu = styled.div`
   padding: 0;
   width: 232px;
   height: 60px;
-  padding-bottom: 7.5px;
 
   @media only screen and ${width[1300]} {
     position: fixed;
     left: 0;
-    top: 70px;
+    top: 60px;
     background-color: white;
     width: 100vw;
-    border-top: 1px solid #00000050;
     height: 60px;
   }
 `;
@@ -27,8 +25,10 @@ export const LeftMenuItem = styled.div`
   font-size: 1em;
   font-weight: 700;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 6px;
   list-style-type: none;
+  height: 46px;
+  background-color: white;
 
   :hover {
     cursor: pointer;
@@ -37,12 +37,12 @@ export const LeftMenuItem = styled.div`
   :hover > div {
     cursor: default;
     display: block;
-    height: 730px;
+    height: 200px;
   }
 
   span {
     display: inline-block;
-    padding: 15px 20px;
+    padding: 15px 20px 13px 20px;
     position: relative;
   }
 
@@ -110,12 +110,12 @@ export const DropdownMenu = styled.div`
   flex-direction: row;
   position: absolute;
   left: 0;
+  top: 60px;
   margin-top: 0px;
   height: 0px;
   width: 100vw;
   background-color: white;
   padding-left: 63px;
-  margin: 2px solid green;
   overflow: hidden;
   transition: height 0.1;
 

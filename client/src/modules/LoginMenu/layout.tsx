@@ -5,7 +5,8 @@ import {
   LoginMenuContainer,
   CloseLoginMenuButton,
 } from "./layout.styled";
-import { LoginForm } from "./LoginForm/index";
+import { LoginForm } from "./components/LoginForm/index";
+import { ToggleMenuButtons } from '../ToggleMenuButtons/index'
 
 type LoginMenuLayoutProps = {
   isOpen: boolean;
@@ -16,12 +17,13 @@ export const LoginMenuLayout = ({
   isOpen,
   handleCloseLoginMenu,
 }: LoginMenuLayoutProps) => (
-  <LoginContainer isOpen={isOpen}>
+  <LoginContainer prop={isOpen}>
     <CloseLoginMenu className="red" onClick={handleCloseLoginMenu} />
     <LoginMenuContainer>
       <CloseLoginMenuButton onClick={handleCloseLoginMenu}>
         <i className="fas fa-times" />
-      </CloseLoginMenuButton>
+        </CloseLoginMenuButton>
+        <ToggleMenuButtons />
       <LoginForm />
     </LoginMenuContainer>
   </LoginContainer>

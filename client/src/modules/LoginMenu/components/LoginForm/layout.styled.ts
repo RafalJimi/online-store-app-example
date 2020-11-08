@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import { width } from "../../../helpers/mediaQueries";
+import { width, height } from "../../../../helpers/mediaQueries";
 
 export const LoginFormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  width: 100%
   margin-top: 40px;
 
   @media only screen and ${width[1000]} {
@@ -12,8 +11,9 @@ export const LoginFormContainer = styled.form`
     width: 500px;
   }
 
-@media only screen and ${width[540]} {
+  @media only screen and ${width[750]}, ${height[730]} {
     width: 100%;
+    padding-bottom: 30px;
   }
 `;
 
@@ -23,7 +23,7 @@ export const LoginContainerTitle = styled.h2`
   justify-content: center;
   font-weight: 500;
   padding-top: 20px;
-  align-text: center;
+  text-align: center;
   align-self: center;
 
   @media only screen and ${width[1000]} {
@@ -101,10 +101,9 @@ export const LoginFormInputErrorMessage = styled.div`
   height: 27px;
 
   p {
-  position: absolute;
-  padding-top: 5px;
-  margin: 0px;
-}
+    position: absolute;
+    padding-top: 5px;
+    margin: 0px;
   }
 `;
 
@@ -119,7 +118,7 @@ export const ForgotPasswordButton = styled.div`
     text-decoration: underline;
   }
 
-  p: hover {
+  p:hover {
     color: #00000050;
     cursor: pointer;
   }
@@ -154,7 +153,7 @@ export const LoginFormSubmitButton = styled.button`
 
 export const CreateAccountTitle = styled.div`
   text-align: center;
-  width: 100%
+  width: 100%;
   margin-top: 0px;
   padding: 15px 0px;
   color: black;
@@ -162,6 +161,7 @@ export const CreateAccountTitle = styled.div`
 
   @media only screen and ${width[1000]} {
     margin-top: 0px;
+    display: none;
   }
 `;
 
@@ -179,11 +179,15 @@ export const CreateAccountButton = styled.button`
     cursor: pointer;
     background-color: #07070899;
   }
+
+  @media only screen and ${width[1000]} {
+    display: none;
+  }
 `;
 
 export const CreateAccountLowResolution = styled.div`
   margin-top: 30px;
-  display: flex;
+  display: none;
   flex-direction: row;
   width: 100%;
   justify-content: center;
@@ -196,5 +200,9 @@ export const CreateAccountLowResolution = styled.div`
   span:hover {
     cursor: pointer;
     color: #00000050;
+  }
+
+  @media only screen and ${width[1000]} {
+    display: flex;
   }
 `;

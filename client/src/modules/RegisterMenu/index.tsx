@@ -5,14 +5,6 @@ import { registerMenuIsOpenRX } from "../../store/registerMenu/selectors";
 import { RegisterMenuLayout } from "./layout";
 
 export const RegisterMenu = () => {
-  /* const [ChangeLayout, setChangeLayout] = useState(false); */
-
-  /* useEffect(() => {
-    if (window.innerWidth < 1000) {
-      setChangeLayout(true);
-    } else setChangeLayout(false);
-  }, [window.innerWidth]); */
-
   const dispatch = useDispatch();
   const registerMenuIsOpen = useSelector(registerMenuIsOpenRX);
 

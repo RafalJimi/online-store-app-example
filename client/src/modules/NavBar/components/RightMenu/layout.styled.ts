@@ -13,20 +13,13 @@ export const RightMenu = styled.ul`
   @media only screen and ${width[1300]} {
     font-size: 0.7em;
     margin-top: 10px;
-    transform: translate(0px, 0px);
     margin-left: 10px;
-    width: 200px;
+    width: 250px;
     margin-right: 20px;
   }
 
   @media only screen and ${width[500]} {
-    width: 200px;
-    margin-right: -20px;
-  }
-
-  @media only screen and ${width[380]} {
-    width: 150px;
-    margin-right: -10px;
+    width: 180px;
   }
 `;
 
@@ -55,21 +48,6 @@ export const RightMenuItem = styled.div`
     font-size: 1.1em;
     width: 20px;
   }
-
-  @media only screen and ${width[380]} {
-    font-size: 1.1em;
-    width: 15px;
-  }
-`;
-
-export const DropdownMenu = styled.div`
-  display: block;
-  position: absolute;
-  margin-top: 17px;
-  height: 630px;
-  width: 100%;
-  transform: translate(-48px);
-  background-color: #0000000;
 `;
 
 export const BurgerButtonContainer = styled.div`
@@ -110,7 +88,7 @@ export const BurgerButton = styled.button<BurgerButtonProps>`
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 2;
+  z-index: 20;
   padding-bottom: 0px;
   &:focus {
     outline: none;

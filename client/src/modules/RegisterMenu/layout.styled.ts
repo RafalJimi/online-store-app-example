@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { width } from "../../helpers/mediaQueries";
+import { width, height } from "../../helpers/mediaQueries";
 
-type RegisterContainerProps = {
-  isOpen: boolean;
+type Prop = {
+  prop: boolean;
 };
 
-export const RegisterContainer = styled.main<RegisterContainerProps>`
+export const RegisterContainer = styled.main<Prop>`
   display: flex;
   position: fixed;
   top: 0;
@@ -19,24 +19,18 @@ export const RegisterContainer = styled.main<RegisterContainerProps>`
   height: 100%;
   text-align: left;
   z-index: 5;
-  opacity: ${({ isOpen }) => (isOpen ? "1" : "0")};
-  transition: ${({ isOpen }) =>
-    isOpen
+  opacity: ${({ prop }) => (prop ? "1" : "0")};
+  transition: ${({ prop }) =>
+    prop
       ? "opacity .5s ease-in-out, transform .01s ease-in"
       : "opacity .5s ease-in-out, transform .01s ease-in .4s"};
-  }
   transform: translateX(-100%);
-  transform: ${({ isOpen }) =>
-    isOpen ? "translateX(0%)" : "translateX(100%)"};
+  transform: ${({ prop }) => (prop ? "translateX(0%)" : "translateX(100%)")};
   font-family: "Ubuntu", sans-serif;
 
-  @media only screen and ${width[750]} {
-    justify-content: center;
-    align-items: center;
-    transition: ${({ isOpen }) =>
-      isOpen
-        ? "transform .5s ease-in-out"
-        : "transform .5s ease-in-out, opacity .01s ease-in .5s"};
+  @media only screen and ${width[750]}, ${height[730]} {
+    transition: none;
+    transform: ${({ prop }) => (prop ? "translateX(0%)" : "translateX(100%)")};
   }
 `;
 
@@ -47,10 +41,6 @@ export const CloseRegisterMenu = styled.div`
   width: 100%;
   height: 100%;
   background-color: #00000050;
-
-  @media only screen and ${width[1000]} {
-    background-color: #00000070;
-  }
 `;
 
 export const RegisterMenuContainer = styled.div`
@@ -66,16 +56,11 @@ export const RegisterMenuContainer = styled.div`
   z-index: 2;
   padding-bottom: 60px;
 
-  @media only screen and ${width[750]} {
+  @media only screen and ${width[750]}, ${height[730]} {
     width: 100%;
     height: 100%;
     padding: 0px 30px;
-  }
-
-  @media only screen and ${width[540]} {
-    width: 100%;
-    height: 100%;
-    padding: 0px 30px;
+    overflow-y: scroll;
   }
 `;
 
@@ -94,5 +79,10 @@ export const CloseRegisterMenuButton = styled.div`
   :hover {
     cursor: pointer;
     color: #00000050;
+  }
+
+  @media only screen and ${width[750]}, ${height[730]} {
+    margin-top: 20px;
+    margin-right: 0px;
   }
 `;

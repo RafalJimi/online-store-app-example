@@ -1,14 +1,15 @@
 import styled from "styled-components";
-import { width } from "../../../helpers/mediaQueries";
+import { width, height } from "../../../../helpers/mediaQueries";
 
 export const RegisterFormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  width: 100%
-  margin-top: 40px;
+  margin-top: 25px;
+  width: 500px;
 
-@media only screen and ${width[540]} {
+  @media only screen and ${width[750]}, ${height[730]} {
     width: 100%;
+    padding-bottom: 30px;
   }
 `;
 
@@ -20,7 +21,7 @@ export const RegisterMenuTitle = styled.h2`
   align-self: center;
   margin-top: 0px;
   margin-bottom: 20px;
-  padding-top: 10px;
+  padding-top: 0px;
 
   @media only screen and ${width[400]} {
     width: 100%;
@@ -129,7 +130,7 @@ export const FullNameInputContainer = styled.div`
 `;
 
 type FirstNameInputProps = {
-  firstName: string;
+  prop: string;
 };
 
 export const FullNameInput = styled.input<FirstNameInputProps>`
@@ -137,8 +138,8 @@ export const FullNameInput = styled.input<FirstNameInputProps>`
   border: none;
   font-size: 1em;
   width: 100%;
-  border-bottom: ${({ firstName }) =>
-    firstName ? "1px solid #000000" : "1px solid #00000050"};
+  border-bottom: ${({ prop }) =>
+    prop ? "1px solid #000000" : "1px solid #00000050"};
 
   :focus {
     outline: none;
@@ -159,10 +160,9 @@ export const FullNameInputError = styled.div`
   height: 22px;
 
   p {
-  position: absolute;
-  padding-top: 5px;
-  margin: 0px;
-}
+    position: absolute;
+    padding-top: 5px;
+    margin: 0px;
   }
 `;
 
@@ -223,10 +223,9 @@ export const RegisterFormInputErrorMessage = styled.div`
   height: 27px;
 
   p {
-  position: absolute;
-  padding-top: 5px;
-  margin: 0px;
-}
+    position: absolute;
+    padding-top: 5px;
+    margin: 0px;
   }
 `;
 
@@ -288,7 +287,7 @@ export const RegisterFormCheckboxContainer = styled.label`
     line-height: 15px;
     padding-top: 16px;
 
-    b: hover {
+    b:hover {
       color: #00000050;
     }
   }

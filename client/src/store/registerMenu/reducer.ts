@@ -7,7 +7,7 @@ export type RegisterMenuState = {
 };
 
 const initialState = {
-  isOpen: true,
+  isOpen: false,
 };
 
 export const registerMenu = (

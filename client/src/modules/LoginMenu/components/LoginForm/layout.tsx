@@ -15,29 +15,33 @@ import {
 } from "./layout.styled";
 
 type LoginFormLayoutProps = {
-  handleChange: (text: string) => (e: ChangeEvent<HTMLInputElement>) => void;
+  handleEmailInput: (e: ChangeEvent<HTMLInputElement>) => void;
+  handlePasswordInput: (
+    text: string
+  ) => (e: ChangeEvent<HTMLInputElement>) => void;
   email: string;
   password: string;
   emailError: string;
   passwordError: string;
   showPassword: boolean;
   handleToggleShowPassword: (e: React.MouseEvent) => void;
-  ChangeLayout: boolean;
   handleCreateAnAccountButton: (e: React.MouseEvent) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
 export const LoginFormLayout = ({
-  handleChange,
+  handleEmailInput,
+  handlePasswordInput,
   email,
   password,
   emailError,
   passwordError,
   showPassword,
   handleToggleShowPassword,
-  ChangeLayout,
   handleCreateAnAccountButton,
+  handleSubmit,
 }: LoginFormLayoutProps) => (
-  <LoginFormContainer>
+  <LoginFormContainer onSubmit={handleSubmit}>
     <LoginContainerTitle>Begin the session</LoginContainerTitle>
     <LoginContainerSubTitle>
       Please enter your email address and password to log in
@@ -46,12 +50,12 @@ export const LoginFormLayout = ({
       <LoginFormInput
         type="email"
         placeholder="Email *"
-        onChange={handleChange("email")}
+        onChange={handleEmailInput}
         value={email}
       />
       {email && (
         <LoginFormInputIcon>
-          {emailError !== "" ? (
+          {!emailError ? (
             <i className="fas fa-check" />
           ) : (
             <i className="fas fa-times" />
@@ -66,7 +70,7 @@ export const LoginFormLayout = ({
       <LoginFormInput
         type={showPassword ? "text" : "password"}
         placeholder="Password *"
-        onChange={handleChange("password")}
+        onChange={handlePasswordInput("value")}
         value={password}
       />
       {showPassword ? (
@@ -82,18 +86,13 @@ export const LoginFormLayout = ({
       <p>I forgot my password</p>
     </ForgotPasswordButton>
     <LoginFormSubmitButton>Begin the session</LoginFormSubmitButton>
-    {ChangeLayout ? (
-      <CreateAccountLowResolution>
-        You dont have an account yes?{" "}
-        <span onClick={handleCreateAnAccountButton}>Register</span>
-      </CreateAccountLowResolution>
-    ) : (
-      <>
-        <CreateAccountTitle>You dont have an account?</CreateAccountTitle>
-        <CreateAccountButton onClick={handleCreateAnAccountButton}>
-          Create an account
-        </CreateAccountButton>
-      </>
-    )}
+    <CreateAccountLowResolution>
+      You dont have an account yet?{" "}
+      <span onClick={handleCreateAnAccountButton}>Register</span>
+    </CreateAccountLowResolution>
+    <CreateAccountTitle>You dont have an account?</CreateAccountTitle>
+    <CreateAccountButton onClick={handleCreateAnAccountButton}>
+      Create an account
+    </CreateAccountButton>
   </LoginFormContainer>
 );
