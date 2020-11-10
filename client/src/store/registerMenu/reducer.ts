@@ -1,5 +1,5 @@
 import { getType } from "typesafe-actions";
-import { Action } from "../../helpers/actions";
+import { Action } from "../types/actions";
 import { toggleRegisterMenu } from "./actions";
 
 export type RegisterMenuState = {

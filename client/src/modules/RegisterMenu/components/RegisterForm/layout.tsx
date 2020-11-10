@@ -41,6 +41,7 @@ type RegisterFormProps = {
   emailError: string;
   passwordError: string;
   confirmRulesError: string;
+  registerUserIsLoading: boolean;
 };
 
 export const RegisterFormLayout = ({
@@ -65,6 +66,7 @@ export const RegisterFormLayout = ({
   passwordError,
   confirmRulesError,
   showPassword,
+  registerUserIsLoading,
 }: RegisterFormProps) => (
   <RegisterFormContainer onSubmit={handleSubmit}>
     <RegisterMenuTitle>Create an account</RegisterMenuTitle>
@@ -164,7 +166,16 @@ export const RegisterFormLayout = ({
       <p>{confirmRulesError}</p>
     </RegisterFormInputErrorMessage>
     <RegisterFormSubmitButton type="submit">
-      Create an account
+      {registerUserIsLoading ? (
+        <i
+          className="fas fa-circle-notch fa-spin 1x w-6  -ml-2"
+          style={{ fontSize: 25 }}
+        ></i>
+      ) : (
+        <>
+          <span>Create an account</span>
+        </>
+      )}
     </RegisterFormSubmitButton>
     <LoginButton type="button" onClick={handleLoginButton}>
       Begin the session

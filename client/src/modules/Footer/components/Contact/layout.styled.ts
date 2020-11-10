@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { width } from "../../../../helpers/mediaQueries";
 
 export const ContactContainer = styled.div`
   display: flex;
@@ -17,5 +18,9 @@ export const ContactContainer = styled.div`
 
   div:hover {
     cursor: pointer;
+  }
+
+  @media only screen and ${width[1300]} {
+    display: none;
   }
 `;

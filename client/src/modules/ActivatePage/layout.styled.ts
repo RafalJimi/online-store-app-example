@@ -8,10 +8,14 @@ export const ActivatePageLayoutContainer = styled.div`
   justify-content: center;
   padding: 40px 30px 0px 30px;
   overflow-y: hidden;
-  flex: 1 1;
+  height: calc(100vh - 362px);
 
   @media only screen and ${width[1300]} {
-    padding: 100px 30px 0px 30px;
+    height: calc(100vh - 275px);
+  }
+
+  @media only screen and ${width[1000]} {
+    justify-content: flex-start;
   }
 `;
 
@@ -33,10 +37,18 @@ export const ImageContainer = styled.div`
   margin-top: 40px;
   display: flex;
   flex-direction: row;
-  height: 600px;
+  height: 500px;
 
   img {
     height: 100%;
+  }
+
+  @media only screen and ${width[1300]} {
+    height: 350px;
+  }
+
+  @media only screen and ${width[1000]} {
+    display: none;
   }
 `;
 

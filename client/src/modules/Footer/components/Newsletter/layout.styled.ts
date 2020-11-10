@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { width } from "../../../../helpers/mediaQueries";
 
 export const NewsletterContainer = styled.div`
   width: 400px;
@@ -6,18 +7,30 @@ export const NewsletterContainer = styled.div`
   flex-direction: column;
   align-self: center;
   padding: 40px 0px 30px 0px;
+
+  @media only screen and ${width[500]} {
+    width: 260px;
+  }
 `;
 
 export const NewsletterTitle = styled.div`
   font-weight: 450;
   font-size: 1em;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
-export const NewletterForm = styled.form`
+type Prop = {
+  prop: boolean;
+};
+
+export const NewletterForm = styled.form<Prop>`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: 37px;
+  height: ${({ prop }) => (prop ? "auto" : "37px")};
 `;
 
 export const NewletterInput = styled.input`

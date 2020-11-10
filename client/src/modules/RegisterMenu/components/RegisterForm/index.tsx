@@ -1,8 +1,15 @@
 import React, { useState, useEffect, useCallback, ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleLoginMenu } from "../../../../store/loginMenu/actions";
-import { loginMenuIsOpenRX } from "../../../../store/loginMenu/selectors";
 import { toggleRegisterMenu } from "../../../../store/registerMenu/actions";
+import { registerMenuIsOpenRX } from "../../../../store/registerMenu/selectors";
+import { registerUserStarted } from "../../../../store/registerUser/actions";
+import {
+  registerResultMessageRX,
+  registerResultIsErrorRX,
+  registerUserIsLoadingRX,
+} from "../../../../store/registerUser/selectors";
+import { toast } from "react-toastify";
 import { RegisterFormLayout } from "./layout";
 import {
   onlyLetters,
@@ -12,7 +19,11 @@ import {
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
-  const loginMenuIsOpen = useSelector(loginMenuIsOpenRX);
+
+  const registerResultMessage = useSelector(registerResultMessageRX);
+  const registerResultIsError = useSelector(registerResultIsErrorRX);
+  const registerUserIsLoading = useSelector(registerUserIsLoadingRX);
+  const registerMenuIsOpen = useSelector(registerMenuIsOpenRX);
 
   // Inputs data
 
@@ -50,42 +61,6 @@ export const RegisterForm = () => {
     textChange: "notChanged",
     error: "",
   });
-
-  useEffect(() => {
-    if (loginMenuIsOpen) {
-      setGender("man");
-      setFirstNameInput({
-        ...FirstNameInput,
-        value: "",
-        error: "",
-        textChange: "notChanged",
-      });
-      setLastNameInput({
-        ...LastNameInput,
-        value: "",
-        error: "",
-        textChange: "notChanged",
-      });
-      setEmailInput({
-        ...EmailInput,
-        value: "",
-        error: "",
-        textChange: "notChanged",
-      });
-      setPasswordInput({
-        ...PasswordInput,
-        value: "",
-        error: "",
-        textChange: "notChanged",
-      });
-      setConfirmRules({
-        ...ConfirmRules,
-        value: false,
-        error: "",
-        textChange: "notChanged",
-      });
-    }
-  }, [loginMenuIsOpen]);
 
   // Gender handler
 
@@ -294,22 +269,68 @@ export const RegisterForm = () => {
       EmailInput.error === "" &&
       PasswordInput.error === ""
     ) {
-      const loginData = {
+      const registerData = {
         gender: Gender,
         firstName: FirstNameInput.value,
         lastName: LastNameInput.value,
-        login: EmailInput.value,
+        email: EmailInput.value,
         password: PasswordInput.value,
-        confirmed: ConfirmRules.value,
       };
-      console.log(loginData);
+      dispatch(registerUserStarted(registerData));
     }
   };
+
+  useEffect(() => {
+    if (registerResultMessage) {
+      toast.dark(registerResultMessage);
+      dispatch(toggleRegisterMenu());
+    };
+  }, [registerResultMessage]);
+
+  useEffect(() => {
+    if (registerResultIsError) toast.dark(registerResultIsError);
+  }, [registerResultIsError]);
 
   const handleLoginButton = useCallback((e: React.MouseEvent) => {
     dispatch(toggleRegisterMenu());
     dispatch(toggleLoginMenu());
   }, []);
+
+  useEffect(() => {
+    if (!registerMenuIsOpen) {
+      setGender("man");
+      setFirstNameInput({
+        ...FirstNameInput,
+        value: "",
+        error: "",
+        textChange: "notChanged",
+      });
+      setLastNameInput({
+        ...LastNameInput,
+        value: "",
+        error: "",
+        textChange: "notChanged",
+      });
+      setEmailInput({
+        ...EmailInput,
+        value: "",
+        error: "",
+        textChange: "notChanged",
+      });
+      setPasswordInput({
+        ...PasswordInput,
+        value: "",
+        error: "",
+        textChange: "notChanged",
+      });
+      setConfirmRules({
+        ...ConfirmRules,
+        value: false,
+        error: "",
+        textChange: "notChanged",
+      });
+    }
+  }, [registerMenuIsOpen]);
 
   return (
     <RegisterFormLayout
@@ -334,6 +355,7 @@ export const RegisterForm = () => {
       confirmRulesError={ConfirmRules.error}
       handleSubmit={handleSubmit}
       handleLoginButton={handleLoginButton}
+      registerUserIsLoading={registerUserIsLoading}
     />
   );
 };

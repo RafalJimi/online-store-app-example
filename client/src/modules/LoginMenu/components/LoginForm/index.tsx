@@ -1,12 +1,42 @@
 import React, { useState, useEffect, useCallback, ChangeEvent } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import {
+  loginUserStarted,
+  clearLoginUserState,
+} from "../../../../store/loginUser/actions";
+import {
+  loginUserTokenRX,
+  loggedUserRX,
+  loginUserIsErrorRX,
+  loginUserIsLoadingRX,
+} from "../../../../store/loginUser/selectors";
 import { toggleLoginMenu } from "../../../../store/loginMenu/actions";
+import { loginMenuIsOpenRX } from "../../../../store/loginMenu/selectors";
 import { toggleRegisterMenu } from "../../../../store/registerMenu/actions";
+import { isAuth, authenticate } from "../../../../helpers/auth";
+import { toast } from "react-toastify";
 import { LoginFormLayout } from "./layout";
 import { email } from "../../../../helpers/formats";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const loginUserToken = useSelector(loginUserTokenRX);
+  const loggedUser = useSelector(loggedUserRX);
+  const loginUserIsError = useSelector(loginUserIsErrorRX);
+  const loginUserIsLoading = useSelector(loginUserIsLoadingRX);
+  const loginMenuIsOpen = useSelector(loginMenuIsOpenRX);
+
+  const informParent = (token: string, user: any) => {
+    authenticate(token, user, () => {
+      //@ts-ignore
+      isAuth() && isAuth().role === "admin"
+        ? history.push("/admin")
+        : history.push("/private");
+    });
+  };
 
   const [EmailInput, setEmailInput] = useState({
     textChange: "notChanged",
@@ -93,10 +123,10 @@ export const LoginForm = () => {
     e.preventDefault();
     if (!EmailInput.error && !PasswordInput.error) {
       const loginData = {
-        login: EmailInput.value,
+        email: EmailInput.value,
         password: PasswordInput.value,
       };
-      console.log(loginData);
+      dispatch(loginUserStarted(loginData));
       setEmailInput({
         ...EmailInput,
         value: "",
@@ -111,6 +141,32 @@ export const LoginForm = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (loginUserToken) {
+      setEmailInput({
+        ...EmailInput,
+        value: "",
+        error: "",
+        textChange: "notChanged",
+      });
+      setPasswordInput({
+        ...PasswordInput,
+        value: "",
+        error: "",
+        textChange: "notChanged",
+      });
+      informParent(loginUserToken, loggedUser);
+    }
+  }, [loginUserToken]);
+
+  useEffect(() => {
+    if (loginUserIsError) toast.dark(loginUserIsError);
+  }, [loginUserIsError]);
+
+  useEffect(() => {
+    if (!loginMenuIsOpen) dispatch(clearLoginUserState());
+  }, [loginMenuIsOpen]);
 
   const handleCreateAnAccountButton = useCallback(
     (e: React.MouseEvent) => {
@@ -132,6 +188,7 @@ export const LoginForm = () => {
       handleToggleShowPassword={handleToggleShowPassword}
       handleCreateAnAccountButton={handleCreateAnAccountButton}
       handleSubmit={handleSubmit}
+      loginUserIsLoading={loginUserIsLoading}
     />
   );
 };

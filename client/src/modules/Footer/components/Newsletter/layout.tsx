@@ -10,11 +10,21 @@ import {
   NewsletterFormSubmitButton,
 } from "./layout.styled";
 
-export const NewsletterLayout = () => {
+type NewsletterLayoutProps = {
+  isOpen: boolean;
+  handleOnClick: (e: React.MouseEvent) => void;
+};
+
+export const NewsletterLayout = ({
+  isOpen,
+  handleOnClick,
+}: NewsletterLayoutProps) => {
   return (
     <NewsletterContainer>
-      <NewsletterTitle>SUBSCRIBE TO NEWSLETTER</NewsletterTitle>
-      <NewletterForm>
+      <NewsletterTitle onClick={handleOnClick}>
+        SUBSCRIBE TO NEWSLETTER
+      </NewsletterTitle>
+      <NewletterForm prop={isOpen}>
         <NewletterInput type="text" placeholder="E-mail" />
         <NewsletterInfo>
           If you select the sections that you are interested in, it will help us

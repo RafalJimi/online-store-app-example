@@ -8,11 +8,19 @@ import {
 } from "./layout.styled";
 import ActivatePageImg from "../../assets/ActivatePage/ActivationPagePhoto.jpg";
 
-export const ActivatePageLayout = () => (
+type ActivePageLayoutProps = {
+  firstName: string;
+  handleOnSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+};
+
+export const ActivatePageLayout = ({
+  firstName,
+  handleOnSubmit,
+}: ActivePageLayoutProps) => (
   <ActivatePageLayoutContainer>
     <ActivatePageContent>
-      <ActivatePageForm>
-        <h4>Welcome Test</h4>
+      <ActivatePageForm onSubmit={handleOnSubmit}>
+          <h4>Welcome {firstName}</h4>
         <ActivatePageButton type="submit">
           Activate your Account
         </ActivatePageButton>
