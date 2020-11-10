@@ -25,37 +25,16 @@ export const RegisterForm = () => {
   const registerUserIsLoading = useSelector(registerUserIsLoadingRX);
   const registerMenuIsOpen = useSelector(registerMenuIsOpenRX);
 
+  const inputInitialState = { textChange: "notChanged", value: "", error: "" };
+  
   // Inputs data
 
   const [Gender, setGender] = useState("man");
-
-  const [FirstNameInput, setFirstNameInput] = useState({
-    textChange: "notChanged",
-    value: "",
-    error: "",
-  });
-
-  const [LastNameInput, setLastNameInput] = useState({
-    textChange: "notChanged",
-    value: "",
-    error: "",
-  });
-
-  const [EmailInput, setEmailInput] = useState({
-    textChange: "notChanged",
-    value: "",
-    error: "",
-  });
-
-  const [PasswordInput, setPasswordInput] = useState({
-    textChange: "notChanged",
-    value: "",
-    error: "",
-    showPassword: false,
-  });
-
+  const [FirstNameInput, setFirstNameInput] = useState(inputInitialState);
+  const [LastNameInput, setLastNameInput] = useState(inputInitialState);
+  const [EmailInput, setEmailInput] = useState(inputInitialState);
+  const [PasswordInput, setPasswordInput] = useState(inputInitialState);
   const [ShowPassword, setShowPassword] = useState(false);
-
   const [ConfirmRules, setConfirmRules] = useState({
     value: false,
     textChange: "notChanged",
@@ -299,30 +278,10 @@ export const RegisterForm = () => {
   useEffect(() => {
     if (!registerMenuIsOpen) {
       setGender("man");
-      setFirstNameInput({
-        ...FirstNameInput,
-        value: "",
-        error: "",
-        textChange: "notChanged",
-      });
-      setLastNameInput({
-        ...LastNameInput,
-        value: "",
-        error: "",
-        textChange: "notChanged",
-      });
-      setEmailInput({
-        ...EmailInput,
-        value: "",
-        error: "",
-        textChange: "notChanged",
-      });
-      setPasswordInput({
-        ...PasswordInput,
-        value: "",
-        error: "",
-        textChange: "notChanged",
-      });
+      setFirstNameInput(inputInitialState);
+      setLastNameInput(inputInitialState);
+      setEmailInput(inputInitialState);
+      setPasswordInput(inputInitialState);
       setConfirmRules({
         ...ConfirmRules,
         value: false,

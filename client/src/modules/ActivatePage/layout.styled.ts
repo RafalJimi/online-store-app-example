@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { width } from "../../helpers/mediaQueries";
+import { width, height } from "../../helpers/mediaQueries";
 
 export const ActivatePageLayoutContainer = styled.div`
   display: flex;
@@ -16,6 +16,11 @@ export const ActivatePageLayoutContainer = styled.div`
 
   @media only screen and ${width[1000]} {
     justify-content: flex-start;
+  }
+
+  @media only screen and ${height[600]} {
+    justify-content: flex-start;
+    min-height: 300px;
   }
 `;
 

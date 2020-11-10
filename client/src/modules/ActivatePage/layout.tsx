@@ -20,13 +20,13 @@ export const ActivatePageLayout = ({
   <ActivatePageLayoutContainer>
     <ActivatePageContent>
       <ActivatePageForm onSubmit={handleOnSubmit}>
-          <h4>Welcome {firstName}</h4>
+        <h4>Welcome {firstName}</h4>
         <ActivatePageButton type="submit">
           Activate your Account
         </ActivatePageButton>
       </ActivatePageForm>
       <ImageContainer>
-        <img src={ActivatePageImg} alt="" />
+        <img loading="lazy" src={ActivatePageImg} alt="" />
       </ImageContainer>
     </ActivatePageContent>
   </ActivatePageLayoutContainer>

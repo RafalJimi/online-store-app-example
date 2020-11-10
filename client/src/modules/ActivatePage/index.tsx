@@ -27,7 +27,6 @@ export const ActivatePage = ({ match }: ActivatePageProps) => {
   const history = useHistory();
 
   const activationUserMessage = useSelector(activationUserMessageRX);
-  const activationUserIsLoading = false; /* useSelector(activationUserIsLoadingRX) */
   const activationUserIsError = useSelector(activationUserIsErrorRX);
 
   useEffect(() => {

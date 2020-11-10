@@ -10,6 +10,8 @@ import { LoginMenu } from "./modules/LoginMenu/index";
 import { RegisterMenu } from "./modules/RegisterMenu/index";
 import { LandingPage } from "./modules/LandingPage/index";
 import { ActivatePage } from "./modules/ActivatePage/index";
+import { ForgetPasswordPage } from "./modules/ForgotPasswordPage/index";
+import { ResetPasswordPage } from "./modules/ResetPasswordPage/index";
 import { ContactWindow } from ".//modules/Contact/index";
 import { Footer } from "./modules/Footer";
 
@@ -39,6 +41,16 @@ ReactDOM.render<Renderer>(
           <Route path="/" component={BurgerMenu} />
           <Route path="/" component={LoginMenu} />
           <Route path="/" component={RegisterMenu} />
+          <Route
+            path="/users/password/forget"
+            exact
+            component={ForgetPasswordPage}
+          />
+          <Route
+            path="/users/password/reset/:token"
+            exact
+            component={ResetPasswordPage}
+          />
           <Route path="/" component={ContactWindow} />
           <Route path="/" component={Footer} />
         </Suspense>

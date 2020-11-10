@@ -26,6 +26,7 @@ type LoginFormLayoutProps = {
   showPassword: boolean;
   handleToggleShowPassword: (e: React.MouseEvent) => void;
   handleCreateAnAccountButton: (e: React.MouseEvent) => void;
+  handleForgetPasswordButton: (e: React.MouseEvent) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   loginUserIsLoading: boolean;
 };
@@ -40,6 +41,7 @@ export const LoginFormLayout = ({
   showPassword,
   handleToggleShowPassword,
   handleCreateAnAccountButton,
+  handleForgetPasswordButton,
   handleSubmit,
   loginUserIsLoading,
 }: LoginFormLayoutProps) => (
@@ -84,14 +86,12 @@ export const LoginFormLayout = ({
     <LoginFormInputErrorMessage>
       <p>{passwordError}</p>
     </LoginFormInputErrorMessage>
-    <ForgotPasswordButton>
+    <ForgotPasswordButton onClick={handleForgetPasswordButton}>
       <p>I forgot my password</p>
     </ForgotPasswordButton>
     <LoginFormSubmitButton>
       {loginUserIsLoading ? (
-        <i
-          className="fas fa-circle-notch fa-spin 1x w-6  -ml-2"
-        ></i>
+        <i className="fas fa-circle-notch fa-spin 1x w-6  -ml-2"></i>
       ) : (
         <>
           <span>Begin the session</span>

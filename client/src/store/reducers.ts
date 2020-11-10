@@ -8,6 +8,8 @@ import { RegisterUserState, registerUser } from "./registerUser/reducer";
 import { ActivationUserState, activationUser } from "./activationUser/reducer";
 import { LoginUserState, loginUser } from "./loginUser/reducer";
 import { LogoutUserState, logoutUser } from "./logoutUser/reducer";
+import { ForgetPasswordState, forgetPassword } from "./forgetPassword/reducer";
+import { ResetPasswordState, resetPassword } from "./resetPassword/reducer";
 
 export type AppState = {
   burgerMenu: BurgerMenuState;
@@ -18,6 +20,8 @@ export type AppState = {
   activationUser: ActivationUserState;
   loginUser: LoginUserState;
   logoutUser: LogoutUserState;
+  forgetPassword: ForgetPasswordState;
+  resetPassword: ResetPasswordState;
 };
 
 export const reducer = combineReducers<AppState>({
@@ -29,6 +33,8 @@ export const reducer = combineReducers<AppState>({
   activationUser,
   loginUser,
   logoutUser,
+  forgetPassword,
+  resetPassword,
 });
 
 export type RootState = ReturnType<typeof reducer>;

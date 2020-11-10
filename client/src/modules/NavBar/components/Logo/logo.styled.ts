@@ -14,6 +14,10 @@ export const LogoContainer = styled.div`
   font-family: Dancing Script, cursive;
   font-weight: 700;
 
+  h2:hover {
+    cursor: pointer;
+  }
+
   @media only screen and ${width[1300]} {
     width: 200px;
     font-size: 0.7em;

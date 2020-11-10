@@ -11,4 +11,5 @@ export const width = {
 
 export const height = {
   730: `(max-height: 730px)`,
+  600: `(max-height: 600px)`,
 };

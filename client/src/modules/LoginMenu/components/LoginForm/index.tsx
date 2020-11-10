@@ -48,7 +48,6 @@ export const LoginForm = () => {
     textChange: "notChanged",
     value: "",
     error: "",
-    showPassword: false,
   });
 
   const [ShowPassword, setShowPassword] = useState(false);
@@ -176,6 +175,11 @@ export const LoginForm = () => {
     [dispatch]
   );
 
+  const handleForgetPasswordButton = useCallback((e: React.MouseEvent) => {
+    dispatch(toggleLoginMenu());
+    history.push("/users/password/forget");
+  }, []);
+  
   return (
     <LoginFormLayout
       handleEmailInput={handleEmailInput}
@@ -189,6 +193,7 @@ export const LoginForm = () => {
       handleCreateAnAccountButton={handleCreateAnAccountButton}
       handleSubmit={handleSubmit}
       loginUserIsLoading={loginUserIsLoading}
+      handleForgetPasswordButton={handleForgetPasswordButton}
     />
   );
 };

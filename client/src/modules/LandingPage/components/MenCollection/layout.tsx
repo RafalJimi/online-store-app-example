@@ -13,19 +13,19 @@ export const MenCollectionLayout = () => (
   <CollectionContainer>
     <ImgContainer>
       <CollectionSectionTitle>JACKETS</CollectionSectionTitle>
-      <img src={JacketMan} alt="" style={{}} />
+      <img loading="lazy" src={JacketMan} alt="" style={{}} />
     </ImgContainer>
     <ImgContainer>
       <CollectionSectionTitle>SUITS</CollectionSectionTitle>
-      <img src={SuitMan} alt="" style={{}} />
+      <img loading="lazy" src={SuitMan} alt="" style={{}} />
     </ImgContainer>
     <ImgContainer>
       <CollectionSectionTitle>COATS</CollectionSectionTitle>
-      <img src={SkirtMan} alt="" style={{}} />
+      <img loading="lazy" src={SkirtMan} alt="" style={{}} />
     </ImgContainer>
     <ImgContainer>
       <CollectionSectionTitle>SHOES</CollectionSectionTitle>
-      <img src={ShoesMan} alt="" style={{}} />
+      <img loading="lazy" src={ShoesMan} alt="" style={{}} />
     </ImgContainer>
   </CollectionContainer>
 );
