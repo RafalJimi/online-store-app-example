@@ -12,6 +12,7 @@ import { LandingPage } from "./modules/LandingPage/index";
 import { ActivatePage } from "./modules/ActivatePage/index";
 import { ForgetPasswordPage } from "./modules/ForgotPasswordPage/index";
 import { ResetPasswordPage } from "./modules/ResetPasswordPage/index";
+import { AdminPanel } from "./modules/AdminPanel/index";
 import { ContactWindow } from ".//modules/Contact/index";
 import { Footer } from "./modules/Footer";
 
@@ -51,6 +52,7 @@ ReactDOM.render<Renderer>(
             exact
             component={ResetPasswordPage}
           />
+          <Route path="/admin" component={AdminPanel} />
           <Route path="/" component={ContactWindow} />
           <Route path="/" component={Footer} />
         </Suspense>

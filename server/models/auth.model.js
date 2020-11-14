@@ -45,6 +45,7 @@ const userSchema = new mongoose.Schema(
     },
     city: {
       type: String,
+      default: ""
     },
     cart: {
       type: Array,
@@ -104,7 +105,7 @@ userSchema.methods = {
       },
       process.env.JWT_ACCOUNT_ACTIVATION,
       {
-        expiresIn: "15m",
+        expiresIn: "60m",
       }
     );
     

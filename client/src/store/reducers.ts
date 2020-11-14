@@ -10,6 +10,10 @@ import { LoginUserState, loginUser } from "./loginUser/reducer";
 import { LogoutUserState, logoutUser } from "./logoutUser/reducer";
 import { ForgetPasswordState, forgetPassword } from "./forgetPassword/reducer";
 import { ResetPasswordState, resetPassword } from "./resetPassword/reducer";
+import { GetUserDataState, getUserData } from "./getUserData/reducer";
+import { UpdateUserDataState, updateUserData } from "./updateUserData/reducer";
+import { DeleteUserState, deleteUser } from "./deleteUser/reducer";
+import { UploadImageState, uploadImage } from "./uploadImage/reducer";
 
 export type AppState = {
   burgerMenu: BurgerMenuState;
@@ -22,6 +26,10 @@ export type AppState = {
   logoutUser: LogoutUserState;
   forgetPassword: ForgetPasswordState;
   resetPassword: ResetPasswordState;
+  getUserData: GetUserDataState;
+  updateUserData: UpdateUserDataState;
+  deleteUser: DeleteUserState;
+  uploadImage: UploadImageState;
 };
 
 export const reducer = combineReducers<AppState>({
@@ -35,6 +43,10 @@ export const reducer = combineReducers<AppState>({
   logoutUser,
   forgetPassword,
   resetPassword,
+  getUserData,
+  updateUserData,
+  deleteUser,
+  uploadImage,
 });
 
 export type RootState = ReturnType<typeof reducer>;

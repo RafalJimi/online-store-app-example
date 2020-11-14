@@ -6,6 +6,10 @@ import { loginUserSaga } from "./loginUser/saga";
 import { logoutSaga } from "./logoutUser/saga";
 import { forgetPasswordSaga } from "./forgetPassword/saga";
 import { resetPasswordSaga } from "./resetPassword/saga";
+import { getUserDataSaga } from "./getUserData/saga";
+import { updateUserDataSaga } from "./updateUserData/saga";
+import { deleteUserSaga } from "./deleteUser/saga";
+import { uploadImageSaga, deleteImageSaga } from "./uploadImage/saga";
 
 export function* rootSaga(services = {}) {
   yield fork(registerUserSaga);
@@ -14,5 +18,9 @@ export function* rootSaga(services = {}) {
   yield fork(logoutSaga);
   yield fork(forgetPasswordSaga);
   yield fork(resetPasswordSaga);
+  yield fork(getUserDataSaga);
+  yield fork(updateUserDataSaga);
+  yield fork(deleteUserSaga);
+  yield fork(uploadImageSaga);
+  yield fork(deleteImageSaga);
 }
-
