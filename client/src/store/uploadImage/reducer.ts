@@ -1,4 +1,4 @@
-import { UPLOAD_IMAGE, DELETE_IMAGE } from "./consts";
+import { UPLOAD_IMAGE, DELETE_IMAGE, CLEAR_UPLOAD_IMAGE_STATE } from "./consts";
 
 import { getType } from "typesafe-actions";
 
@@ -8,6 +8,7 @@ import { uploadImageStarted, deleteImageStarted } from "./actions";
 export type Image = {
   id: number;
   fileName: string;
+  path: string;
 };
 
 export type UploadImageState = {
@@ -38,7 +39,11 @@ export const uploadImage = (
         ...state,
         images: [
           ...state.images,
-          { id: action.payload.id, fileName: action.payload.fileName },
+          {
+            id: action.payload.id,
+            fileName: action.payload.fileName,
+            path: action.payload.path,
+          },
         ],
         isLoading: false,
       };
@@ -66,6 +71,13 @@ export const uploadImage = (
         ...state,
         isError: action.payload.error,
         isLoading: false,
+      };
+    case CLEAR_UPLOAD_IMAGE_STATE:
+      return {
+        ...state,
+        isError: "",
+        isLoading: false,
+        images: [],
       };
     default:
       return { ...state };

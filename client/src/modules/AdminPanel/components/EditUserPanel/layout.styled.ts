@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { width } from "../../../../helpers/mediaQueries";
+import { width, maxHeight } from "../../../../helpers/mediaQueries";
 
 export const EditUserPanelContainer = styled.form`
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 578px);
   display: flex;
   align-self: center;
   flex-direction: row;
@@ -11,6 +11,14 @@ export const EditUserPanelContainer = styled.form`
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 50px 0px;
+
+  @media only screen and ${maxHeight[900]} and (min-width: 1000px) {
+    height: auto;
+  }
+
+  @media only screen and ${width[1000]} {
+    height: auto;
+  }
 `;
 
 type Prop = {
@@ -26,6 +34,7 @@ export const EditUserPanelInputContainer = styled.div<Prop>`
   border: none;
   border-bottom: 1px solid #00000050;
   flex-wrap: wrap;
+  margin: 20px 0px;
 
   border-bottom: ${({ prop }) =>
     prop ? "1px solid #000000" : "1px solid #00000050"};
@@ -64,6 +73,7 @@ export const EditUserPanelSelectContainer = styled.div`
   justify-content: center;
   align-items: center;
   border: none;
+  margin: 20px 0px;
 
   :focus {
     border: 1px solid #000000;
@@ -112,6 +122,7 @@ export const EditUserPanelButtonsContainer = styled.div`
   justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
+  margin: 20px 0px;
 
   button {
     width: 30%;

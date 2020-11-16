@@ -2,7 +2,8 @@ const User = require("../models/auth.model");
 const Product = require('../models/product.model')
 const { uploadImage } = require('../utils/uploadImage')
 const { sliderIMG, thumbnailIMG } = require('../utils/resizeImage')
-const fs = require('fs')
+const fs = require('fs');
+const { json } = require("body-parser");
 
 exports.getUserDataController = (req, res) => {
   const { email } = req.query
@@ -66,33 +67,60 @@ exports.deleteUserController = (req, res) => {
 };
 
 exports.uploadImageController = (req, res) => {
-  console.log(req.file)
+  const { directoryName } = req.query
+  console.log('directoryName', directoryName)
+  
+  const path = `server/images/${directoryName}`
+  
+  if (!fs.existsSync(path)){
+    fs.mkdirSync(path);
+  }
+  
   uploadImage(req, res, (err) => {
     if (err) {
       console.log("uploadErr", err);
       return res.json({ uploadImage: false, error: err });
     }
-    sliderIMG(req.file.path, req.file.originalname);
-    thumbnailIMG(req.file.path, req.file.originalname);
+    sliderIMG(req.file.path, directoryName, req.file.originalname);
+    thumbnailIMG(req.file.path, directoryName, req.file.originalname);
     return res.json({
       uploadImage: true,
-      image: res.req.file.path,
+      path: res.req.file.path,
       fileName: res.req.file.filename,
     });
   });
 };
 
 exports.deleteImageController = (req, res) => {
-  console.log(req.body)
+  const { directoryName, fileName } = req.query
+  const img = `server/images/${directoryName}/${fileName}`
+  const slider = `server/images/${directoryName}/slider-${fileName}`
+  const thumbnail = `server/images/${directoryName}/thumbnail-${fileName}`
   
-  const path = req.body.link
+  console.log(img, slider, thumbnail)
   
-  /* fs.unlink(path, (err) => {
-  if (err) {
-    return res.json({deleteImage: false, error: "Something went wront, please try again."})
-  }
-  return res.json({deleteImage: true})
-}) */
+  fs.unlinkSync(img);
+  fs.unlinkSync(slider);
+  fs.unlinkSync(thumbnail);
+  
+  fs.readdir(`server/images/${directoryName}`, function(err, files) {
+    if (err) {
+       return res.json({deleteImage: false, error: "Something went wrong, please try again."})
+    } else {
+       if (!files.length) {
+           fs.rmdir(`server/images/${directoryName}`, { recursive: true }, (err) => {
+             if (err) return res.json({ deleteImage: false, error: "Something went wrong, please try again." })
+             else {
+               return res.json({ deleteImage: true })
+             }
+          });
+       } else if(!fs.existsSync(img) && !fs.existsSync(slider) && !fs.existsSync(thumbnail)) {
+        return res.json({deleteImage: true})
+      } else if (fs.existsSync(img) && fs.existsSync(slider) && fs.existsSync(thumbnail)){
+        return res.json({deleteImage: false, error: "Something went wrong, please try again."})
+      }
+    }
+  });
 };
 
 exports.uploadProductController = (req, res) => {
@@ -100,7 +128,6 @@ exports.uploadProductController = (req, res) => {
   const product = new Product(req.body);
 
   product.save((err) => {
-    console.log("error", err);
     if (err) return res.json({ uploadImage: false, error: err });
     return res.status(200).json({ uploadImage: true, message: "Product uploaded successfully." });
   });

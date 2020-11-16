@@ -1,17 +1,16 @@
 import styled from "styled-components";
-import { width, height } from "../../helpers/mediaQueries";
+import { width, maxHeight } from "../../helpers/mediaQueries";
 
 export const AdminPanelLayoutContainer = styled.div`
   width: 100%;
   max-width: 1000px;
   align-self: center;
-  height: calc(100vh - 362px);
+  height: auto;
   padding: 40px 0px 0px 0px;
   display: flex;
   flex-direction: column;
 
   @media only screen and ${width[1300]} {
-    height: calc(100vh - 275px);
     padding: 120px 0px 0px 0px;
   }
 
@@ -20,7 +19,7 @@ export const AdminPanelLayoutContainer = styled.div`
     height: auto;
   }
 
-  @media only screen and ${height[600]} {
+  @media only screen and ${maxHeight[600]} {
     justify-content: flex-start;
     min-height: 300px;
     width: 100%;

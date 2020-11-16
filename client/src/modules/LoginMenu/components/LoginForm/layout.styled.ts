@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { width, height } from "../../../../helpers/mediaQueries";
+import { width, maxHeight } from "../../../../helpers/mediaQueries";
 
 export const LoginFormContainer = styled.form`
   display: flex;
@@ -11,7 +11,7 @@ export const LoginFormContainer = styled.form`
     width: 500px;
   }
 
-  @media only screen and ${width[750]}, ${height[730]} {
+  @media only screen and ${width[750]}, ${maxHeight[750]} {
     width: 100%;
     padding-bottom: 30px;
   }

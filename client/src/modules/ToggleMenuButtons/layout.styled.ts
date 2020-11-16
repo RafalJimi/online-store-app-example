@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { width, height } from "../../helpers/mediaQueries";
+import { width, maxHeight } from "../../helpers/mediaQueries";
 
 export const ToggleMenuButtonsContainer = styled.div`
   display: none;
@@ -18,7 +18,7 @@ export const ToggleMenuButtonsContainer = styled.div`
     display: flex;
   }
 
-  @media screen and ${width[750]}, ${height[730]} {
+  @media screen and ${width[750]}, ${maxHeight[750]} {
     display: none;
   }
 `;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { width, height } from "../../helpers/mediaQueries";
+import { width, maxHeight } from "../../helpers/mediaQueries";
 
 type Prop = {
   prop: boolean;
@@ -28,7 +28,7 @@ export const RegisterContainer = styled.main<Prop>`
   transform: ${({ prop }) => (prop ? "translateX(0%)" : "translateX(100%)")};
   font-family: "Ubuntu", sans-serif;
 
-  @media only screen and ${width[750]}, ${height[730]} {
+  @media only screen and ${width[750]}, ${maxHeight[750]} {
     transition: none;
     transform: ${({ prop }) => (prop ? "translateX(0%)" : "translateX(100%)")};
   }
@@ -56,7 +56,7 @@ export const RegisterMenuContainer = styled.div`
   z-index: 2;
   padding-bottom: 60px;
 
-  @media only screen and ${width[750]}, ${height[730]} {
+  @media only screen and ${width[750]}, ${maxHeight[750]} {
     width: 100%;
     height: 100%;
     padding: 0px 30px;
@@ -81,7 +81,7 @@ export const CloseRegisterMenuButton = styled.div`
     color: #00000050;
   }
 
-  @media only screen and ${width[750]}, ${height[730]} {
+  @media only screen and ${width[750]}, ${maxHeight[750]} {
     margin-top: 20px;
     margin-right: 0px;
   }

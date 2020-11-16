@@ -14,6 +14,7 @@ import { GetUserDataState, getUserData } from "./getUserData/reducer";
 import { UpdateUserDataState, updateUserData } from "./updateUserData/reducer";
 import { DeleteUserState, deleteUser } from "./deleteUser/reducer";
 import { UploadImageState, uploadImage } from "./uploadImage/reducer";
+import { UploadProductState, uploadProduct } from "./uploadProduct/reducer";
 
 export type AppState = {
   burgerMenu: BurgerMenuState;
@@ -30,6 +31,7 @@ export type AppState = {
   updateUserData: UpdateUserDataState;
   deleteUser: DeleteUserState;
   uploadImage: UploadImageState;
+  uploadProduct: UploadProductState;
 };
 
 export const reducer = combineReducers<AppState>({
@@ -47,6 +49,7 @@ export const reducer = combineReducers<AppState>({
   updateUserData,
   deleteUser,
   uploadImage,
+  uploadProduct,
 });
 
 export type RootState = ReturnType<typeof reducer>;

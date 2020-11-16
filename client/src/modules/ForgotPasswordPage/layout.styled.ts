@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { width, height } from "../../helpers/mediaQueries";
+import { width, maxHeight } from "../../helpers/mediaQueries";
 
 export const ForgetPasswordLayoutContainer = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ export const ForgetPasswordLayoutContainer = styled.div`
     justify-content: flex-start;
   }
 
-  @media only screen and ${height[600]} {
+  @media only screen and ${maxHeight[600]} {
     justify-content: flex-start;
     min-height: 300px;
   }

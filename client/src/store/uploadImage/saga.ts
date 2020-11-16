@@ -11,13 +11,28 @@ export function* uploadImage({
   payload,
 }: ReturnType<typeof uploadImageStarted>) {
   try {
-    const { img, id } = payload;
-    const request = yield call(uploadHandlerPost, `/admin/uploadImage`, img);
+    const { id, img, productName } = payload;
+    const directoryName = productName
+      .trim()
+      .replace(/[ ]+/g, "_")
+      .toLowerCase();
+    const request = yield call(
+      uploadHandlerPost,
+      `/admin/uploadImage?directoryName=${directoryName}`,
+      img
+    );
     console.log(request);
-    if (request.uploadImage)
+    if (request.uploadImage) {
+      const slash = "/";
+      const path = request.path.replace(/\\/g, slash);
       yield put({
         type: UPLOAD_IMAGE.success,
-        payload: { id: id, fileName: request.fileName },
+        payload: { id: id, fileName: request.fileName, path: path },
+      });
+    } else if (!request.uploadImage)
+      yield put({
+        type: UPLOAD_IMAGE.failure,
+        payload: { id: id, error: request.error },
       });
   } catch (e) {
     yield put({ type: UPLOAD_IMAGE.failure, message: e });
@@ -28,17 +43,25 @@ export function* deleteImage({
   payload,
 }: ReturnType<typeof deleteImageStarted>) {
   try {
-    const { id, link } = payload;
-    console.log(link, id);
-    /* const request = yield call(uploadHandlerPost, `/admin/uploadImage`, link);
-    console.log(request); */
-    /* if (request.success)
+    const { id, fileName, path } = payload;
+    const directoryName = path.split("/")[2];
+    const request = yield call(
+      uploadHandlerPost,
+      `/admin/deleteImage?directoryName=${directoryName}&fileName=${fileName}`
+    );
+    console.log(request);
+    if (request.deleteImage)
       yield put({
-        type: UPLOAD_IMAGE.success,
-        payload: { id: id, link: request.image },
-      }); */
+        type: DELETE_IMAGE.success,
+        payload: { id: id },
+      });
+    else
+      yield put({
+        type: DELETE_IMAGE.failure,
+        payload: { id: id, error: request.error },
+      });
   } catch (e) {
-    yield put({ type: UPLOAD_IMAGE.failure, message: e });
+    yield put({ type: DELETE_IMAGE.failure, message: e });
   }
 }
 

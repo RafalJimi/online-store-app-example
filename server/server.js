@@ -26,6 +26,7 @@ app.use(cookieParser());
 const authRouter = require("./routes/auth.route.js");
 const adminRouter = require("./routes/admin.route");
 
+app.use('/server/images', express.static("server/images"))
 app.use("/api/", authRouter);
 app.use("/api/admin", adminRouter);
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { width, height } from "../../helpers/mediaQueries";
+import { width, maxHeight } from "../../helpers/mediaQueries";
 
 type Prop = {
   prop: boolean;
@@ -37,7 +37,7 @@ export const LoginContainer = styled.main<Prop>`
         : "opacity .5s ease-in-out, transform .01s ease-in .5s"};
   }
 
-  @media only screen and ${width[750]}, ${height[730]} {
+  @media only screen and ${width[750]}, ${maxHeight[750]} {
     transition: none;
     transform: ${({ prop }) => (prop ? "translateX(0%)" : "translateX(100%)")};
   }
@@ -77,7 +77,7 @@ export const LoginMenuContainer = styled.div`
     overflow-y: scroll;
   }
 
-  @media screen and ${width[750]}, ${height[730]} {
+  @media screen and ${width[750]}, ${maxHeight[750]} {
     width: 100%;
     height: 100%;
     padding: 0px 30px;
@@ -101,7 +101,7 @@ export const CloseLoginMenuButton = styled.div`
     color: #00000050;
   }
 
-  @media only screen and ${width[750]}, ${height[730]} {
+  @media only screen and ${width[750]}, ${maxHeight[750]} {
     margin-top: 20px;
     margin-right: 0px;
   }

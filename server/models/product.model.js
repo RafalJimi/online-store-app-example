@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema(
   {
-    title: {
+    productName: {
       type: String,
       maxlength: 50,
       required: true,

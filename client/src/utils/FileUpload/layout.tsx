@@ -1,10 +1,16 @@
 import React from "react";
 import Dropzone from "react-dropzone";
 import { Image } from "../../store/uploadImage/reducer";
+import { FileUploadLayoutContainer, ImagesContainer } from "./layout.styled";
+
 
 type FileUploadLayoutProps = {
   onDrop: (files: any) => void;
-  handleDeleteImage: (id: number) => (event: React.MouseEvent) => void;
+  handleDeleteImage: (
+    id: number,
+    fileName: string,
+    path: string
+  ) => (event: React.MouseEvent) => void;
   images: Image[];
 };
 
@@ -15,13 +21,13 @@ export const FileUploadLayout = ({
 }: FileUploadLayoutProps) => {
   let imgKey = 0;
   return (
-    <div style={{ display: "flex", justifyContent: "space-between" }}>
+    <FileUploadLayoutContainer>
       <Dropzone onDrop={onDrop} multiple={false} maxSize={800000000}>
         {({ getRootProps, getInputProps }) => (
           <div
             style={{
               width: "300px",
-              height: "240px",
+              height: "300px",
               border: "1px solid lightgray",
               display: "flex",
               alignItems: "center",
@@ -38,26 +44,21 @@ export const FileUploadLayout = ({
         )}
       </Dropzone>
 
-      <div
-        style={{
-          display: "flex",
-          width: "350px",
-          height: "240px",
-          overflowX: "scroll",
-        }}
-      >
+      <ImagesContainer>
         {images.map((image: Image) => {
           return (
-            <div key={imgKey++} onClick={handleDeleteImage(image.id)}>
+            <div
+              key={imgKey++}
+              onClick={handleDeleteImage(image.id, image.fileName, image.path)}
+            >
               <img
-                style={{ minWidth: "300px", width: "300px", height: "240px" }}
-                src={`http://localhost:5000/server/images/shoesman.jpg`}
+                src={`http://localhost:5000/${image.path}`}
                 alt={`productImg-${image.id}`}
               />
             </div>
           );
         })}
-      </div>
-    </div>
+      </ImagesContainer>
+    </FileUploadLayoutContainer>
   );
 };

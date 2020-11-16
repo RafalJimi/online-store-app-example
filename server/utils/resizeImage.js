@@ -1,9 +1,9 @@
 const sharp = require("sharp");
 
-exports.sliderIMG = (image, fileName) => {
+exports.sliderIMG = (image, directoryName, fileName) => {
   sharp(image)
     .resize(500, 500)
-    .toFile("server/images/" + "slider-" + fileName, (err, resizeImage) => {
+    .toFile(`server/images/${directoryName}/` + "slider-" + fileName, (err, resizeImage) => {
       if (err) {
         console.log(err);
       } else {
@@ -12,10 +12,10 @@ exports.sliderIMG = (image, fileName) => {
     });
 };
 
-exports.thumbnailIMG = (image, fileName) => {
+exports.thumbnailIMG = (image, directoryName, fileName) => {
   sharp(image)
     .resize(200, 200)
-    .toFile("server/images/" + "thumbnail-" + fileName, (err, resizeImage) => {
+    .toFile(`server/images/${directoryName}/` + "thumbnail-" + fileName, (err, resizeImage) => {
       if (err) {
         console.log(err);
       } else {

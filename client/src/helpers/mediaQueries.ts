@@ -9,7 +9,18 @@ export const width = {
   380: `(max-width: 380px)`,
 };
 
-export const height = {
+export const maxHeight = {
+  2000: `(max-height: 2000px)`,
+  1140: `(max-height: 1140px)`,
+  900: `(max-height: 900px)`,
+  750: `(max-height: 750px)`,
+  600: `(max-height: 600px)`,
+};
+
+export const minHeight = {
+  2000: `(max-height: 2000px)`,
+  1140: `(max-height: 1140px)`,
+  850: `(max-height: 850px)`,
   730: `(max-height: 730px)`,
   600: `(max-height: 600px)`,
 };
