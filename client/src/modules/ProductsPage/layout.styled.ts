@@ -30,6 +30,11 @@ export const SearchPropsContainer = styled.div`
     margin-top: 10px;
   }
 
+  ul > span {
+    cursor: pointer;
+    color: #00000050;
+  }
+
   ul > li {
     list-style-type: none;
     padding-left: 10px;
@@ -43,8 +48,14 @@ export const SearchPropsContainer = styled.div`
   }
 `;
 
-export const ProductsContainer = styled.div`
+type ProductsContainerProps = {
+  productsListLength: number;
+};
+
+export const ProductsContainer = styled.div<ProductsContainerProps>`
   width: calc(100% - 300px);
+  height: ${({ productsListLength }) =>
+    productsListLength === 0 ? "100vh" : "auto"};
   padding: 0px;
   display: flex;
   flex-direction: column;

@@ -1,7 +1,7 @@
 const User = require("../models/auth.model");
 const Product = require('../models/product.model')
 const { uploadImage } = require('../utils/uploadImage')
-const { sliderIMG, thumbnailIMG } = require('../utils/resizeImage')
+const { thumbnailIMG } = require('../utils/resizeImage')
 const fs = require('fs');
 const { json } = require("body-parser");
 
@@ -81,7 +81,6 @@ exports.uploadImageController = (req, res) => {
       console.log("uploadErr", err);
       return res.json({ uploadImage: false, error: err });
     }
-    sliderIMG(req.file.path, directoryName, req.file.originalname);
     thumbnailIMG(req.file.path, directoryName, req.file.originalname);
     return res.json({
       uploadImage: true,
@@ -94,13 +93,11 @@ exports.uploadImageController = (req, res) => {
 exports.deleteImageController = (req, res) => {
   const { directoryName, fileName } = req.query
   const img = `server/images/${directoryName}/${fileName}`
-  const slider = `server/images/${directoryName}/slider-${fileName}`
   const thumbnail = `server/images/${directoryName}/thumbnail-${fileName}`
   
-  console.log(img, slider, thumbnail)
+  console.log(img, thumbnail)
   
   fs.unlinkSync(img);
-  fs.unlinkSync(slider);
   fs.unlinkSync(thumbnail);
   
   fs.readdir(`server/images/${directoryName}`, function(err, files) {
@@ -114,9 +111,9 @@ exports.deleteImageController = (req, res) => {
                return res.json({ deleteImage: true })
              }
           });
-       } else if(!fs.existsSync(img) && !fs.existsSync(slider) && !fs.existsSync(thumbnail)) {
+       } else if(!fs.existsSync(img) && !fs.existsSync(thumbnail)) {
         return res.json({deleteImage: true})
-      } else if (fs.existsSync(img) && fs.existsSync(slider) && fs.existsSync(thumbnail)){
+      } else if (fs.existsSync(img) && fs.existsSync(thumbnail)){
         return res.json({deleteImage: false, error: "Something went wrong, please try again."})
       }
     }
@@ -125,10 +122,16 @@ exports.deleteImageController = (req, res) => {
 
 exports.uploadProductController = (req, res) => {
   console.log(req.body);
-  const product = new Product(req.body);
+  console.log(req.body)
+  
+  let newProduct = req.body
+  
+  newProduct.category === "boots" ? newProduct = {...newProduct} : newProduct = { ...newProduct, subCategory: null}
+  
+  const product = new Product(newProduct);
 
   product.save((err) => {
-    if (err) return res.json({ uploadImage: false, error: err });
-    return res.status(200).json({ uploadImage: true, message: "Product uploaded successfully." });
+    if (err) return res.json({ uploadProduct: false, error: err });
+    return res.status(200).json({ uploadProduct: true, message: "Product uploaded successfully." });
   });
 };

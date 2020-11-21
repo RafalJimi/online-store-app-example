@@ -5,9 +5,11 @@ import {
   SelectInputsContainer,
   TextInputsContainer,
   ItemDescriptionContainer,
+  AddProductDetailContainer,
   AddItemPanelInputContainer,
   AddItemPanelButtonsContainer,
 } from "./layout.styled";
+import { ProductDetail } from "../../../../store/uploadProduct/actions";
 import { FileUpload } from "../../../../utils/FileUpload/index";
 
 type AddItemPanelLayoutProps = {
@@ -16,7 +18,11 @@ type AddItemPanelLayoutProps = {
   subCategory: string;
   productName: string;
   price: number;
-  description: string;
+  handleProductDetailInput: (e: ChangeEvent<HTMLInputElement>) => void;
+  ProductDetailInput: string;
+  handleAddDetailProductButton: (e: React.MouseEvent) => void;
+  details: ProductDetail[];
+  handleDeleteDetail: (id: number) => (e: React.MouseEvent) => void;
   handleOnChange: (text: string) => (e: ChangeEvent<HTMLInputElement>) => void;
   handleOnSelect: (text: string) => (e: ChangeEvent<HTMLSelectElement>) => void;
   handleAddItemButton: (e: React.MouseEvent) => void;
@@ -28,7 +34,11 @@ export const AddItemPanelLayout = ({
   subCategory,
   productName,
   price,
-  description,
+  handleProductDetailInput,
+  ProductDetailInput,
+  handleAddDetailProductButton,
+  details,
+  handleDeleteDetail,
   handleOnChange,
   handleOnSelect,
   handleAddItemButton,
@@ -58,16 +68,16 @@ export const AddItemPanelLayout = ({
         <option value="woman">Woman</option>
       </select>
       <select onChange={handleOnSelect("collection")} value={collection}>
-        <option value="boots">Boots</option>
-        <option value="coats">Coats</option>
-        <option value="jackets">Jackets</option>
+        <option value="soots">Boots</option>
+        <option value="soats">Coats</option>
+        <option value="sackets">Jackets</option>
         <option value="skirts">Skirts</option>
         <option value="suits">Suits</option>
       </select>
       {collection === "boots" ? (
         <select onChange={handleOnSelect("subCategory")} value={subCategory}>
-          <option value="female">Sport shoes</option>
-          <option value="male">Boots</option>
+          <option value="sport shoes">Sport shoes</option>
+          <option value="boots">Boots</option>
         </select>
       ) : (
         <select
@@ -81,12 +91,23 @@ export const AddItemPanelLayout = ({
       )}
     </SelectInputsContainer>
     <ItemDescriptionContainer>
-      <input
-        type="text"
-        placeholder="Description ..."
-        value={description}
-        onChange={handleOnChange("description")}
-      />
+      <AddProductDetailContainer>
+        <input
+          type="text"
+          placeholder="Product details ..."
+          value={ProductDetailInput}
+          onChange={handleProductDetailInput}
+        />
+        <button onClick={handleAddDetailProductButton}>Add detail</button>
+      </AddProductDetailContainer>
+      <ul>
+        Product details :{details.map( detail => { return (
+          <li>
+            - {detail.text} <button onClick={handleDeleteDetail(detail.id)}>Delete</button>
+          </li>
+        );})}
+        
+      </ul>
     </ItemDescriptionContainer>
     <FileUploadContainer>
       <FileUpload productName={productName} />

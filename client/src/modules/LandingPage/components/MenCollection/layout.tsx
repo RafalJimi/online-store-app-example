@@ -9,22 +9,34 @@ import {
   CollectionSectionTitle,
 } from "./layout.styled";
 
-export const MenCollectionLayout = () => (
+type MenCollectionLayoutProps = {
+  handleOnClick: (
+    gender: string,
+    category: string,
+    subCategory?: string
+  ) => (e: React.MouseEvent) => void;
+};
+
+export const MenCollectionLayout = ({
+  handleOnClick,
+}: MenCollectionLayoutProps) => (
   <CollectionContainer>
-    <ImgContainer>
+    <ImgContainer onClick={handleOnClick("man", "jackets")}>
       <CollectionSectionTitle>JACKETS</CollectionSectionTitle>
       <img loading="lazy" src={JacketMan} alt="" style={{}} />
     </ImgContainer>
-    <ImgContainer>
+    <ImgContainer onClick={handleOnClick("man", "suits")}>
       <CollectionSectionTitle>SUITS</CollectionSectionTitle>
       <img loading="lazy" src={SuitMan} alt="" style={{}} />
     </ImgContainer>
-    <ImgContainer>
+    <ImgContainer onClick={handleOnClick("man", "coats")}>
       <CollectionSectionTitle>COATS</CollectionSectionTitle>
       <img loading="lazy" src={SkirtMan} alt="" style={{}} />
     </ImgContainer>
-    <ImgContainer>
-      <CollectionSectionTitle>SHOES</CollectionSectionTitle>
+    <ImgContainer onClick={handleOnClick("man", "shoes")}>
+      <CollectionSectionTitle>
+        SHOES
+      </CollectionSectionTitle>
       <img loading="lazy" src={ShoesMan} alt="" style={{}} />
     </ImgContainer>
   </CollectionContainer>

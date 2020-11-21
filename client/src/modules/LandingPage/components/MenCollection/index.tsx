@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import { MenCollectionLayout } from "./layout";
 
 export const MenCollection = () => {
-  return <MenCollectionLayout />;
+  const history = useHistory();
+
+  const handleOnClick = useCallback(
+    (gender: string, category: string, subCategory?: string) => (
+      e: React.MouseEvent
+    ) => {
+      history.push(`/products?gender=${gender}&category=${category}`);
+    },
+    []
+  );
+
+  return <MenCollectionLayout handleOnClick={handleOnClick} />;
 };

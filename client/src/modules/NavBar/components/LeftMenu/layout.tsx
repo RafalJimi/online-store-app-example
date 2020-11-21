@@ -9,23 +9,53 @@ import {
   DropdownMenuColumnItem,
 } from "./layout.styled";
 
-export const LeftMenuLayout = () => {
+type LeftMenuLayoutProps = {
+  handleOnClick: (
+    gender: string,
+    category?: string,
+    subCategory?: string
+  ) => (e: React.MouseEvent) => void;
+};
+
+export const LeftMenuLayout = ({ handleOnClick }: LeftMenuLayoutProps) => {
   const MenuForWoman = (
     <DropdownMenuContainer>
       <DropdownMenuColumn>
-        <DropdownMenuColumnTitle>NEW PRODUCTS</DropdownMenuColumnTitle>
+        <DropdownMenuColumnTitle onHoverEffect={true}>
+          NEW PRODUCTS
+        </DropdownMenuColumnTitle>
       </DropdownMenuColumn>
       <DropdownMenuColumn>
-        <DropdownMenuColumnTitle>COLLECTION</DropdownMenuColumnTitle>
-        <DropdownMenuColumnItem>Jackets</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Suits</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Skirts</DropdownMenuColumnItem>
+        <DropdownMenuColumnTitle onHoverEffect={false}>
+          COLLECTION
+        </DropdownMenuColumnTitle>
+        <DropdownMenuColumnItem onClick={handleOnClick("woman", "coats")}>
+          Coats
+        </DropdownMenuColumnItem>
+        <DropdownMenuColumnItem onClick={handleOnClick("woman", "suits")}>
+          Suits
+        </DropdownMenuColumnItem>
+        <DropdownMenuColumnItem onClick={handleOnClick("woman", "skirts")}>
+          Skirts
+        </DropdownMenuColumnItem>
       </DropdownMenuColumn>
       <DropdownMenuColumn>
-        <DropdownMenuColumnTitle>SHOES</DropdownMenuColumnTitle>
-        <DropdownMenuColumnItem>See it all</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Sport shoes</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Boots</DropdownMenuColumnItem>
+        <DropdownMenuColumnTitle onHoverEffect={false}>
+          SHOES
+        </DropdownMenuColumnTitle>
+        <DropdownMenuColumnItem onClick={handleOnClick("woman", "shoes")}>
+          See it all
+        </DropdownMenuColumnItem>
+        <DropdownMenuColumnItem
+          onClick={handleOnClick("woman", "shoes", "sport shoes")}
+        >
+          Sport shoes
+        </DropdownMenuColumnItem>
+        <DropdownMenuColumnItem
+          onClick={handleOnClick("woman", "shoes", "boots")}
+        >
+          Boots
+        </DropdownMenuColumnItem>
       </DropdownMenuColumn>
     </DropdownMenuContainer>
   );
@@ -33,19 +63,41 @@ export const LeftMenuLayout = () => {
   const MenuForMan = (
     <DropdownMenuContainer>
       <DropdownMenuColumn>
-        <DropdownMenuColumnTitle>NEW PRODUCTS</DropdownMenuColumnTitle>
+        <DropdownMenuColumnTitle onHoverEffect={true}>
+          NEW PRODUCTS
+        </DropdownMenuColumnTitle>
       </DropdownMenuColumn>
       <DropdownMenuColumn>
-        <DropdownMenuColumnTitle>COLLECTION</DropdownMenuColumnTitle>
-        <DropdownMenuColumnItem>Coats</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Jackets</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Suits</DropdownMenuColumnItem>
+        <DropdownMenuColumnTitle onHoverEffect={false}>
+          COLLECTION
+        </DropdownMenuColumnTitle>
+        <DropdownMenuColumnItem onClick={handleOnClick("man", "coats")}>
+          Coats
+        </DropdownMenuColumnItem>
+        <DropdownMenuColumnItem onClick={handleOnClick("man", "jackets")}>
+          Jackets
+        </DropdownMenuColumnItem>
+        <DropdownMenuColumnItem onClick={handleOnClick("man", "suits")}>
+          Suits
+        </DropdownMenuColumnItem>
       </DropdownMenuColumn>
       <DropdownMenuColumn>
-        <DropdownMenuColumnTitle>SHOES</DropdownMenuColumnTitle>
-        <DropdownMenuColumnItem>See it all</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Sport shoes</DropdownMenuColumnItem>
-        <DropdownMenuColumnItem>Boots</DropdownMenuColumnItem>
+        <DropdownMenuColumnTitle onHoverEffect={false}>
+          SHOES
+        </DropdownMenuColumnTitle>
+        <DropdownMenuColumnItem onClick={handleOnClick("man", "shoes")}>
+          See it all
+        </DropdownMenuColumnItem>
+        <DropdownMenuColumnItem
+          onClick={handleOnClick("man", "shoes", "sport shoes")}
+        >
+          Sport shoes
+        </DropdownMenuColumnItem>
+        <DropdownMenuColumnItem
+          onClick={handleOnClick("man", "shoes", "boots")}
+        >
+          Boots
+        </DropdownMenuColumnItem>
       </DropdownMenuColumn>
     </DropdownMenuContainer>
   );
@@ -53,11 +105,11 @@ export const LeftMenuLayout = () => {
   return (
     <LeftMenu>
       <LeftMenuItem>
-        <span>WOMAN</span>
+        <span onClick={handleOnClick("woman")}>WOMAN</span>
         <DropdownMenu>{MenuForWoman}</DropdownMenu>
       </LeftMenuItem>
       <LeftMenuItem>
-        <span>MAN</span>
+        <span onClick={handleOnClick("man")}>MAN</span>
         <DropdownMenu>{MenuForMan}</DropdownMenu>
       </LeftMenuItem>
     </LeftMenu>

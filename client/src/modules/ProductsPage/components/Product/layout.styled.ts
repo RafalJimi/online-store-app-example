@@ -120,6 +120,7 @@ export const ProductDetailsContainer = styled.div`
     font-weight: 500;
     word-spacing: 2px;
     padding: 0px;
+    font-size: 1.2em;
   }
 
   @media only screen and ${width[1000]} {

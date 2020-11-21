@@ -19,11 +19,12 @@ const productSchema = new mongoose.Schema(
       type: String,
       maxlength: 50,
     },
-    type: {
+    subCategory: {
       type: String,
     },
-    description: {
-      type: String,
+    details: {
+      type: Array,
+      default: []
     },
     images: {
       type: Array,

@@ -5,12 +5,17 @@ import {
   AddItemToCartContainer,
   ProductDetailsContainer,
 } from "./layout.styled";
-import TestIMG from "../../../../assets/ManCollectionImgs/coatman.jpg";
 
-export const ProductLayout = () => (
+type ProductLayoutProps = {
+  img: string;
+  name: string;
+  price: number;
+};
+
+export const ProductLayout = ({ img, name, price }: ProductLayoutProps) => (
   <ProductContainer>
     <ProductImgContainer>
-      <img src={TestIMG} alt="" />
+      <img src={`http://localhost:5000/${img}`} alt="" />
       <AddItemToCartContainer className="addToCart">
         <span>ADD QUICKLY</span>
         <div>
@@ -23,8 +28,8 @@ export const ProductLayout = () => (
       </AddItemToCartContainer>
     </ProductImgContainer>
     <ProductDetailsContainer>
-      <span>Smooth coat made of 100% wool</span>
-      <div>PLN 999.00</div>
+      <span>{name}</span>
+      <div>PLN {price.toFixed(2)}</div>
     </ProductDetailsContainer>
   </ProductContainer>
 );

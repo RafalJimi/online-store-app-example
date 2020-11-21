@@ -131,9 +131,51 @@ export const AddItemPanelInputContainer = styled.div<Prop>`
 export const ItemDescriptionContainer = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px;
+  flex-wrap: wrap;
+
+  ul {
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    text-align: center;
+    font-size: 1.1em;
+  }
+
+  ul > li {
+    text-align: start;
+    font-weight: 100;
+    color: black;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  ul > li > button {
+    padding: 0px 10px;
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 20px;
+  }
+`;
+
+export const AddProductDetailContainer = styled.div`
+  width: 100%;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 20px 0px;
+  flex-wrap: wrap;
 
   input {
     width: 500px;
@@ -145,12 +187,28 @@ export const ItemDescriptionContainer = styled.div`
     text-align: start;
   }
 
+  button {
+    height: 40px;
+    padding: 0px 20px;
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    border-radius: 10px;
+  }
+
   @media only screen and ${width[660]} {
     input {
       width: 80%;
-                        }
+    }
+
+    button {
+      width: 20%;
+    }
   }
 `;
+
+
 
 export const AddItemPanelButtonsContainer = styled.div`
   width: 100%;

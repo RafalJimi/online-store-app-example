@@ -25,10 +25,12 @@ app.use(cookieParser());
 
 const authRouter = require("./routes/auth.route.js");
 const adminRouter = require("./routes/admin.route");
+const productRouter = require("./routes/product.route")
 
 app.use('/server/images', express.static("server/images"))
 app.use("/api/", authRouter);
 app.use("/api/admin", adminRouter);
+app.use("/api/products", productRouter);
 
 app.use((req, res, next) => {
   res.status(404).json({

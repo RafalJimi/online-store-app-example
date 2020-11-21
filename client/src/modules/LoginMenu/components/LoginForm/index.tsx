@@ -156,6 +156,7 @@ export const LoginForm = () => {
         textChange: "notChanged",
       });
       informParent(loginUserToken, loggedUser);
+      dispatch(toggleLoginMenu());
     }
   }, [loginUserToken]);
 

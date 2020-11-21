@@ -12,9 +12,8 @@ export const NavContainer = styled.nav`
   padding-left: 44px;
   padding-top: 12px;
   box-sizing: border-box;
-
   border-bottom: 1px solid #00000050;
-  z-index: 1;
+  z-index: 5;
 
   @media only screen and ${width[1300]} {
     justify-content: flex-end;

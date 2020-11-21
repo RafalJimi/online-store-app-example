@@ -1,59 +1,63 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React from "react";
 import { SearchPanelContainer } from "./layout.styled";
 
-export const SearchPanelLayout = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [SearchContainerHeight, setSearchContainerHeight] = useState(0);
+type SearchPanelLayoutProps = {
+  handleOnClick: (
+    gender: string,
+    category: string,
+    subCategory?: string
+  ) => (e: React.MouseEvent) => void;
+  searchContainerHeight: number
+  gender: string;
+};
 
-  const bodyHeight = document.body.offsetHeight;
-  const bodyWidth = document.body.offsetWidth;
-
-  const handleScroll = useCallback(() => {
-    const position = window.pageYOffset + window.innerHeight;
-    setScrollPosition(position);
-    if (position < window.pageYOffset - 292) setSearchContainerHeight(300);
-    else setSearchContainerHeight(window.innerHeight);
-  }, [scrollPosition]);
-
-  useEffect(() => {
-    if (bodyWidth > 1300)
-      if (scrollPosition > bodyHeight - 292)
-        setSearchContainerHeight(
-          window.innerHeight - (352 - (bodyHeight - scrollPosition))
-        );
-      else setSearchContainerHeight(window.innerHeight - 60);
-    else {
-      if (scrollPosition > bodyHeight - 292)
-        setSearchContainerHeight(
-          window.innerHeight - (265 - (bodyHeight - scrollPosition))
-        );
-      else setSearchContainerHeight(window.innerHeight - 60);
-    }
-  }, [scrollPosition, bodyWidth]);
-
-  useEffect(() => {
-    setSearchContainerHeight(window.innerHeight - 60);
-    //@ts-ignore
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  return (
-    <SearchPanelContainer style={{ height: SearchContainerHeight }}>
+export const SearchPanelLayout = ({
+  handleOnClick,
+  searchContainerHeight,
+  gender
+}: SearchPanelLayoutProps) => {
+  
+  const MenuForMan = (
+    <React.Fragment>
       <ul>
         COLLECTION
-        <li>Jackets</li>
-        <li>Suits</li>
-        <li>Skirts</li>
+        <li onClick={handleOnClick("man", "coats")}>Coats</li>
+        <li onClick={handleOnClick("man", "jackets")}>Jackets</li>
+        <li onClick={handleOnClick("man", "suits")}>Suits</li>
       </ul>
       <ul>
         Boots
-        <li>Sport shoes</li>
-        <li>Boots</li>
+        <li onClick={handleOnClick("man", "shoes")}>See it all</li>
+        <li onClick={handleOnClick("man", "shoes", "sport shoes")}>
+          Sport shoes
+        </li>
+        <li onClick={handleOnClick("man", "shoes", "boots")}>Boots</li>
       </ul>
+    </React.Fragment>
+  );
+  
+  const MenuForWoman = (
+    <React.Fragment>
+      <ul>
+        COLLECTION
+        <li onClick={handleOnClick("woman", "coats")}>Coats</li>
+        <li onClick={handleOnClick("woman", "suits")}>Suits</li>
+        <li onClick={handleOnClick("woman", "skirts")}>Skirts</li>
+      </ul>
+      <ul>
+        Boots
+        <li onClick={handleOnClick("woman", "shoes")}>See it all</li>
+        <li onClick={handleOnClick("woman", "shoes", "sport shoes")}>
+          Sport shoes
+        </li>
+        <li onClick={handleOnClick("woman", "shoes", "boots")}>Boots</li>
+      </ul>
+    </React.Fragment>
+  );
+  
+  return (
+    <SearchPanelContainer style={{ height: searchContainerHeight }}>
+      {gender === "man" ? MenuForMan : MenuForWoman}
     </SearchPanelContainer>
   );
 };

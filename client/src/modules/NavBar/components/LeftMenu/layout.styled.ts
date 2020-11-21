@@ -144,15 +144,19 @@ export const DropdownMenuColumn = styled.div`
   font-family: "Ubuntu", sans-serif;
 `;
 
-export const DropdownMenuColumnTitle = styled.div`
+type DropdownMenuColumnTitleProps = {
+  onHoverEffect: boolean;
+};
+
+export const DropdownMenuColumnTitle = styled.div<DropdownMenuColumnTitleProps>`
   font-size: 1.2em;
   font-weight: 700;
   margin-bottom: 25px;
   text-align: left;
 
   :hover {
-    color: #00000050;
-    cursor: pointer;
+    color: ${({ onHoverEffect }) => (onHoverEffect ? "#00000050" : "#000000")};
+    cursor: ${({ onHoverEffect }) => (onHoverEffect ? "pointer" : "default")};
   }
 `;
 
