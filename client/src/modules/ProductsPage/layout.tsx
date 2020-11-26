@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { ProductPageLayoutContainer, ProductsContainer } from "./layout.styled";
 import { SearchPanel } from "./components/SearchPanel/index";
 import { Product } from "./components/Product/index";
@@ -16,6 +16,12 @@ export const ProductsPageLayout = ({
   handleNext,
   loadMore,
 }: ProductPageLayout) => {
+  
+  const productsList = useMemo(
+    () => products.map((product) => <Product product={product} />),
+    [products]
+  );
+  
   return (
     <ProductPageLayoutContainer>
       <SearchPanel />
@@ -26,8 +32,7 @@ export const ProductsPageLayout = ({
           hasMore={loadMore}
           loader
         >
-          {products &&
-            products.map((product) => <Product product={product} />)}
+          {products && productsList}
         </InfiniteScroll>
       </ProductsContainer>
     </ProductPageLayoutContainer>

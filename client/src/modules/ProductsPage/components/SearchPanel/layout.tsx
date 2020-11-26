@@ -28,7 +28,7 @@ export const SearchPanelLayout = ({
       <ul>
         Boots
         <li onClick={handleOnClick("man", "shoes")}>See it all</li>
-        <li onClick={handleOnClick("man", "shoes", "sport shoes")}>
+        <li onClick={handleOnClick("man", "shoes", "sport_shoes")}>
           Sport shoes
         </li>
         <li onClick={handleOnClick("man", "shoes", "boots")}>Boots</li>
@@ -47,7 +47,7 @@ export const SearchPanelLayout = ({
       <ul>
         Boots
         <li onClick={handleOnClick("woman", "shoes")}>See it all</li>
-        <li onClick={handleOnClick("woman", "shoes", "sport shoes")}>
+        <li onClick={handleOnClick("woman", "shoes", "sport_shoes")}>
           Sport shoes
         </li>
         <li onClick={handleOnClick("woman", "shoes", "boots")}>Boots</li>

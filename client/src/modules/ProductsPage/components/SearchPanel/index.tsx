@@ -50,12 +50,9 @@ export const SearchPanel = () => {
       (gender: string, category: string, subCategory?: string) => (
         e: React.MouseEvent
       ) => {
-        if (!subCategory)
-          history.push(`/products?gender=${gender}&category=${category}`);
-        else
-          history.push(
-            `/products?gender=${gender}&category=${category}&subCategory=${subCategory}`
-          );
+        history.push(
+          `/products?gender=${gender}&category=${category}&subCategory=${subCategory}`
+        );
       },
       []
     );

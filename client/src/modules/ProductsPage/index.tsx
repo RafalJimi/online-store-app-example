@@ -6,44 +6,72 @@ import {
 } from "../../store/getProducts/actions";
 import { productsListRX, loadMoreProductsRX } from "../../store/getProducts/selectors";
 import { useHistory } from "react-router-dom";
+import queryString from "query-string";
 import { ProductsPageLayout } from "./layout";
 
+type GetProductsVariables = {
+  skip: number;
+  limit: number;
+  gender: string | string[] | null;
+  category: string | string[] | null;
+  subCategory: string | string[] | null;
+};
+
 export const ProductsPage = memo(() => {
-  const [GetProducts, setGetProducts] = useState({
+  const [GetProductsVariables,setGetProductsVariables] = useState<GetProductsVariables>({
     skip: 0,
     limit: 2,
-    filters: "",
+    gender: "",
+    category: "",
+    subCategory: "",
   });
 
   const history = useHistory();
   const dispatch = useDispatch();
-  
-  console.log(GetProducts.filters, GetProducts.skip)
 
   const productsList = useSelector(productsListRX);
   const loadMore = useSelector(loadMoreProductsRX);
 
   useEffect(() => {
-    const searchProps = history.location.search;
-    setGetProducts({ ...GetProducts, filters: searchProps });
+    const getProductQueries = queryString.parse(history.location.search)
+    setGetProductsVariables({
+      ...GetProductsVariables,
+      gender: getProductQueries.gender,
+      category: getProductQueries.category,
+      subCategory: getProductQueries.subCategory,
+    });
   }, []);
 
   useEffect(() => {
-    const searchProps = history.location.search;
-    setGetProducts({ ...GetProducts, filters: searchProps, skip: 0 });
-    dispatch(clearProductsArray());
+    const getProductQueries = queryString.parse(history.location.search);
+      dispatch(clearProductsArray());
+      setGetProductsVariables({
+        ...GetProductsVariables,
+        skip: 0,
+        gender: getProductQueries.gender,
+        category: getProductQueries.category,
+        subCategory: getProductQueries.subCategory,
+      });
   }, [history.location.search]);
 
   useEffect(() => {
-    dispatch(getProductsStarted(GetProducts));
-  }, [GetProducts.filters, GetProducts.skip]);
-  
-  const handleNext = useCallback(
-    () => {
-      setGetProducts({ ...GetProducts, skip: GetProducts.skip + 2 });
-    },
-    [GetProducts.skip],
-  )
+    if (
+      (GetProductsVariables.gender !== "")
+    )
+      dispatch(getProductsStarted(GetProductsVariables));
+  }, [
+    GetProductsVariables.skip,
+    GetProductsVariables.gender,
+    GetProductsVariables.category,
+    GetProductsVariables.subCategory,
+  ]);
+
+  const handleNext = useCallback(() => {
+    setGetProductsVariables({
+      ...GetProductsVariables,
+      skip: GetProductsVariables.skip + 2,
+    });
+  }, [GetProductsVariables.skip]);
 
   return (
     <ProductsPageLayout

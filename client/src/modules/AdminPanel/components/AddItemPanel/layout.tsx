@@ -68,15 +68,15 @@ export const AddItemPanelLayout = ({
         <option value="woman">Woman</option>
       </select>
       <select onChange={handleOnSelect("collection")} value={collection}>
-        <option value="soots">Boots</option>
-        <option value="soats">Coats</option>
-        <option value="sackets">Jackets</option>
+        <option value="boots">Boots</option>
+        <option value="coats">Coats</option>
+        <option value="jackets">Jackets</option>
         <option value="skirts">Skirts</option>
         <option value="suits">Suits</option>
       </select>
       {collection === "boots" ? (
         <select onChange={handleOnSelect("subCategory")} value={subCategory}>
-          <option value="sport shoes">Sport shoes</option>
+          <option value="sport_shoes">Sport shoes</option>
           <option value="boots">Boots</option>
         </select>
       ) : (
@@ -101,12 +101,15 @@ export const AddItemPanelLayout = ({
         <button onClick={handleAddDetailProductButton}>Add detail</button>
       </AddProductDetailContainer>
       <ul>
-        Product details :{details.map( detail => { return (
-          <li>
-            - {detail.text} <button onClick={handleDeleteDetail(detail.id)}>Delete</button>
-          </li>
-        );})}
-        
+        Product details :
+        {details.map((detail) => {
+          return (
+            <li>
+              - {detail.text}{" "}
+              <button onClick={handleDeleteDetail(detail.id)}>Delete</button>
+            </li>
+          );
+        })}
       </ul>
     </ItemDescriptionContainer>
     <FileUploadContainer>

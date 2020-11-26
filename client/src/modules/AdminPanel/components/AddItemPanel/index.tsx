@@ -20,16 +20,14 @@ type AddItemDataProps = {
 };
 
 export const AddItemPanel = () => {
-  const [AddItemData, setAddItemData] =
-    useState <
-    AddItemDataProps>({
-      gender: "man",
-      collection: "boots",
-      subCategory: "sport shoes",
-      productName: "",
-      price: 0,
-      details: [],
-    });
+  const [AddItemData, setAddItemData] = useState<AddItemDataProps>({
+    gender: "man",
+    collection: "boots",
+    subCategory: "sport_shoes",
+    productName: "",
+    price: 0,
+    details: [],
+  });
   
   const [ProductDetailInput, setProductDetailInput] = useState("");
   const [Id, setId] = useState(0)

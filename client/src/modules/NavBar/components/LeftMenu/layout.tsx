@@ -47,7 +47,7 @@ export const LeftMenuLayout = ({ handleOnClick }: LeftMenuLayoutProps) => {
           See it all
         </DropdownMenuColumnItem>
         <DropdownMenuColumnItem
-          onClick={handleOnClick("woman", "shoes", "sport shoes")}
+          onClick={handleOnClick("woman", "shoes", "sport_shoes")}
         >
           Sport shoes
         </DropdownMenuColumnItem>
@@ -89,7 +89,7 @@ export const LeftMenuLayout = ({ handleOnClick }: LeftMenuLayoutProps) => {
           See it all
         </DropdownMenuColumnItem>
         <DropdownMenuColumnItem
-          onClick={handleOnClick("man", "shoes", "sport shoes")}
+          onClick={handleOnClick("man", "shoes", "sport_shoes")}
         >
           Sport shoes
         </DropdownMenuColumnItem>

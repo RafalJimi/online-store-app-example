@@ -10,9 +10,15 @@ type ProductLayoutProps = {
   img: string;
   name: string;
   price: number;
+  handleOnClick: (e: React.MouseEvent) => void;
 };
 
-export const ProductLayout = ({ img, name, price }: ProductLayoutProps) => (
+export const ProductLayout = ({
+  img,
+  name,
+  price,
+  handleOnClick,
+}: ProductLayoutProps) => (
   <ProductContainer>
     <ProductImgContainer>
       <img src={`http://localhost:5000/${img}`} alt="" />
@@ -28,7 +34,7 @@ export const ProductLayout = ({ img, name, price }: ProductLayoutProps) => (
       </AddItemToCartContainer>
     </ProductImgContainer>
     <ProductDetailsContainer>
-      <span>{name}</span>
+      <span onClick={handleOnClick}>{name}</span>
       <div>PLN {price.toFixed(2)}</div>
     </ProductDetailsContainer>
   </ProductContainer>

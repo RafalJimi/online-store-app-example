@@ -12,6 +12,7 @@ import { deleteUserSaga } from "./deleteUser/saga";
 import { uploadImageSaga, deleteImageSaga } from "./uploadImage/saga";
 import { uploadProductSaga } from "./uploadProduct/saga";
 import { getProductsSaga } from "./getProducts/saga";
+import { getProductDetailsSaga } from "./getProductDetails/saga";
 
 export function* rootSaga(services = {}) {
   yield fork(registerUserSaga);
@@ -27,4 +28,5 @@ export function* rootSaga(services = {}) {
   yield fork(deleteImageSaga);
   yield fork(uploadProductSaga);
   yield fork(getProductsSaga);
+  yield fork(getProductDetailsSaga);
 }

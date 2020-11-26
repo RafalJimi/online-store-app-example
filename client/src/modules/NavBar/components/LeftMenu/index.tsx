@@ -9,12 +9,7 @@ export const LeftMenu = () => {
     (gender: string, category?: string, subCategory?: string) => (
       e: React.MouseEvent
     ) => {
-      
-      if (!subCategory && !category)
-        history.push(`/products?gender=${gender}`);
-      else if (!subCategory)
-        history.push(`/products?gender=${gender}&category=${category}`);
-      else history.push(
+      history.push(
         `/products?gender=${gender}&category=${category}&subCategory=${subCategory}`
       );
     },

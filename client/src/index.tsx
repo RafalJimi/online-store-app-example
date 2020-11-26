@@ -3,7 +3,7 @@ import ReactDOM, { Renderer } from "react-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/index";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Slide, ToastContainer, Zoom } from "react-toastify";
+import { Slide, ToastContainer } from "react-toastify";
 import { NavBar } from "./modules/NavBar/index";
 import { BurgerMenu } from "./modules/BurgerMenu/index";
 import { LoginMenu } from "./modules/LoginMenu/index";
@@ -14,6 +14,8 @@ import { ForgetPasswordPage } from "./modules/ForgotPasswordPage/index";
 import { ResetPasswordPage } from "./modules/ResetPasswordPage/index";
 import { AdminPanel } from "./modules/AdminPanel/index";
 import { ProductsPage } from "./modules/ProductsPage/index";
+import { DetailProductPage } from "./modules/DetailProductPage";
+import { ImageGallery } from "./modules/ImageSlider";
 import { ContactWindow } from ".//modules/Contact/index";
 import { Footer } from "./modules/Footer";
 
@@ -55,6 +57,11 @@ ReactDOM.render<Renderer>(
           />
           <Route path="/admin" component={AdminPanel} />
           <Route path="/products" component={ProductsPage} />
+          <Route
+            path="/product/details/id/:productId"
+            render={(props) => <DetailProductPage {...props} />}
+          />
+          <Route path="/" component={ImageGallery} />
           <Route path="/" component={ContactWindow} />
           <Route path="/" component={Footer} />
         </Suspense>

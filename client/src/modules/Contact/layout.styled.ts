@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { width, maxHeight } from "../../helpers/mediaQueries";
 
 type Prop = {
   prop: boolean;

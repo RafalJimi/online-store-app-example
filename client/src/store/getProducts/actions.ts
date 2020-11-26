@@ -6,7 +6,9 @@ export type GetProductsProps = {
   getProductsQueries: {
     skip: number;
     limit: number;
-    filters: string;
+    gender: string;
+    category: string;
+    subCategory: string;
   };
 };
 

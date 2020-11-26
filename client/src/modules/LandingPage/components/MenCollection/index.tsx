@@ -9,7 +9,9 @@ export const MenCollection = () => {
     (gender: string, category: string, subCategory?: string) => (
       e: React.MouseEvent
     ) => {
-      history.push(`/products?gender=${gender}&category=${category}`);
+      history.push(
+        `/products?gender=${gender}&category=${category}&subCategory=${subCategory}`
+      );
     },
     []
   );

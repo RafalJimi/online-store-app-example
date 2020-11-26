@@ -30,3 +30,7 @@ code {
    display: flex;
    flex-direction: column;
 }
+
+::-webkit-scrollbar {
+    visibility: hidden;
+}

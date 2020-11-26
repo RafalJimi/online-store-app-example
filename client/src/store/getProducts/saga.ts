@@ -12,12 +12,15 @@ export function* getProducts({
 }: ReturnType<typeof getProductsStarted>) {
   let x;
   try {
-    const { skip, limit, filters } = payload.getProductsQueries;
-    const queries = `${filters}&skip=${skip}&limit=${limit}`;
-    console.log(queries);
-    if (filters) {
-      const request = yield call(axiosGet, `/products/getProducts${queries}`);
-      console.log("getProducts result", request);
+    const {
+      skip,
+      limit,
+      gender,
+      category,
+      subCategory,
+    } = payload.getProductsQueries;
+    const queries = `?gender=${gender}&category=${category}&subCategory=${subCategory}&skip=${skip}&limit=${limit}`;
+    const request = yield call(axiosGet, `/products/getProducts${queries}`);
       if (request.getProducts)
         for (x of request.products) {
           yield put({
@@ -30,7 +33,6 @@ export function* getProducts({
           type: GET_PRODUCTS.failure,
           payload: { error: request.error },
         });
-    }
   } catch (e) {
     yield put({ type: GET_PRODUCTS.failure, message: e });
   }
