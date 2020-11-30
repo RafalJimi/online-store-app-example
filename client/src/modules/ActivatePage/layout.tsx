@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  ActivatePageLayoutContainer,
+  ActivatePageContainer,
   ActivatePageContent,
   ActivatePageForm,
   ImageContainer,
@@ -17,7 +17,7 @@ export const ActivatePageLayout = ({
   firstName,
   handleOnSubmit,
 }: ActivePageLayoutProps) => (
-  <ActivatePageLayoutContainer>
+  <ActivatePageContainer>
     <ActivatePageContent>
       <ActivatePageForm onSubmit={handleOnSubmit}>
         <h4>Welcome {firstName}</h4>
@@ -29,5 +29,5 @@ export const ActivatePageLayout = ({
         <img loading="lazy" src={ActivatePageImg} alt="" />
       </ImageContainer>
     </ActivatePageContent>
-  </ActivatePageLayoutContainer>
+  </ActivatePageContainer>
 );

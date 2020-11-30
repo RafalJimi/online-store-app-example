@@ -11,6 +11,7 @@ export const Product = memo(({ product }: ProductProps) => {
   const history = useHistory();
 
   const handleOnClick = useCallback((e: React.MouseEvent) => {
+    window.scrollTo(0, 0);
     history.push(`/product/details/id/${product._id}`);
   }, []);
   

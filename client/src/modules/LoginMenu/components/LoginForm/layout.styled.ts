@@ -5,6 +5,7 @@ export const LoginFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
+  margin-left: 15px;
 
   @media only screen and ${width[1000]} {
     margin-top: 20px;
@@ -25,6 +26,7 @@ export const LoginContainerTitle = styled.h2`
   padding-top: 20px;
   text-align: center;
   align-self: center;
+  margin-bottom: 15px;
 
   @media only screen and ${width[1000]} {
     padding-top: 0px;
@@ -41,6 +43,7 @@ export const LoginContainerSubTitle = styled.h4`
   justify-content: center;
   font-weight: 100;
   font-size: 0.9em;
+  margin-bottom: 15px;
 
   @media only screen and ${width[400]} {
     width: 100%;

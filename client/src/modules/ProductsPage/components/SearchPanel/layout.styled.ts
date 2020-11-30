@@ -14,8 +14,13 @@ export const SearchPanelContainer = styled.div`
   padding-top: 30px;
   font-size: 1.2em;
 
+  menu {
+    margin-left: 55px;
+  }
+
   ul {
     margin-top: 10px;
+    margin-bottom: 30px;
   }
 
   ul > li {
@@ -28,6 +33,10 @@ export const SearchPanelContainer = styled.div`
   ul > li:hover {
     cursor: pointer;
     color: #00000070;
+  }
+
+  @media only screen and ${width[1300]} {
+    top: 100px;
   }
 
   @media only screen and ${width[1000]} {

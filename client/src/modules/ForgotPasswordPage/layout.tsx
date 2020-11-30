@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import {
-  ForgetPasswordLayoutContainer,
+  ForgetPasswordContainer,
   ForgetPasswordContent,
   ForgetPasswordForm,
   ForgetPasswordInputContainer,
@@ -24,7 +24,7 @@ export const ForgetPasswordPageLayout = ({
   email,
   emailError,
 }: ForgetPasswordPageLayoutProps) => (
-  <ForgetPasswordLayoutContainer>
+  <ForgetPasswordContainer>
     <ForgetPasswordContent>
       <ForgetPasswordForm onSubmit={handleSubmit}>
         <h4>Forgot password</h4>
@@ -45,5 +45,5 @@ export const ForgetPasswordPageLayout = ({
         <img loading="lazy" src={ForgetPasswordImg} alt="" />
       </ImageContainer>
     </ForgetPasswordContent>
-  </ForgetPasswordLayoutContainer>
+  </ForgetPasswordContainer>
 );

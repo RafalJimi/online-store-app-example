@@ -5,7 +5,7 @@ type Prop = {
   prop: boolean;
 };
 
-export const LoginContainer = styled.main<Prop>`
+export const LoginMenuWrapped = styled.div<Prop>`
   display: flex;
   position: fixed;
   top: 0;
@@ -49,6 +49,7 @@ export const CloseLoginMenu = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  transform: translate(0px, 20px);
   background-color: transparent;
 
   @media only screen and ${width[1000]} {
@@ -56,7 +57,7 @@ export const CloseLoginMenu = styled.div`
   }
 `;
 
-export const LoginMenuContainer = styled.div`
+export const LoginMenuContainer = styled.main`
   display: flex;
   flex-direction: column;
   width: 500px;
@@ -104,5 +105,6 @@ export const CloseLoginMenuButton = styled.div`
   @media only screen and ${width[750]}, ${maxHeight[750]} {
     margin-top: 20px;
     margin-right: 0px;
+    transform: translate(20px, 0px);
   }
 `;

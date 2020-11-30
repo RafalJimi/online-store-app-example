@@ -1,17 +1,19 @@
 import styled from "styled-components";
 import { width } from "../../helpers/mediaQueries";
 
-export const LandingPageLayoutContainer = styled.div`
+export const LandingPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 30px 0px 30px;
+  padding: 0px 30px;
+  margin-top: 60px;
+  min-height: calc(100vh - 392px);
 
   @media only screen and ${width[1300]} {
-    padding: 100px 30px 0px 30px;
+    margin-top: 120px;
   }
 `;
 
 export const CollectionTitle = styled.h3`
-  margin-top: 40px;
+  margin: 40px 0px 20px 0px;
 `;

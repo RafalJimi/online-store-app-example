@@ -21,7 +21,11 @@ export const ProductLayout = ({
 }: ProductLayoutProps) => (
   <ProductContainer>
     <ProductImgContainer>
-      <img src={`http://localhost:5000/${img}`} alt="" />
+      <img
+        onClick={handleOnClick}
+        src={`http://localhost:5000/${img}`}
+        alt=""
+      />
       <AddItemToCartContainer className="addToCart">
         <span>ADD QUICKLY</span>
         <div>
@@ -35,7 +39,7 @@ export const ProductLayout = ({
     </ProductImgContainer>
     <ProductDetailsContainer>
       <span onClick={handleOnClick}>{name}</span>
-      <div>PLN {price.toFixed(2)}</div>
+      <div onClick={handleOnClick}>PLN {price.toFixed(2)}</div>
     </ProductDetailsContainer>
   </ProductContainer>
 );

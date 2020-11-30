@@ -1,61 +1,21 @@
 import styled from "styled-components";
 import { width } from "../../helpers/mediaQueries";
 
-export const ProductPageLayoutContainer = styled.div`
+export const ProductsPageContainer = styled.div`
   width: 100%;
-  padding-top: 60px;
+  margin-top: 100px;
   display: flex;
   flex-direction: row;
-  padding-left: 300px;
+  padding: 0px 0px 0px 300px;
 
   @media only screen and ${width[1000]} {
     padding-left: 0px;
   }
 `;
 
-export const SearchPropsContainer = styled.div`
-  position: fixed;
-  top: 60px;
-  left: 0px;
-  width: 300px;
-  padding: 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding-top: 30px;
-  font-size: 1.2em;
-
-  ul {
-    margin-top: 10px;
-  }
-
-  ul > span {
-    cursor: pointer;
-    color: #00000050;
-  }
-
-  ul > li {
-    list-style-type: none;
-    padding-left: 10px;
-    font-size: 0.8em;
-    margin: 15px 0px;
-  }
-
-  ul > li:hover {
-    cursor: pointer;
-    color: #00000070;
-  }
-`;
-
-type ProductsContainerProps = {
-  productsListLength: number;
-};
-
-export const ProductsContainer = styled.div<ProductsContainerProps>`
+export const ProductsContainer = styled.div`
   width: calc(100% - 300px);
-  height: ${({ productsListLength }) =>
-    productsListLength === 0 ? "100vh" : "auto"};
+  min-height: 100vh;
   padding: 0px;
   display: flex;
   flex-direction: column;

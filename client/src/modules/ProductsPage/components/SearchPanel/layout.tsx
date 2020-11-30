@@ -18,26 +18,26 @@ export const SearchPanelLayout = ({
 }: SearchPanelLayoutProps) => {
   
   const MenuForMan = (
-    <React.Fragment>
-      <ul>
-        COLLECTION
-        <li onClick={handleOnClick("man", "coats")}>Coats</li>
-        <li onClick={handleOnClick("man", "jackets")}>Jackets</li>
-        <li onClick={handleOnClick("man", "suits")}>Suits</li>
-      </ul>
-      <ul>
-        Boots
-        <li onClick={handleOnClick("man", "shoes")}>See it all</li>
-        <li onClick={handleOnClick("man", "shoes", "sport_shoes")}>
-          Sport shoes
-        </li>
-        <li onClick={handleOnClick("man", "shoes", "boots")}>Boots</li>
-      </ul>
-    </React.Fragment>
+      <menu>
+        <ul>
+          COLLECTION
+          <li onClick={handleOnClick("man", "coats")}>Coats</li>
+          <li onClick={handleOnClick("man", "jackets")}>Jackets</li>
+          <li onClick={handleOnClick("man", "suits")}>Suits</li>
+        </ul>
+        <ul>
+          Boots
+          <li onClick={handleOnClick("man", "shoes")}>See it all</li>
+          <li onClick={handleOnClick("man", "shoes", "sport_shoes")}>
+            Sport shoes
+          </li>
+          <li onClick={handleOnClick("man", "shoes", "boots")}>Boots</li>
+        </ul>
+      </menu>
   );
   
   const MenuForWoman = (
-    <React.Fragment>
+    <menu>
       <ul>
         COLLECTION
         <li onClick={handleOnClick("woman", "coats")}>Coats</li>
@@ -52,7 +52,7 @@ export const SearchPanelLayout = ({
         </li>
         <li onClick={handleOnClick("woman", "shoes", "boots")}>Boots</li>
       </ul>
-    </React.Fragment>
+    </menu>
   );
   
   return (

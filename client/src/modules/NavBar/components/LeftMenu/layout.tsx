@@ -1,12 +1,12 @@
 import React from "react";
 import {
-  LeftMenu,
-  LeftMenuItem,
+  LeftMenuContainer,
+  LeftMenuSection,
   DropdownMenu,
   DropdownMenuContainer,
-  DropdownMenuColumn,
-  DropdownMenuColumnTitle,
-  DropdownMenuColumnItem,
+  DropdownMenuSection,
+  DropdownMenuSectionHeader,
+  DropdownMenuSectionItem,
 } from "./layout.styled";
 
 type LeftMenuLayoutProps = {
@@ -20,98 +20,102 @@ type LeftMenuLayoutProps = {
 export const LeftMenuLayout = ({ handleOnClick }: LeftMenuLayoutProps) => {
   const MenuForWoman = (
     <DropdownMenuContainer>
-      <DropdownMenuColumn>
-        <DropdownMenuColumnTitle onHoverEffect={true}>
+      <DropdownMenuSection>
+        <DropdownMenuSectionHeader onHoverEffect={true}>
           NEW PRODUCTS
-        </DropdownMenuColumnTitle>
-      </DropdownMenuColumn>
-      <DropdownMenuColumn>
-        <DropdownMenuColumnTitle onHoverEffect={false}>
+        </DropdownMenuSectionHeader>
+      </DropdownMenuSection>
+      <DropdownMenuSection>
+        <DropdownMenuSectionHeader onHoverEffect={false}>
           COLLECTION
-        </DropdownMenuColumnTitle>
-        <DropdownMenuColumnItem onClick={handleOnClick("woman", "coats")}>
+        </DropdownMenuSectionHeader>
+        <DropdownMenuSectionItem onClick={handleOnClick("woman", "coats")}>
           Coats
-        </DropdownMenuColumnItem>
-        <DropdownMenuColumnItem onClick={handleOnClick("woman", "suits")}>
+        </DropdownMenuSectionItem>
+        <DropdownMenuSectionItem onClick={handleOnClick("woman", "suits")}>
           Suits
-        </DropdownMenuColumnItem>
-        <DropdownMenuColumnItem onClick={handleOnClick("woman", "skirts")}>
+        </DropdownMenuSectionItem>
+        <DropdownMenuSectionItem onClick={handleOnClick("woman", "skirts")}>
           Skirts
-        </DropdownMenuColumnItem>
-      </DropdownMenuColumn>
-      <DropdownMenuColumn>
-        <DropdownMenuColumnTitle onHoverEffect={false}>
+        </DropdownMenuSectionItem>
+      </DropdownMenuSection>
+      <DropdownMenuSection>
+        <DropdownMenuSectionHeader onHoverEffect={false}>
           SHOES
-        </DropdownMenuColumnTitle>
-        <DropdownMenuColumnItem onClick={handleOnClick("woman", "shoes")}>
+        </DropdownMenuSectionHeader>
+        <DropdownMenuSectionItem onClick={handleOnClick("woman", "shoes")}>
           See it all
-        </DropdownMenuColumnItem>
-        <DropdownMenuColumnItem
+        </DropdownMenuSectionItem>
+        <DropdownMenuSectionItem
           onClick={handleOnClick("woman", "shoes", "sport_shoes")}
         >
           Sport shoes
-        </DropdownMenuColumnItem>
-        <DropdownMenuColumnItem
+        </DropdownMenuSectionItem>
+        <DropdownMenuSectionItem
           onClick={handleOnClick("woman", "shoes", "boots")}
         >
           Boots
-        </DropdownMenuColumnItem>
-      </DropdownMenuColumn>
+        </DropdownMenuSectionItem>
+      </DropdownMenuSection>
     </DropdownMenuContainer>
   );
 
   const MenuForMan = (
     <DropdownMenuContainer>
-      <DropdownMenuColumn>
-        <DropdownMenuColumnTitle onHoverEffect={true}>
+      <DropdownMenuSection>
+        <DropdownMenuSectionHeader onHoverEffect={true}>
           NEW PRODUCTS
-        </DropdownMenuColumnTitle>
-      </DropdownMenuColumn>
-      <DropdownMenuColumn>
-        <DropdownMenuColumnTitle onHoverEffect={false}>
+        </DropdownMenuSectionHeader>
+      </DropdownMenuSection>
+      <DropdownMenuSection>
+        <DropdownMenuSectionHeader onHoverEffect={false}>
           COLLECTION
-        </DropdownMenuColumnTitle>
-        <DropdownMenuColumnItem onClick={handleOnClick("man", "coats")}>
+        </DropdownMenuSectionHeader>
+        <DropdownMenuSectionItem onClick={handleOnClick("man", "coats")}>
           Coats
-        </DropdownMenuColumnItem>
-        <DropdownMenuColumnItem onClick={handleOnClick("man", "jackets")}>
+        </DropdownMenuSectionItem>
+        <DropdownMenuSectionItem onClick={handleOnClick("man", "jackets")}>
           Jackets
-        </DropdownMenuColumnItem>
-        <DropdownMenuColumnItem onClick={handleOnClick("man", "suits")}>
+        </DropdownMenuSectionItem>
+        <DropdownMenuSectionItem onClick={handleOnClick("man", "suits")}>
           Suits
-        </DropdownMenuColumnItem>
-      </DropdownMenuColumn>
-      <DropdownMenuColumn>
-        <DropdownMenuColumnTitle onHoverEffect={false}>
+        </DropdownMenuSectionItem>
+      </DropdownMenuSection>
+      <DropdownMenuSection>
+        <DropdownMenuSectionHeader onHoverEffect={false}>
           SHOES
-        </DropdownMenuColumnTitle>
-        <DropdownMenuColumnItem onClick={handleOnClick("man", "shoes")}>
+        </DropdownMenuSectionHeader>
+        <DropdownMenuSectionItem onClick={handleOnClick("man", "shoes")}>
           See it all
-        </DropdownMenuColumnItem>
-        <DropdownMenuColumnItem
+        </DropdownMenuSectionItem>
+        <DropdownMenuSectionItem
           onClick={handleOnClick("man", "shoes", "sport_shoes")}
         >
           Sport shoes
-        </DropdownMenuColumnItem>
-        <DropdownMenuColumnItem
+        </DropdownMenuSectionItem>
+        <DropdownMenuSectionItem
           onClick={handleOnClick("man", "shoes", "boots")}
         >
           Boots
-        </DropdownMenuColumnItem>
-      </DropdownMenuColumn>
+        </DropdownMenuSectionItem>
+      </DropdownMenuSection>
     </DropdownMenuContainer>
   );
 
   return (
-    <LeftMenu>
-      <LeftMenuItem>
-        <span onClick={handleOnClick("woman")}>WOMAN</span>
+    <LeftMenuContainer>
+      <LeftMenuSection>
+        <header onClick={handleOnClick("woman")}>
+          WOMAN
+        </header>
         <DropdownMenu>{MenuForWoman}</DropdownMenu>
-      </LeftMenuItem>
-      <LeftMenuItem>
-        <span onClick={handleOnClick("man")}>MAN</span>
+      </LeftMenuSection>
+      <LeftMenuSection>
+        <header onClick={handleOnClick("man")}>
+          MAN
+        </header>
         <DropdownMenu>{MenuForMan}</DropdownMenu>
-      </LeftMenuItem>
-    </LeftMenu>
+      </LeftMenuSection>
+    </LeftMenuContainer>
   );
 };

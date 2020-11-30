@@ -38,7 +38,13 @@ export const ProductImgContainer = styled.div`
     margin-bottom: 50px;
   }
 
+  img:hover {
+    cursor: pointer;
+  }
+
   @media only screen and ${width[1000]} {
+    padding: 40px 20px;
+
     img {
       height: 85vw;
       margin-bottom: 50px;
@@ -89,6 +95,10 @@ export const AddItemToCartContainer = styled.div`
     background-color: #f5f5f570;
     cursor: pointer;
   }
+
+  @media only screen and ${width[1000]} {
+    display: none;
+  }
 `;
 
 export const ProductDetailsContainer = styled.div`
@@ -109,7 +119,8 @@ export const ProductDetailsContainer = styled.div`
     transition: opacity 0.3s;
   }
 
-  span: hover {
+  span:hover,
+  div:hover {
     cursor: pointer;
     opacity: 70%;
   }

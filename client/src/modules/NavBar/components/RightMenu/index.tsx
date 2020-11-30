@@ -1,21 +1,15 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom'
 import { toggleBurgerMenu } from "../../../../store/burgerMenu/actions";
 import { toggleLoginMenu } from "../../../../store/loginMenu/actions";
 import { burgerMenuIsOpenRX } from "../../../../store/burgerMenu/selectors";
 import { RightMenuLayout } from "./layout";
 
-export const RightMenu = (props: any) => {
-  const [ChangeLayout, setChangeLayout] = useState(false);
-
+export const RightMenu = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const burgerMenuIsOpen = useSelector(burgerMenuIsOpenRX);
-
-  useEffect(() => {
-    if (window.innerWidth < 1300) {
-      setChangeLayout(true);
-    } else setChangeLayout(false);
-  }, [window.innerWidth]);
 
   const handleToggleBurgerMenuButton = useCallback(
     (e: React.MouseEvent) => {
@@ -23,17 +17,21 @@ export const RightMenu = (props: any) => {
     },
     [burgerMenuIsOpen]
   );
-
+  
   const handleOpenLoginMenuButton = useCallback((e: React.MouseEvent) => {
     dispatch(toggleLoginMenu());
   }, []);
 
+  const handleRedirect = useCallback((url: string) => (e: React.MouseEvent) => {
+    history.push(url)
+  }, [])
+  
   return (
     <RightMenuLayout
-      ChangeLayout={ChangeLayout}
       burgerMenuIsOpen={burgerMenuIsOpen}
       handleToggleBurgerMenuButton={handleToggleBurgerMenuButton}
       handleOpenLoginMenuButton={handleOpenLoginMenuButton}
+      handleRedirect={handleRedirect}
     />
   );
 };

@@ -1,52 +1,50 @@
 import styled from "styled-components";
 import { width } from "../../../../helpers/mediaQueries";
 
-export const LeftMenu = styled.div`
+export const LeftMenuContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: space-between;
-  padding: 0;
-  width: 232px;
-  height: 60px;
+  align-items: center;
+  width: 240px;
+  height: 100%;
+  padding: 0px;
 
   @media only screen and ${width[1300]} {
     position: fixed;
     left: 0;
-    top: 60px;
+    top: 50px;
     background-color: white;
     width: 100vw;
-    height: 60px;
+    height: 50px;
   }
 `;
 
-export const LeftMenuItem = styled.div`
+export const LeftMenuSection = styled.nav`
   letter-spacing: 0px;
   font-size: 1em;
   font-weight: 700;
   text-align: center;
-  padding-top: 6px;
   list-style-type: none;
-  height: 46px;
   background-color: white;
 
   :hover {
     cursor: pointer;
   }
 
-  :hover > div {
+  :hover > menu {
     cursor: default;
     display: block;
     height: 200px;
   }
 
-  span {
+  header {
     display: inline-block;
     padding: 15px 20px 13px 20px;
     position: relative;
   }
 
-  span::after {
+  header::after {
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
     content: "";
@@ -59,12 +57,12 @@ export const LeftMenuItem = styled.div`
     width: 0;
   }
 
-  span:hover::after {
+  header:hover::after {
     width: 100%;
     left: 0;
   }
 
-  :hover > span:after {
+  :hover > header:after {
     width: 100%;
     left: 0;
   }
@@ -78,39 +76,44 @@ export const LeftMenuItem = styled.div`
     padding-top: 0px;
     color: #00000050;
 
+    header {
+      padding: 15px 20px 13px 20px;
+      width: 100%;
+    }
+
     :hover {
       border-bottom: 1px solid #000000;
     }
 
-    :hover > div {
+    :hover > menu {
       height: 0px;
     }
 
-    :hover > span {
+    :hover > header {
       color: black;
     }
 
-    span::after {
+    header::after {
       display: none;
     }
 
-    span:hover::after {
+    header:hover::after {
       width: 0%;
       left: 0;
     }
 
-    :hover > span:after {
+    :hover > header:after {
       width: 0%;
     }
   }
 `;
 
-export const DropdownMenu = styled.div`
+export const DropdownMenu = styled.menu`
   display: block;
   flex-direction: row;
   position: absolute;
   left: 0;
-  top: 60px;
+  top: 54px;
   margin-top: 0px;
   height: 0px;
   width: 100vw;
@@ -132,7 +135,7 @@ export const DropdownMenuContainer = styled.div`
   display: flex;
 `;
 
-export const DropdownMenuColumn = styled.div`
+export const DropdownMenuSection = styled.section`
   display: flex;
   flex-direction: column;
   width: 247px;
@@ -148,7 +151,7 @@ type DropdownMenuColumnTitleProps = {
   onHoverEffect: boolean;
 };
 
-export const DropdownMenuColumnTitle = styled.div<DropdownMenuColumnTitleProps>`
+export const DropdownMenuSectionHeader = styled.div<DropdownMenuColumnTitleProps>`
   font-size: 1.2em;
   font-weight: 700;
   margin-bottom: 25px;
@@ -160,7 +163,7 @@ export const DropdownMenuColumnTitle = styled.div<DropdownMenuColumnTitleProps>`
   }
 `;
 
-export const DropdownMenuColumnItem = styled.div`
+export const DropdownMenuSectionItem = styled.div`
   margin-bottom: 12px;
   padding-left: 1px;
   font-size: 1em;
@@ -169,4 +172,5 @@ export const DropdownMenuColumnItem = styled.div`
   :hover {
     color: #00000050;
     cursor: pointer;
+  }
 `;

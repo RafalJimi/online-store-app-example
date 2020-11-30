@@ -29,9 +29,15 @@ export const ImgContainer = styled.div`
   }
 
   img {
-    height: 100%;
+    height: 115%;
     filter: grayscale(100%);
     transition: height 0.5s, filter 0.5s;
+  }
+
+  @media only screen and (max-width: 1920px) {
+    img {
+      height: 100%;
+    }
   }
 
   @media only screen and ${width[1300]} {

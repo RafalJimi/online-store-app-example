@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import {
-  ResetPasswordLayoutContainer,
+  ResetPasswordContainer,
   ResetPasswordContent,
   ResetPasswordForm,
   ResetPasswordInputContainer,
@@ -30,7 +30,7 @@ export const ResetPasswordPageLayout = ({
   showPassword,
   handleToggleShowPassword,
 }: ResetPasswordPageLayoutProps) => (
-  <ResetPasswordLayoutContainer>
+  <ResetPasswordContainer>
     <ResetPasswordContent>
       <ResetPasswordForm onSubmit={handleSubmit}>
         <h4>Reset your password</h4>
@@ -59,5 +59,5 @@ export const ResetPasswordPageLayout = ({
         <img loading="lazy" src={ResetPasswordImg} alt="" />
       </ImageContainer>
     </ResetPasswordContent>
-  </ResetPasswordLayoutContainer>
+  </ResetPasswordContainer>
 );

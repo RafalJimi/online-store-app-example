@@ -3,13 +3,17 @@ import { width } from "../../helpers/mediaQueries";
 
 export const DetailPageContainer = styled.div`
   width: 100%;
-  height: auto;
-  padding-top: 60px;
+  min-height: 100vh;
+  margin-top: 60px;
   display: flex;
   flex-direction: row;
 
   @media only screen and ${width[1300]} {
-    padding-top: 120px;
+    margin-top: 120px;
+  }
+
+  @media only screen and ${width[1000]} {
+    flex-direction: column;
   }
 `;
 
@@ -22,6 +26,11 @@ export const ProductImagesContainer = styled.div`
   padding: 0px 10px 0px 10px;
   justify-content: space-between;
   text-align: center;
+
+  @media only screen and ${width[1000]} {
+    width: 100%;
+    padding: 0px 6vw;
+  }
 `;
 
 export const ImgContainer = styled.div`
@@ -31,6 +40,23 @@ export const ImgContainer = styled.div`
 
   img {
     height: 100%;
+  }
+
+  @media only screen and ${width[1000]} {
+    height: 55vw;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  @media only screen and ${width[660]} {
+    width: 100%;
+    height: 100vw;
+
+    img {
+      height: 100%;
+    }
   }
 `;
 
@@ -42,6 +68,11 @@ export const ProductDetailsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media only screen and ${width[1000]} {
+    margin-top: 20px;
+    width: 100%;
+  }
 `;
 
 export const ProductNameContainer = styled.div`
@@ -93,5 +124,13 @@ export const AddToCartButton = styled.button`
   :hover {
     cursor: pointer;
     background-color: #00000080;
+  }
+
+  @media only screen and (max-width: 1050px) {
+    width: 95%;
+  }
+
+  @media only screen and ${width[1000]} {
+    width: 300px;
   }
 `;

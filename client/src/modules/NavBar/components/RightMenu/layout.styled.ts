@@ -1,14 +1,13 @@
+import { NONAME } from "dns";
 import styled from "styled-components";
 import { width } from "../../../../helpers/mediaQueries";
 
-export const RightMenu = styled.ul`
+export const RightMenuContainer = styled.menu`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 40;
-  width: 460px;
-  height: 67.5px;
+  width: 400px;
 
   @media only screen and ${width[1300]} {
     font-size: 0.7em;
@@ -19,11 +18,15 @@ export const RightMenu = styled.ul`
   }
 
   @media only screen and ${width[500]} {
-    width: 180px;
+    width: 160px;
   }
 `;
 
-export const RightMenuItem = styled.div`
+type RightMenuItemProps = {
+  showIcon: boolean;
+};
+
+export const RightMenuItem = styled.div<RightMenuItemProps>`
   font-size: 0.85em;
   font-weight: 400;
   text-align: center;
@@ -32,20 +35,37 @@ export const RightMenuItem = styled.div`
   flex: 1 1 auto;
   padding: 20px 10px;
   margin-bottom: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
 
   :hover {
     color: #00000050;
     cursor: pointer;
   }
 
+  i {
+    display: ${({ showIcon }) => ((showIcon ? "inline-block" : "none"))};
+  }
+
   @media only screen and ${width[1300]} {
     font-size: 1.5em;
     width: 30px;
+    
     flex: 0 0 auto;
+
+    i {
+      display: block;
+    }
+
+    span {
+      display: none;
+    }
   }
 
   @media only screen and ${width[500]} {
-    font-size: 1.1em;
     width: 20px;
   }
 `;
@@ -57,9 +77,9 @@ export const BurgerButtonContainer = styled.div`
   color: black;
   word-spacing: 2px;
   flex: 1 1 auto;
-  padding-left: 10px;
   padding-top: 2px;
   margin-bottom: 2px;
+  display: none;
 
   :hover {
     color: #00000050;
@@ -70,6 +90,7 @@ export const BurgerButtonContainer = styled.div`
     font-size: 1.5em;
     width: 30px;
     flex: 0 0 auto;
+    display: block;
   }
 `;
 

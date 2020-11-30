@@ -25,7 +25,7 @@ export const ProductsPage = memo(() => {
     category: "",
     subCategory: "",
   });
-
+  
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -33,16 +33,18 @@ export const ProductsPage = memo(() => {
   const loadMore = useSelector(loadMoreProductsRX);
 
   useEffect(() => {
-    const getProductQueries = queryString.parse(history.location.search)
+    window.scrollTo( 0, 0)
+    const getProductQueries = queryString.parse(history.location.search);
     setGetProductsVariables({
       ...GetProductsVariables,
       gender: getProductQueries.gender,
       category: getProductQueries.category,
       subCategory: getProductQueries.subCategory,
     });
-  }, []);
+  }, [history.location.pathname]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const getProductQueries = queryString.parse(history.location.search);
       dispatch(clearProductsArray());
       setGetProductsVariables({

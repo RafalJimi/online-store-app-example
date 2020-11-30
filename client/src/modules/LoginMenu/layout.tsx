@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  LoginContainer,
+  LoginMenuWrapped,
   CloseLoginMenu,
   LoginMenuContainer,
   CloseLoginMenuButton,
@@ -17,7 +17,7 @@ export const LoginMenuLayout = ({
   isOpen,
   handleCloseLoginMenu,
 }: LoginMenuLayoutProps) => (
-  <LoginContainer prop={isOpen}>
+  <LoginMenuWrapped prop={isOpen}>
     <CloseLoginMenu className="red" onClick={handleCloseLoginMenu} />
     <LoginMenuContainer>
       <CloseLoginMenuButton onClick={handleCloseLoginMenu}>
@@ -26,5 +26,5 @@ export const LoginMenuLayout = ({
         <ToggleMenuButtons />
       <LoginForm />
     </LoginMenuContainer>
-  </LoginContainer>
+  </LoginMenuWrapped>
 );

@@ -1,31 +1,26 @@
 import styled from "styled-components";
 import { width, maxHeight } from "../../helpers/mediaQueries";
 
-export const ActivatePageLayoutContainer = styled.div`
+export const ActivatePageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 30px 0px 30px;
+  padding: 0px 30px;
+  margin-top: 60px;
   overflow-y: hidden;
-  height: calc(100vh - 362px);
+  min-height: calc(100vh - 392px);
 
   @media only screen and ${width[1300]} {
-    height: calc(100vh - 275px);
-  }
-
-  @media only screen and ${width[1000]} {
-    justify-content: flex-start;
+    margin-top: 157px;
   }
 
   @media only screen and ${maxHeight[600]} {
-    justify-content: flex-start;
     min-height: 300px;
   }
 `;
 
 export const ActivatePageContent = styled.main`
-  margin-top: 40px;
   display: flex;
   flex-direction: row;
 `;
@@ -36,6 +31,10 @@ export const ActivatePageForm = styled.form`
   margin-top: 40px;
   align-items: center;
   padding: 20px 30px;
+
+  @media only screen and ${width[660]} {
+    margin-top: 0px;
+  }
 `;
 
 export const ImageContainer = styled.div`
@@ -48,11 +47,7 @@ export const ImageContainer = styled.div`
     height: 100%;
   }
 
-  @media only screen and ${width[1300]} {
-    height: 350px;
-  }
-
-  @media only screen and ${width[1000]} {
+  @media only screen and ${width[660]} {
     display: none;
   }
 `;

@@ -3,31 +3,60 @@ import ReactDOM, { Renderer } from "react-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/index";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Slide, ToastContainer } from "react-toastify";
+
 import { NavBar } from "./modules/NavBar/index";
-import { BurgerMenu } from "./modules/BurgerMenu/index";
-import { LoginMenu } from "./modules/LoginMenu/index";
-import { RegisterMenu } from "./modules/RegisterMenu/index";
+import { Slide, ToastContainer } from "react-toastify";
 import { LandingPage } from "./modules/LandingPage/index";
+import { Footer } from "./modules/Footer";
+
+import { Loading } from "./modules/LoadingComponent/layout";
 import { ActivatePage } from "./modules/ActivatePage/index";
 import { ForgetPasswordPage } from "./modules/ForgotPasswordPage/index";
 import { ResetPasswordPage } from "./modules/ResetPasswordPage/index";
 import { AdminPanel } from "./modules/AdminPanel/index";
 import { ProductsPage } from "./modules/ProductsPage/index";
-import { DetailProductPage } from "./modules/DetailProductPage";
-import { ImageGallery } from "./modules/ImageSlider";
-import { ContactWindow } from ".//modules/Contact/index";
-import { Footer } from "./modules/Footer";
+import { DetailProductPage } from "./modules/DetailProductPage/index";
+import { ShopCartPage } from './modules/ShopCartPage/index'
 
 import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
+
+const BurgerMenu = React.lazy(() =>
+  import("./modules/BurgerMenu/index").then(({ BurgerMenu }) => ({
+    default: BurgerMenu,
+  }))
+);
+
+const LoginMenu = React.lazy(() =>
+  import("./modules/LoginMenu/index").then(({ LoginMenu }) => ({
+    default: LoginMenu,
+  }))
+);
+
+const RegisterMenu = React.lazy(() =>
+  import("./modules/RegisterMenu/index").then(({ RegisterMenu }) => ({
+    default: RegisterMenu,
+  }))
+);
+
+const ContactWindow = React.lazy(() =>
+  import("./modules/Contact/index").then(({ ContactWindow }) => ({
+    default: ContactWindow,
+  }))
+);
+
+const ImageGallery = React.lazy(() =>
+  import("./modules/ImageSlider/index").then(({ ImageGallery }) => ({
+    default: ImageGallery,
+  }))
+);
 
 ReactDOM.render<Renderer>(
   <Provider store={store}>
     <Router>
       <Switch>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Route path="/" component={NavBar} />
+        <Suspense fallback={<Loading />}>
+          <NavBar />
           <ToastContainer
             position="bottom-left"
             autoClose={3000}
@@ -40,11 +69,12 @@ ReactDOM.render<Renderer>(
             draggable
             pauseOnHover
           />
+          <BurgerMenu />
+          <LoginMenu />
+          <RegisterMenu />
+          <ContactWindow />
           <Route path="/" exact component={LandingPage} />
           <Route path="/users/activate/:token" exact component={ActivatePage} />
-          <Route path="/" component={BurgerMenu} />
-          <Route path="/" component={LoginMenu} />
-          <Route path="/" component={RegisterMenu} />
           <Route
             path="/users/password/forget"
             exact
@@ -59,11 +89,20 @@ ReactDOM.render<Renderer>(
           <Route path="/products" component={ProductsPage} />
           <Route
             path="/product/details/id/:productId"
+            exact
             render={(props) => <DetailProductPage {...props} />}
           />
-          <Route path="/" component={ImageGallery} />
-          <Route path="/" component={ContactWindow} />
-          <Route path="/" component={Footer} />
+          <Route
+            path="/product/details/id/:productId"
+            exact
+            component={ImageGallery}
+          />
+          <Route
+            path="/shop-cart"
+            exact
+            component={ShopCartPage}
+          />
+          <Route component={Footer} />
         </Suspense>
       </Switch>
     </Router>

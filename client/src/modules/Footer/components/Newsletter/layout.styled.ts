@@ -13,7 +13,7 @@ export const NewsletterContainer = styled.div`
   }
 `;
 
-export const NewsletterTitle = styled.div`
+export const NewsletterTitle = styled.header`
   font-weight: 450;
   font-size: 1em;
 

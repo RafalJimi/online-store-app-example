@@ -5,7 +5,7 @@ type Prop = {
   prop: boolean;
 };
 
-export const RegisterContainer = styled.main<Prop>`
+export const RegisterContainer = styled.div<Prop>`
   display: flex;
   position: fixed;
   top: 0;
@@ -43,7 +43,7 @@ export const CloseRegisterMenu = styled.div`
   background-color: #00000050;
 `;
 
-export const RegisterMenuContainer = styled.div`
+export const RegisterMenuContainer = styled.main`
   display: flex;
   flex-direction: column;
   width: 750px;
@@ -84,5 +84,6 @@ export const CloseRegisterMenuButton = styled.div`
   @media only screen and ${width[750]}, ${maxHeight[750]} {
     margin-top: 20px;
     margin-right: 0px;
+    transform: translate(20px, 0px);
   }
 `;

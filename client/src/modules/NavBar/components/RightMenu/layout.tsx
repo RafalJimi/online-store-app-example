@@ -1,59 +1,46 @@
 import React from "react";
 import {
-  RightMenu,
+  RightMenuContainer,
   RightMenuItem,
   BurgerButtonContainer,
   BurgerButton,
 } from "./layout.styled";
 
 type RightMenuLayoutProps = {
-  ChangeLayout: boolean;
   burgerMenuIsOpen: boolean;
   handleToggleBurgerMenuButton: (e: React.MouseEvent) => void;
   handleOpenLoginMenuButton: (e: React.MouseEvent) => void;
+  handleRedirect: (url: string) => (e: React.MouseEvent) => void;
 };
 
 export const RightMenuLayout = ({
-  ChangeLayout,
   burgerMenuIsOpen,
   handleToggleBurgerMenuButton,
   handleOpenLoginMenuButton,
+  handleRedirect,
 }: RightMenuLayoutProps) => (
-  <RightMenu>
-    <RightMenuItem>
-      {ChangeLayout ? (
-        <i className="fas fa-search" style={{ paddingRight: "8px" }}></i>
-      ) : (
-        <span>
-          <i className="fas fa-search" style={{ paddingRight: "8px" }}></i>{" "}
-          Search
-        </span>
-      )}
+  <RightMenuContainer>
+    <RightMenuItem showIcon={true}>
+      <i className="fas fa-search"></i> <span>Search</span>
     </RightMenuItem>
-    <RightMenuItem onClick={handleOpenLoginMenuButton}>
-      {ChangeLayout ? <i className="far fa-user"></i> : "Sign in"}
+    <RightMenuItem showIcon={false} onClick={handleOpenLoginMenuButton}>
+      <i className="far fa-user"></i> <span>Sign in</span>
     </RightMenuItem>
-    <RightMenuItem>
-      {ChangeLayout ? (
-        <i className="fas fa-clipboard-list"></i>
-      ) : (
-        "My orders"
-      )}
+    <RightMenuItem showIcon={false}>
+      <i className="fas fa-clipboard-list"></i> <span>My orders</span>
     </RightMenuItem>
-    <RightMenuItem>
-      {ChangeLayout ? <i className="fas fa-shopping-bag"></i> : "My basket"}
+    <RightMenuItem showIcon={false} onClick={handleRedirect("/shop-cart")}>
+      <i className="fas fa-shopping-bag"></i> <span>My basket</span>
     </RightMenuItem>
-    {ChangeLayout && (
-      <BurgerButtonContainer>
-        <BurgerButton
-          isOpen={burgerMenuIsOpen}
-          onClick={handleToggleBurgerMenuButton}
-        >
-          <div />
-          <div />
-          <div />
-        </BurgerButton>
-      </BurgerButtonContainer>
-    )}
-  </RightMenu>
+    <BurgerButtonContainer>
+      <BurgerButton
+        isOpen={burgerMenuIsOpen}
+        onClick={handleToggleBurgerMenuButton}
+      >
+        <div />
+        <div />
+        <div />
+      </BurgerButton>
+    </BurgerButtonContainer>
+  </RightMenuContainer>
 );

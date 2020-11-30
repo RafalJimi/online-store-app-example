@@ -1,9 +1,10 @@
 import React, { useMemo } from "react";
-import { ProductPageLayoutContainer, ProductsContainer } from "./layout.styled";
+import { ProductsPageContainer, ProductsContainer } from "./layout.styled";
 import { SearchPanel } from "./components/SearchPanel/index";
 import { Product } from "./components/Product/index";
 import * as ProductsState from "../../store/getProducts/reducer";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 
 type ProductPageLayout = {
   products: ProductsState.Product[];
@@ -16,16 +17,20 @@ export const ProductsPageLayout = ({
   handleNext,
   loadMore,
 }: ProductPageLayout) => {
-  
   const productsList = useMemo(
-    () => products.map((product) => <Product product={product} />),
+    () =>
+      products.map((product) => (
+        <LazyLoadComponent delayTime={0} threshold={0} visibleByDefault={false}>
+          <Product product={product} />{" "}
+        </LazyLoadComponent>
+      )),
     [products]
   );
-  
+
   return (
-    <ProductPageLayoutContainer>
+    <ProductsPageContainer>
       <SearchPanel />
-      <ProductsContainer productsListLength={products.length}>
+      <ProductsContainer>
         <InfiniteScroll
           dataLength={products.length}
           next={handleNext}
@@ -35,6 +40,6 @@ export const ProductsPageLayout = ({
           {products && productsList}
         </InfiniteScroll>
       </ProductsContainer>
-    </ProductPageLayoutContainer>
+    </ProductsPageContainer>
   );
 };

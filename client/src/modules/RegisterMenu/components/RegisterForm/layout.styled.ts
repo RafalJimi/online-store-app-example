@@ -6,6 +6,7 @@ export const RegisterFormContainer = styled.form`
   flex-direction: column;
   margin-top: 25px;
   width: 500px;
+  margin-left: 15px;
 
   @media only screen and ${width[750]}, ${maxHeight[750]} {
     width: 100%;

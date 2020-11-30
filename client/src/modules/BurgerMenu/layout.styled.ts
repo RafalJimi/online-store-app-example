@@ -12,19 +12,19 @@ export const BurgerMenuContainer = styled.nav<BurgerMenuProps>`
   align-items: center;
   background-color: #f5f5f5;
   left: 0;
-  top: 60px;
+  top: 50px;
   color: #000000;
   width: 100%;
   height: 100%;
   text-align: left;
-  z-index: 2;
+  z-index: 10;
   transition: transform 0.3s ease-in-out;
   transform: translateX(-100%);
   transform: ${({ isOpen }) =>
     isOpen ? "translateX(0%)" : "translateX(100%)"};
 `;
 
-export const Menu = styled.div`
+export const Menu = styled.menu`
   display: flex;
   flex-direction: row;
   width: 100%;
