@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductDetailsStarted } from "../../store/getProductDetails/actions";
 import { productDetailsRX } from "../../store/getProductDetails/selectors";

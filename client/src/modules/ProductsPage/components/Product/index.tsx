@@ -20,6 +20,7 @@ export const Product = memo(({ product }: ProductProps) => {
       img={product.images[0].path}
       name={product.productName}
       price={product.price}
+      category={product.category}
       handleOnClick={handleOnClick}
     />
   );

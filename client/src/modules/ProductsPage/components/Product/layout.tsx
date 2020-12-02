@@ -10,6 +10,7 @@ type ProductLayoutProps = {
   img: string;
   name: string;
   price: number;
+  category: string;
   handleOnClick: (e: React.MouseEvent) => void;
 };
 
@@ -17,6 +18,7 @@ export const ProductLayout = ({
   img,
   name,
   price,
+  category,
   handleOnClick,
 }: ProductLayoutProps) => (
   <ProductContainer>
@@ -28,13 +30,23 @@ export const ProductLayout = ({
       />
       <AddItemToCartContainer className="addToCart">
         <span>ADD QUICKLY</span>
-        <div>
-          <div>XS</div>
-          <div>S</div>
-          <div>M</div>
-          <div>L</div>
-          <div>XL</div>
-        </div>
+        {category === "shoes" ? (
+          <div>
+            <div>38</div>
+            <div>39</div>
+            <div>40</div>
+            <div>41</div>
+            <div>42</div>
+          </div>
+        ) : (
+          <div>
+            <div>XS</div>
+            <div>S</div>
+            <div>M</div>
+            <div>L</div>
+            <div>XL</div>
+          </div>
+        )}
       </AddItemToCartContainer>
     </ProductImgContainer>
     <ProductDetailsContainer>

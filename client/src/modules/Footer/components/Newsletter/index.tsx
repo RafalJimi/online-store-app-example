@@ -48,6 +48,7 @@ export const Newsletter = () => {
         email: Email,
         gender: gender,
       };
+      console.log(subscribeNewsletterData);
     }
   };
 

@@ -35,11 +35,23 @@ export const DetailProductPageLayout = ({
         {productDetails.price.toFixed(2)} PLN
       </ProductPriceContainer>
       <ProductSizesContainer>
-        <div>XS</div>
-        <div>S</div>
-        <div>M</div>
-        <div>L</div>
-        <div>XL</div>
+        {productDetails.category === "shoes" ? (
+          <>
+            <div>38</div>
+            <div>39</div>
+            <div>40</div>
+            <div>41</div>
+            <div>42</div>
+          </>
+        ) : (
+          <>
+            <div>XS</div>
+            <div>S</div>
+            <div>M</div>
+            <div>L</div>
+            <div>XL</div>
+          </>
+        )}
       </ProductSizesContainer>
       <AddToCartButton>ADD TO CART</AddToCartButton>
       <Informations />

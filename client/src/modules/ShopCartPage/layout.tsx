@@ -1,4 +1,5 @@
 import React from "react";
+import { CartPageItem } from "./components/CartPageItem/index";
 import {
   ShopCartPageContainer,
   ProductsListContainer,
@@ -14,6 +15,7 @@ export const ShopCartPageLayout = () => (
   <ShopCartPageContainer>
     <ProductsListContainer>
       <ProductsListHeader>Shopping basket</ProductsListHeader>
+      <CartPageItem />
     </ProductsListContainer>
     <OrderSummaryContainer>
       <OrderSummaryHeader>Order summary</OrderSummaryHeader>

@@ -3,7 +3,7 @@ import { width } from "../../helpers/mediaQueries";
 
 export const ShopCartPageContainer = styled.div`
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   margin-top: 40px;
   display: flex;
   flex-direction: row;
@@ -11,6 +11,7 @@ export const ShopCartPageContainer = styled.div`
 
   @media only screen and ${width[1300]} {
     margin-top: 80px;
+    min-height: calc(100vh - 100px);
   }
 
   @media only screen and ${width[1000]} {
@@ -28,6 +29,10 @@ export const ProductsListContainer = styled.div`
   text-align: center;
   margin-right: 50px;
   flex-direction: column;
+
+  @media only screen and ${width[1300]} {
+    width: 550px;
+  }
 
   @media only screen and ${width[1000]} {
     width: 100%;
@@ -54,9 +59,15 @@ export const OrderSummaryContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
 
+  @media only screen and ${width[1300]} {
+    width: 250px;
+  }
+
   @media only screen and ${width[1000]} {
     margin-top: 20px;
     width: 100%;
+    padding: 0px 6vw;
+    margin-bottom: 30px;
   }
 `;
 
