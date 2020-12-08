@@ -12,6 +12,7 @@ type ProductLayoutProps = {
   price: number;
   category: string;
   handleOnClick: (e: React.MouseEvent) => void;
+  handleAddToCart: (size: string) => (e: React.MouseEvent) => void;
 };
 
 export const ProductLayout = ({
@@ -20,6 +21,7 @@ export const ProductLayout = ({
   price,
   category,
   handleOnClick,
+  handleAddToCart,
 }: ProductLayoutProps) => (
   <ProductContainer>
     <ProductImgContainer>
@@ -32,19 +34,19 @@ export const ProductLayout = ({
         <span>ADD QUICKLY</span>
         {category === "shoes" ? (
           <div>
-            <div>38</div>
-            <div>39</div>
-            <div>40</div>
-            <div>41</div>
-            <div>42</div>
+            <div onClick={handleAddToCart("38")}>38</div>
+            <div onClick={handleAddToCart("39")}>39</div>
+            <div onClick={handleAddToCart("40")}>40</div>
+            <div onClick={handleAddToCart("41")}>41</div>
+            <div onClick={handleAddToCart("42")}>42</div>
           </div>
         ) : (
           <div>
-            <div>XS</div>
-            <div>S</div>
-            <div>M</div>
-            <div>L</div>
-            <div>XL</div>
+            <div onClick={handleAddToCart("XS")}>XS</div>
+            <div onClick={handleAddToCart("S")}>S</div>
+            <div onClick={handleAddToCart("M")}>M</div>
+            <div onClick={handleAddToCart("L")}>L</div>
+            <div onClick={handleAddToCart("XL")}>XL</div>
           </div>
         )}
       </AddItemToCartContainer>

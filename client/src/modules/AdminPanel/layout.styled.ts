@@ -1,14 +1,23 @@
 import styled from "styled-components";
 import { width, maxHeight } from "../../helpers/mediaQueries";
 
-export const AdminPanelLayoutContainer = styled.div`
+export const PanelLayout = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+`;
+
+export const AdminPanelContainer = styled.div`
   width: 100%;
   max-width: 1000px;
-  align-self: center;
   height: auto;
   padding: 40px 0px 0px 0px;
   display: flex;
   flex-direction: column;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
 
   @media only screen and ${width[1300]} {
     padding: 120px 0px 0px 0px;

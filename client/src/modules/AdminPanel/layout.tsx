@@ -1,6 +1,7 @@
 import React from "react";
 import {
-  AdminPanelLayoutContainer,
+  PanelLayout,
+  AdminPanelContainer,
   AdminPanelTitle,
   AdminPanelSections,
   AdminPanelSectionName,
@@ -17,16 +18,18 @@ export const AdminPanelLayout = ({
   handleOnClick,
   ShowEditUser,
 }: AdminPanelLayoutProps) => (
-  <AdminPanelLayoutContainer>
-    <AdminPanelTitle>Admin Panel</AdminPanelTitle>
-    <AdminPanelSections>
-      <AdminPanelSectionName onClick={handleOnClick(true)}>
-        EDIT USER
-      </AdminPanelSectionName>
-      <AdminPanelSectionName onClick={handleOnClick(false)}>
-        ADD ITEM TO SHOP
-      </AdminPanelSectionName>
-    </AdminPanelSections>
-    {ShowEditUser ? <EditUserPanel /> : <AddItemPanel />}
-  </AdminPanelLayoutContainer>
+  <PanelLayout>
+    <AdminPanelContainer>
+      <AdminPanelTitle>Admin Panel</AdminPanelTitle>
+      <AdminPanelSections>
+        <AdminPanelSectionName onClick={handleOnClick(true)}>
+          EDIT USER
+        </AdminPanelSectionName>
+        <AdminPanelSectionName onClick={handleOnClick(false)}>
+          ADD ITEM TO SHOP
+        </AdminPanelSectionName>
+      </AdminPanelSections>
+      {ShowEditUser ? <EditUserPanel /> : <AddItemPanel />}
+    </AdminPanelContainer>
+  </PanelLayout>
 );

@@ -3,7 +3,7 @@ import { width, maxHeight } from "../../../../helpers/mediaQueries";
 
 export const EditUserPanelContainer = styled.form`
   width: 100%;
-  height: calc(100vh - 585px);
+  min-height: calc(100vh - 465px);
   display: flex;
   align-self: center;
   flex-direction: row;

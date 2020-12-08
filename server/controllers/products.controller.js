@@ -54,7 +54,10 @@ exports.getProductDetailsController = (req, res) => {
   const productId = req.query.productId
   
   if (productId)
-    Product.findOne({ _id: productId }, (err, product) => {
+    Product.findOneAndUpdate(
+      { _id: productId },
+      { $inc: { "views": 1 } },
+      (err, product) => {
       if (err || !product) {
         return res.json({
           getProductDetails: false,

@@ -4,7 +4,10 @@ import { useHistory } from 'react-router-dom'
 import { toggleBurgerMenu } from "../../../../store/burgerMenu/actions";
 import { toggleLoginMenu } from "../../../../store/loginMenu/actions";
 import { burgerMenuIsOpenRX } from "../../../../store/burgerMenu/selectors";
+import { toast } from "react-toastify";
 import { RightMenuLayout } from "./layout";
+import { getLocalStorage } from "../../../../helpers/auth";
+
 
 export const RightMenu = () => {
   const dispatch = useDispatch();
@@ -22,16 +25,24 @@ export const RightMenu = () => {
     dispatch(toggleLoginMenu());
   }, []);
 
-  const handleRedirect = useCallback((url: string) => (e: React.MouseEvent) => {
-    history.push(url)
-  }, [])
+  const handleBasketButton = useCallback(
+    (url: string) => (e: React.MouseEvent) => {
+      const basket = getLocalStorage("basket");
+      basket !== null
+        ? basket.length !== 0
+          ? history.push(url)
+          : toast.dark("Your basket is empty")
+        : toast.dark("Your basket is empty");
+    },
+    []
+  );
   
   return (
     <RightMenuLayout
       burgerMenuIsOpen={burgerMenuIsOpen}
       handleToggleBurgerMenuButton={handleToggleBurgerMenuButton}
       handleOpenLoginMenuButton={handleOpenLoginMenuButton}
-      handleRedirect={handleRedirect}
+      handleBasketButton={handleBasketButton}
     />
   );
 };

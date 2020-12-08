@@ -1,5 +1,4 @@
-import React from "react";
-import Test from "../../../../assets/ActivatePage/ActivationPagePhoto.jpg";
+import React, { ChangeEvent } from "react";
 import { options } from "./consts";
 import {
   CartPageItemContainer,
@@ -9,28 +8,46 @@ import {
   Details,
 } from "./layout.styled";
 
-export const CartPageItemLayout = () => (
+type CartPageItemLayoutProps = {
+  imageUrl: string;
+  name: string;
+  size: string;
+  sumPrice: number;
+  handleOnSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
+  handleOnClick: (e: React.MouseEvent) => void;
+};
+
+export const CartPageItemLayout = ({
+  imageUrl,
+  name,
+  size,
+  sumPrice,
+  handleOnSelect,
+  handleOnClick,
+}: CartPageItemLayoutProps) => (
   <CartPageItemContainer>
     <ItemDetailsContainer>
       <ImageContainer>
-        <img src={Test} alt="" />
+        <img src={`${process.env.REACT_APP_SERVER_URL}${imageUrl}`} alt="" />
       </ImageContainer>
       <Details>
-        <p>Flannel joggers in a slim cut</p>
-        <span className="ItemPrice">199,00 PLN</span>
-        <span>Size 38</span>
+        <p>{name}</p>
+        <span className="ItemPrice">{sumPrice.toFixed(2)} PLN</span>
+        <span>Size {size}</span>
         <div>
           Quantity{" "}
-          <select>
+          <select onChange={handleOnSelect}>
             {options.map((option) => (
-              <option value={option}>{option}</option>
+              <option value={option.value} key={option.key}>
+                {option.value}
+              </option>
             ))}
           </select>
         </div>
 
-        <button>Delete</button>
+        <button onClick={handleOnClick}>Delete</button>
       </Details>
     </ItemDetailsContainer>
-    <PriceContainer>199,00 PLN</PriceContainer>
+    <PriceContainer>{sumPrice.toFixed(2)} PLN</PriceContainer>
   </CartPageItemContainer>
 );

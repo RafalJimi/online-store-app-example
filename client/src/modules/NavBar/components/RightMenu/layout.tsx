@@ -10,14 +10,14 @@ type RightMenuLayoutProps = {
   burgerMenuIsOpen: boolean;
   handleToggleBurgerMenuButton: (e: React.MouseEvent) => void;
   handleOpenLoginMenuButton: (e: React.MouseEvent) => void;
-  handleRedirect: (url: string) => (e: React.MouseEvent) => void;
+  handleBasketButton: (url: string) => (e: React.MouseEvent) => void;
 };
 
 export const RightMenuLayout = ({
   burgerMenuIsOpen,
   handleToggleBurgerMenuButton,
   handleOpenLoginMenuButton,
-  handleRedirect,
+  handleBasketButton,
 }: RightMenuLayoutProps) => (
   <RightMenuContainer>
     <RightMenuItem showIcon={true}>
@@ -29,7 +29,7 @@ export const RightMenuLayout = ({
     <RightMenuItem showIcon={false}>
       <i className="fas fa-clipboard-list"></i> <span>My orders</span>
     </RightMenuItem>
-    <RightMenuItem showIcon={false} onClick={handleRedirect("/shop-cart")}>
+    <RightMenuItem showIcon={false} onClick={handleBasketButton("/shop-cart")}>
       <i className="fas fa-shopping-bag"></i> <span>My basket</span>
     </RightMenuItem>
     <BurgerButtonContainer>

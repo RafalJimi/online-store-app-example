@@ -25,4 +25,8 @@ export const ImagesContainer = styled.div`
     height: 100%;
     justify-content: space-around;
   }
+
+  ::-webkit-scrollbar {
+    visibility: visible;
+  }
 `;

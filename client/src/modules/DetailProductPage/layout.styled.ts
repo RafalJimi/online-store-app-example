@@ -97,16 +97,25 @@ export const ProductSizesContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   margin-bottom: 30px;
+`;
 
-  div {
+type SizeButtonProps = {
+  props: {
+    value: string;
+    size: string;
+  };
+};
+
+export const SizeButton = styled.div<SizeButtonProps>`
     width: 40px;
     text-align: center;
     font-weight: 400;
     font-size: 0.9em;
     padding: 10px 0px;
-  }
+    background-color: ${({ props }) =>
+      props.value === props.size ? "#00000010" : null};
 
-  div:hover {
+:hover {
     cursor: pointer;
     background-color: #00000010;
   }

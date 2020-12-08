@@ -21,6 +21,8 @@ import {
   GetProductDetailsState,
   getProductDetails,
 } from "./getProductDetails/reducer";
+import { ShopCartState, shopCart } from "./shopCart/reducer";
+/* import { PaymentState, payment } from "./payment/reducer"; */
 
 export type AppState = {
   burgerMenu: BurgerMenuState;
@@ -41,6 +43,8 @@ export type AppState = {
   getProducts: GetProductsState;
   imageGallery: ImageGalleryState;
   getProductDetails: GetProductDetailsState;
+  shopCart: ShopCartState;
+  /*   payment: PaymentState; */
 };
 
 export const reducer = combineReducers<AppState>({
@@ -62,6 +66,8 @@ export const reducer = combineReducers<AppState>({
   getProducts,
   imageGallery,
   getProductDetails,
+  shopCart,
+  /*   payment, */
 });
 
 export type RootState = ReturnType<typeof reducer>;

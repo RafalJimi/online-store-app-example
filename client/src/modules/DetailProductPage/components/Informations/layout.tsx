@@ -31,7 +31,7 @@ export const InformationsLayout = ({
   const productsDetails = useMemo(
     () =>
       productDetails.details.map((productDetail) => (
-        <li>{productDetail.text}</li>
+        <li key={productDetail.id}>{productDetail.text}</li>
       )),
     [productDetails.details]
   );

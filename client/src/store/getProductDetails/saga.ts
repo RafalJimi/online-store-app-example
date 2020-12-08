@@ -1,7 +1,7 @@
 import { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
 
-import { axiosGet } from "../../common/axios";
+import { axiosPut } from "../../common/axios";
 
 import { GET_PRODUCT_DETAILS } from "./consts";
 import { ADD_IMAGES_TO_GALLERY } from "../imageGallery/consts";
@@ -15,7 +15,7 @@ export function* getProductDetails({
     const { productId } = payload;
     console.log();
     const request = yield call(
-      axiosGet,
+      axiosPut,
       `/products/getProductDetails?productId=${productId}`
     );
     console.log("getProducts result", request);

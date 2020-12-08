@@ -20,7 +20,12 @@ export const ProductsPageLayout = ({
   const productsList = useMemo(
     () =>
       products.map((product) => (
-        <LazyLoadComponent delayTime={0} threshold={0} visibleByDefault={false}>
+        <LazyLoadComponent
+          delayTime={0}
+          threshold={0}
+          visibleByDefault={false}
+          key={product._id}
+        >
           <Product product={product} />{" "}
         </LazyLoadComponent>
       )),

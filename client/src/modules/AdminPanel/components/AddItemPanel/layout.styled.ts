@@ -167,6 +167,17 @@ export const ItemDescriptionContainer = styled.div`
     text-align: center;
     margin-left: 20px;
   }
+
+  @media only screen and ${width[660]} {
+    ul > li {
+      padding: 5px 0px;
+      word-wrap: wrap;
+    }
+  }
+
+  ul > li > button {
+    font-size: 0.8em;
+  }
 `;
 
 export const AddProductDetailContainer = styled.div`
@@ -199,11 +210,12 @@ export const AddProductDetailContainer = styled.div`
 
   @media only screen and ${width[660]} {
     input {
-      width: 80%;
+      width: 60%;
     }
 
     button {
-      width: 20%;
+      width: 30%;
+      font-size: 0.8em;
     }
   }
 `;

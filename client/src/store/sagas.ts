@@ -13,6 +13,13 @@ import { uploadImageSaga, deleteImageSaga } from "./uploadImage/saga";
 import { uploadProductSaga } from "./uploadProduct/saga";
 import { getProductsSaga } from "./getProducts/saga";
 import { getProductDetailsSaga } from "./getProductDetails/saga";
+import {
+  getCartItemsSaga,
+  addToCartSaga,
+  removeCartItemSaga,
+  setQuantitySaga,
+} from "./shopCart/sagas";
+/* import { paymentSaga } from "./payment/saga"; */
 
 export function* rootSaga(services = {}) {
   yield fork(registerUserSaga);
@@ -29,4 +36,9 @@ export function* rootSaga(services = {}) {
   yield fork(uploadProductSaga);
   yield fork(getProductsSaga);
   yield fork(getProductDetailsSaga);
+  yield fork(getCartItemsSaga);
+  yield fork(addToCartSaga);
+  yield fork(removeCartItemSaga);
+  yield fork(setQuantitySaga);
+  /*   yield fork(paymentSaga); */
 }

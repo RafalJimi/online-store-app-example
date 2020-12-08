@@ -68,13 +68,13 @@ export const AddItemPanelLayout = ({
         <option value="woman">Woman</option>
       </select>
       <select onChange={handleOnSelect("collection")} value={collection}>
-        <option value="boots">Boots</option>
+        <option value="shoes">Boots</option>
         <option value="coats">Coats</option>
         <option value="jackets">Jackets</option>
         <option value="skirts">Skirts</option>
         <option value="suits">Suits</option>
       </select>
-      {collection === "boots" ? (
+      {collection === "shoes" ? (
         <select onChange={handleOnSelect("subCategory")} value={subCategory}>
           <option value="sport_shoes">Sport shoes</option>
           <option value="boots">Boots</option>

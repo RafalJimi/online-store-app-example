@@ -52,7 +52,7 @@ export const FileUploadLayout = ({
               onClick={handleDeleteImage(image.id, image.fileName, image.path)}
             >
               <img
-                src={`http://localhost:5000/${image.path}`}
+                src={`${process.env.REACT_APP_SERVER_URL}${image.path}`}
                 alt={`productImg-${image.id}`}
               />
             </div>
