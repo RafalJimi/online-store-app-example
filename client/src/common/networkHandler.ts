@@ -3,7 +3,7 @@ import { axiosCustom } from "./axios";
 
 axiosCustom.interceptors.request.use(
   (config) => {
-    const getToken = localStorage.getItem("token");
+    const getToken = localStorage.getItem(`SE_token`);
     //@ts-ignore
     const token = JSON.parse(getToken);
 

@@ -40,12 +40,17 @@ export const ProductsListContainer = styled.div`
   }
 `;
 
-export const ProductsListHeader = styled.header`
+type ProductsListHeaderProps = {
+  arrayLength: number;
+};
+
+export const ProductsListHeader = styled.header<ProductsListHeaderProps>`
   width: 100%;
   height: 20px;
   margin-top: 40px;
   padding: 25px 0px;
-  border-bottom: 1px solid #00000050;
+  border-bottom: ${({ arrayLength }) =>
+    arrayLength === 0 ? "none" : "1px solid #00000050"};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,6 +132,24 @@ export const OrderButton = styled.button`
 
   :hover {
     background-color: #00000099;
+    cursor: pointer;
+  }
+`;
+
+export const InfoContainer = styled.div`
+  width: 100%;
+  height: 45px;
+  color: red;
+  font-weight: 100;
+  border: none;
+  margin-top: 20px;
+  font-size: 0.85em;
+
+  span {
+    text-decoration: underline;
+  }
+
+  span:hover {
     cursor: pointer;
   }
 `;

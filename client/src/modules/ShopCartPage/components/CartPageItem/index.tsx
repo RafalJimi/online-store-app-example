@@ -28,7 +28,6 @@ export const CartPageItem = ({ cartItem }: CartPageItemProps) => {
 
   useEffect(() => {
     const totalPrice = cartItem.product.price * Quantity;
-    console.log(totalPrice);
     setSumPrice(totalPrice);
   }, [Quantity]);
 

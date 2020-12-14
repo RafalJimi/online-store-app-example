@@ -154,7 +154,7 @@ export const RegisterForm = () => {
     )
       setEmailInput({
         ...EmailInput,
-        error: "Please enter a valid e-mail password",
+        error: "Please enter a valid e-mail",
       });
     else setEmailInput({ ...EmailInput, error: "" });
   }, [EmailInput.value]);

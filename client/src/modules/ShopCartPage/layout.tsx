@@ -10,15 +10,24 @@ import {
   OrderSummaryContainerElement,
   TotalPrice,
   OrderButton,
+  InfoContainer,
 } from "./layout.styled";
 
 type ShopCartPageLayoutProps = {
   cartItems: ShopCartItem[];
   totalPrice: number;
+  handleOrderButton: (e: React.MouseEvent) => void;
+  error: boolean;
+  handleCreateAccount: (e: React.MouseEvent) => void;
 };
 
-export const ShopCartPageLayout = ({ cartItems, totalPrice }: ShopCartPageLayoutProps) => {
-  
+export const ShopCartPageLayout = ({
+  cartItems,
+  totalPrice,
+  handleOrderButton,
+  error,
+  handleCreateAccount,
+}: ShopCartPageLayoutProps) => {
   const mappedItems = useMemo(
     () =>
       cartItems.map((cartItem) => (
@@ -26,11 +35,13 @@ export const ShopCartPageLayout = ({ cartItems, totalPrice }: ShopCartPageLayout
       )),
     [cartItems]
   );
-  
+
   return (
     <ShopCartPageContainer>
       <ProductsListContainer>
-        <ProductsListHeader>Shopping basket</ProductsListHeader>
+        <ProductsListHeader arrayLength={cartItems.length}>
+          {cartItems.length === 0 ? "Your basket is empty" : "Shopping basket"}
+        </ProductsListHeader>
         {cartItems && mappedItems}
       </ProductsListContainer>
       <OrderSummaryContainer>
@@ -54,7 +65,16 @@ export const ShopCartPageLayout = ({ cartItems, totalPrice }: ShopCartPageLayout
           </span>
           <span> {totalPrice.toFixed(2)} PLN</span>
         </TotalPrice>
-        <OrderButton>Process order</OrderButton>
+        {cartItems.length > 0 && (
+          <OrderButton onClick={handleOrderButton}>Process order</OrderButton>
+        )}
+        {error && (
+          <InfoContainer>
+            You are not logged in - please log in or{" "}
+            <span onClick={handleCreateAccount}>create an account</span> if you
+            are not registered.
+          </InfoContainer>
+        )}
       </OrderSummaryContainer>
     </ShopCartPageContainer>
   );

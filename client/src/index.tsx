@@ -17,6 +17,8 @@ import { AdminPanel } from "./modules/AdminPanel/index";
 import { ProductsPage } from "./modules/ProductsPage/index";
 import { DetailProductPage } from "./modules/DetailProductPage/index";
 import { ShopCartPage } from './modules/ShopCartPage/index'
+import { OrderPage } from "./modules/OrderPage/index";
+/* import { TransactionHistoryPage } from "./modules/TransactionHistoryPage/index"; */
 
 import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -85,7 +87,7 @@ ReactDOM.render<Renderer>(
             exact
             component={ResetPasswordPage}
           />
-          <Route path="/admin" component={AdminPanel} />
+          <Route path="/admin" exact component={AdminPanel} />
           <Route path="/products" component={ProductsPage} />
           <Route
             path="/product/details/id/:productId"
@@ -97,11 +99,13 @@ ReactDOM.render<Renderer>(
             exact
             component={ImageGallery}
           />
-          <Route
-            path="/shop-cart"
+          <Route path="/order" exact component={OrderPage} />
+          <Route path="/shop-cart" exact component={ShopCartPage} />
+          {/* <Route
+            path="/admin/transactionHistory"
             exact
-            component={ShopCartPage}
-          />
+            component={TransactionHistoryPage}
+          /> */}
           <Route component={Footer} />
         </Suspense>
       </Switch>

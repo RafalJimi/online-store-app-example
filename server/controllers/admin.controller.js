@@ -121,9 +121,6 @@ exports.deleteImageController = (req, res) => {
 };
 
 exports.uploadProductController = (req, res) => {
-  console.log(req.body);
-  console.log(req.body)
-  
   let newProduct = req.body
   
   newProduct.category === "boots" ? newProduct = {...newProduct} : newProduct = { ...newProduct, subCategory: null}

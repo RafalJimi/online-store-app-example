@@ -19,7 +19,8 @@ import {
   removeCartItemSaga,
   setQuantitySaga,
 } from "./shopCart/sagas";
-/* import { paymentSaga } from "./payment/saga"; */
+import { paymentSaga } from "./payment/saga";
+import { getUserAddressSaga } from "./getUserAddress/saga";
 
 export function* rootSaga(services = {}) {
   yield fork(registerUserSaga);
@@ -40,5 +41,6 @@ export function* rootSaga(services = {}) {
   yield fork(addToCartSaga);
   yield fork(removeCartItemSaga);
   yield fork(setQuantitySaga);
-  /*   yield fork(paymentSaga); */
+  yield fork(paymentSaga);
+  yield fork(getUserAddressSaga);
 }
