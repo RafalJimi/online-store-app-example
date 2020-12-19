@@ -11,7 +11,7 @@ export const ToggleMenuButtonsContainer = styled.div`
 
   :hover {
     cursor: pointer;
-    color: black;
+    color: ${(props) => props.theme.colors.primary};
   }
 
   @media only screen and ${width[1000]} {

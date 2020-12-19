@@ -8,6 +8,7 @@ import {
 
 type RightMenuLayoutProps = {
   burgerMenuIsOpen: boolean;
+  handleToggleSearchMenu: (e: React.MouseEvent) => void;
   handleToggleBurgerMenuButton: (e: React.MouseEvent) => void;
   handleOpenLoginMenuButton: (e: React.MouseEvent) => void;
   handleBasketButton: (url: string) => (e: React.MouseEvent) => void;
@@ -15,12 +16,13 @@ type RightMenuLayoutProps = {
 
 export const RightMenuLayout = ({
   burgerMenuIsOpen,
+  handleToggleSearchMenu,
   handleToggleBurgerMenuButton,
   handleOpenLoginMenuButton,
   handleBasketButton,
 }: RightMenuLayoutProps) => (
   <RightMenuContainer>
-    <RightMenuItem showIcon={true}>
+    <RightMenuItem showIcon={true} onClick={handleToggleSearchMenu}>
       <i className="fas fa-search"></i> <span>Search</span>
     </RightMenuItem>
     <RightMenuItem showIcon={false} onClick={handleOpenLoginMenuButton}>

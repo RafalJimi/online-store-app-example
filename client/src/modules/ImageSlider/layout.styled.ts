@@ -12,7 +12,7 @@ export const ImageGalleryContainer = styled.div<ImageGalleryProps>`
   align-items: flex-start;
   justify-content: center;
   z-index: 20;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.background};
   left: 0;
   top: 0;
   overflow: scroll;

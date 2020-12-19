@@ -10,9 +10,8 @@ export const CollectionMenu = styled.ul<Props>`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  color: #000000;
+  color: ${(props) => props.theme.colors.primary};
   padding: 20px 50px;
-  box-sizing: border-box;
   font-size: 1em;
   margin-top: 10px;
   margin: 0px;

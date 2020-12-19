@@ -44,14 +44,14 @@ export const SelectInputsContainer = styled.div`
     align-items: center;
     justify-content: center;
     padding: 10px 20px;
-    border: 1px solid black;
+    border: ${(props) => props.theme.borders.primary};
     border-radius: 3px;
     font-size: 1.1em;
   }
 
   select > option {
     padding: 10px 20px;
-    color: black;
+    color: ${(props) => props.theme.colors.primary};
   }
 
   @media only screen and ${width[1000]} {
@@ -91,14 +91,14 @@ export const AddItemPanelInputContainer = styled.div<Prop>`
   justify-content: start;
   align-items: center;
   border: none;
-  border-bottom: 1px solid #00000050;
+  border-bottom: ${(props) => props.theme.borders.secondary};
   flex-wrap: wrap;
 
   border-bottom: ${({ prop }) =>
     prop ? "1px solid #000000" : "1px solid #00000050"};
 
   :focus {
-    border: 1px solid #000000;
+    border: ${(props) => props.theme.borders.primary};
   }
 
   input {
@@ -148,7 +148,7 @@ export const ItemDescriptionContainer = styled.div`
   ul > li {
     text-align: start;
     font-weight: 100;
-    color: black;
+    color: ${(props) => props.theme.colors.primary};
     font-size: 0.9em;
     margin-top: 5px;
     display: flex;
@@ -159,9 +159,9 @@ export const ItemDescriptionContainer = styled.div`
 
   ul > li > button {
     padding: 0px 10px;
-    background-color: black;
+    background-color: ${(props) => props.theme.colors.primary};
     border: none;
-    color: white;
+    color: ${(props) => props.theme.colors.background};
     font-size: 1.2em;
     border-radius: 10px;
     text-align: center;
@@ -201,9 +201,9 @@ export const AddProductDetailContainer = styled.div`
   button {
     height: 40px;
     padding: 0px 20px;
-    background-color: black;
+    background-color: ${(props) => props.theme.colors.primary};
     border: none;
-    color: white;
+    color: ${(props) => props.theme.colors.background};
     font-size: 1.2em;
     border-radius: 10px;
   }

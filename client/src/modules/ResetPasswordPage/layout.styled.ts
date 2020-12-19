@@ -46,14 +46,14 @@ export const ResetPasswordInputContainer = styled.div<ResetPasswordInputContaine
   justify-content: start;
   align-items: center;
   border: none;
-  border-bottom: 1px solid #00000050;
+  border-bottom: ${(props) => props.theme.borders.secondary};
   width: 250px;
 
   border-bottom: ${({ prop }) =>
-    prop ? "1px solid #000000" : "1px solid #00000050"};
+    prop ? "1px solid #000000" : "1px solid #808080"};
 
   :focus {
-    border: 1px solid #000000;
+    border: ${(props) => props.theme.borders.primary};
   }
 
   i {
@@ -91,7 +91,7 @@ export const ResetPasswordInputErrorMessage = styled.div`
   padding-top: 5px;
   font-size: 0.6em;
   border: none;
-  color: red;
+  color: ${(props) => props.theme.colors.warning};
   height: 27px;
   width: 100%;
 
@@ -123,15 +123,15 @@ export const ResetPasswordButton = styled.button`
   align-items: center;
   justify-content: center;
   border: none;
-  background-color: black;
-  color: white;
+  background-color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.background};
   font-size: 1em;
   border-radius: 5px;
   padding: 10px 20px;
 
   :hover {
     cursor: pointer;
-    background-color: #00000050;
+    background-color: ${(props) => props.theme.colors.secondary};
   }
 
   @media only screen and ${width[1000]} {

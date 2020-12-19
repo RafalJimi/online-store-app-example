@@ -1,9 +1,11 @@
 const User = require("../models/auth.model");
 const Product = require('../models/product.model')
+const Payment = require('../models/payment.model')
 const { uploadImage } = require('../utils/uploadImage')
 const { thumbnailIMG } = require('../utils/resizeImage')
 const fs = require('fs');
 const { json } = require("body-parser");
+const { request } = require("http");
 
 exports.getUserDataController = (req, res) => {
   const { email } = req.query
@@ -131,4 +133,32 @@ exports.uploadProductController = (req, res) => {
     if (err) return res.json({ uploadProduct: false, error: err });
     return res.status(200).json({ uploadProduct: true, message: "Product uploaded successfully." });
   });
+};
+
+exports.getTransactionHistory = (req, res) => {
+  console.log(req)
+  
+  Payment.find({})
+    .sort([["_id", "descending"]])
+    .exec((err, transactions) => {
+      if (err) return res.json({ getTransactionHistory: false, error: err });
+      else res.json({ getTransactionHistory: true, transactions});
+    });
+};
+
+exports.getTransactionDetails = (req, res) => {
+  const transactionId = req.query.id
+  
+  Payment.findOne({ _id: transactionId }, (err, transactionDetails) => {
+    if (err) {
+      return res.json({
+        getTransactionDetails: false,
+        error: "Product with that ID does not exist.",
+      });
+    } else
+      return res.json({
+        getTransactionDetails: true,
+        details: transactionDetails,
+      });
+  })
 };

@@ -13,7 +13,7 @@ export const ContactContainer = styled.main<Prop>`
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  color: #000000;
+  color: ${(props) => props.theme.colors.primary};
   width: 100%;
   height: 100%;
   text-align: left;
@@ -34,7 +34,7 @@ export const CloseContactWindow = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #00000050;
+  background-color: ${(props) => props.theme.colors.modalBackground};
 `;
 
 export const ContactWindow = styled.div`
@@ -42,7 +42,7 @@ export const ContactWindow = styled.div`
   flex-direction: column;
   width: 250px;
   height: auto;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.background};
   align-items: center;
   justify-content: space-between;
   -webkit-box-shadow: none;

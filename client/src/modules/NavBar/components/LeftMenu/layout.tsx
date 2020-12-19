@@ -21,12 +21,7 @@ export const LeftMenuLayout = ({ handleOnClick }: LeftMenuLayoutProps) => {
   const MenuForWoman = (
     <DropdownMenuContainer>
       <DropdownMenuSection>
-        <DropdownMenuSectionHeader onHoverEffect={true}>
-          NEW PRODUCTS
-        </DropdownMenuSectionHeader>
-      </DropdownMenuSection>
-      <DropdownMenuSection>
-        <DropdownMenuSectionHeader onHoverEffect={false}>
+        <DropdownMenuSectionHeader>
           COLLECTION
         </DropdownMenuSectionHeader>
         <DropdownMenuSectionItem onClick={handleOnClick("woman", "coats")}>
@@ -40,7 +35,7 @@ export const LeftMenuLayout = ({ handleOnClick }: LeftMenuLayoutProps) => {
         </DropdownMenuSectionItem>
       </DropdownMenuSection>
       <DropdownMenuSection>
-        <DropdownMenuSectionHeader onHoverEffect={false}>
+        <DropdownMenuSectionHeader>
           SHOES
         </DropdownMenuSectionHeader>
         <DropdownMenuSectionItem onClick={handleOnClick("woman", "shoes")}>
@@ -63,12 +58,7 @@ export const LeftMenuLayout = ({ handleOnClick }: LeftMenuLayoutProps) => {
   const MenuForMan = (
     <DropdownMenuContainer>
       <DropdownMenuSection>
-        <DropdownMenuSectionHeader onHoverEffect={true}>
-          NEW PRODUCTS
-        </DropdownMenuSectionHeader>
-      </DropdownMenuSection>
-      <DropdownMenuSection>
-        <DropdownMenuSectionHeader onHoverEffect={false}>
+        <DropdownMenuSectionHeader>
           COLLECTION
         </DropdownMenuSectionHeader>
         <DropdownMenuSectionItem onClick={handleOnClick("man", "coats")}>
@@ -82,7 +72,7 @@ export const LeftMenuLayout = ({ handleOnClick }: LeftMenuLayoutProps) => {
         </DropdownMenuSectionItem>
       </DropdownMenuSection>
       <DropdownMenuSection>
-        <DropdownMenuSectionHeader onHoverEffect={false}>
+        <DropdownMenuSectionHeader>
           SHOES
         </DropdownMenuSectionHeader>
         <DropdownMenuSectionItem onClick={handleOnClick("man", "shoes")}>

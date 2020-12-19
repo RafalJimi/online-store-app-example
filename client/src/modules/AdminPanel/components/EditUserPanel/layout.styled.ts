@@ -32,15 +32,15 @@ export const EditUserPanelInputContainer = styled.div<Prop>`
   justify-content: start;
   align-items: center;
   border: none;
-  border-bottom: 1px solid #00000050;
+  border-bottom: ${(props) => props.theme.borders.secondary};
   flex-wrap: wrap;
   margin: 20px 0px;
 
   border-bottom: ${({ prop }) =>
-    prop ? "1px solid #000000" : "1px solid #00000050"};
+    prop ? "1px solid #000000" : "1px solid #778899"};
 
   :focus {
-    border: 1px solid #000000;
+    border: ${(props) => props.theme.borders.primary};
   }
 
   input {
@@ -91,7 +91,7 @@ export const EditUserPanelSelectContainer = styled.div`
 
   select > option {
     padding: 10px 20px;
-    color: black;
+    color: ${(props) => props.theme.colors.primary};
   }
 
   @media only screen and ${width[1000]} {
@@ -127,15 +127,15 @@ export const EditUserPanelButtonsContainer = styled.div`
   button {
     width: 30%;
     height: 40px;
-    background-color: black;
+    background-color: ${(props) => props.theme.colors.primary};
     border: none;
-    color: white;
+    color: ${(props) => props.theme.colors.background};
     font-size: 1.2em;
     border-radius: 10px;
   }
 
-  button: hover {
-    background-color: #00000050;
+  button:hover {
+    background-color: #${(props) => props.theme.borders.secondary};
   }
 
   @media only screen and ${width[1000]} {

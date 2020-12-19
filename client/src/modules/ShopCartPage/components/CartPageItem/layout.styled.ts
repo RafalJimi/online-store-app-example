@@ -8,8 +8,8 @@ export const CartPageItemContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-family: "Ubuntu", sans-serif;
-  border-bottom: 1px solid #00000050;
+  font-family: ${(props) => props.theme.fonts.secondary};
+  border-bottom: ${(props) => props.theme.borders.secondary};
   padding-bottom: 20px;
 
   @media only screen and ${width[1000]} {
@@ -54,7 +54,6 @@ export const Details = styled.div`
 
   p {
     font-weight: 500;
-    align-text: start;
   }
 
   span {
@@ -65,7 +64,7 @@ export const Details = styled.div`
   div {
     font-size: 0.8em;
     font-weight: 100;
-    border: 1px solid #00000050;
+    border: ${(props) => props.theme.borders.secondary};
     padding: 5px 20px;
     text-align: center;
   }
@@ -89,7 +88,7 @@ export const Details = styled.div`
     border: none;
     outline: none;
     background-color: white;
-    border-bottom: 1px solid black;
+    border-bottom: ${(props) => props.theme.borders.primary};
     font-weight: 500;
     font-size: 1em;
     padding: 5px 0px;

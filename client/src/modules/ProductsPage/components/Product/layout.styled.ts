@@ -8,7 +8,7 @@ export const ProductContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.background};
 
   :hover > div > .addToCart {
     display: flex;
@@ -62,7 +62,7 @@ export const ProductImgContainer = styled.div`
 export const AddItemToCartContainer = styled.div`
   width: 100%;
   padding-top: 0px;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.background};
   align-self: flex-end;
   display: flex;
   flex-direction: column;
@@ -112,7 +112,7 @@ export const ProductDetailsContainer = styled.div`
 
   span {
     font-weight: 100;
-    font-family: "Ubuntu", sans-serif;
+    font-family:  ${(props) => props.theme.fonts.secondary};
     font-size: 0.9em;
     margin-bottom: 20px;
     word-spacing: 1px;
@@ -127,7 +127,7 @@ export const ProductDetailsContainer = styled.div`
 
   div {
     margin: 0px;
-    font-family: "Ubuntu", sans-serif;
+    font-family:  ${(props) => props.theme.fonts.secondary};
     font-weight: 500;
     word-spacing: 2px;
     padding: 0px;

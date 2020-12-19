@@ -24,6 +24,16 @@ import {
 import { ShopCartState, shopCart } from "./shopCart/reducer";
 import { PaymentState, payment } from "./payment/reducer";
 import { GetUserAddressState, getUserAddress } from "./getUserAddress/reducer";
+import {
+  GetTransactionHistoryState,
+  getTransactionHistory,
+} from "./getTransactionHistory/reducer";
+import {
+  GetTransactionDetailsState,
+  getTransactionDetails,
+} from "./getTransactionDetails/reducer";
+import { SearchMenuState, searchMenu } from "./searchMenu/reducer";
+import { SearchByTermState, searchByTerm } from "./searchByTerm/reducer";
 
 export type AppState = {
   burgerMenu: BurgerMenuState;
@@ -47,6 +57,10 @@ export type AppState = {
   shopCart: ShopCartState;
   payment: PaymentState;
   getUserAddress: GetUserAddressState;
+  getTransactionHistory: GetTransactionHistoryState;
+  getTransactionDetails: GetTransactionDetailsState;
+  searchMenu: SearchMenuState;
+  searchByTerm: SearchByTermState;
 };
 
 export const reducer = combineReducers<AppState>({
@@ -71,6 +85,10 @@ export const reducer = combineReducers<AppState>({
   shopCart,
   payment,
   getUserAddress,
+  getTransactionHistory,
+  getTransactionDetails,
+  searchMenu,
+  searchByTerm,
 });
 
 export type RootState = ReturnType<typeof reducer>;

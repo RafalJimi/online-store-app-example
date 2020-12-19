@@ -60,13 +60,13 @@ export const LoginFormInputContainer = styled.div<LoginFormInputContainerProps>`
   justify-content: start;
   align-items: center;
   border: none;
-  border-bottom: 1px solid #00000050;
+  border-bottom: ${(props) => props.theme.borders.secondary};
 
   border-bottom: ${({ prop }) =>
-    prop ? "1px solid #000000" : "1px solid #00000050"};
+    prop ? "1px solid #000000" : "1px solid #808080"};
 
   :focus {
-    border: 1px solid #000000;
+    border: ${(props) => props.theme.borders.primary};
   }
 
   i {
@@ -99,7 +99,7 @@ export const LoginFormInputErrorMessage = styled.div`
   padding-top: 5px;
   font-size: 0.6em;
   border: none;
-  color: red;
+  color: ${(props) => props.theme.colors.warning};
   margin: 0px 0px;
   height: 27px;
 
@@ -113,7 +113,7 @@ export const LoginFormInputErrorMessage = styled.div`
 export const ForgotPasswordButton = styled.div`
   display: flex;
   justify-content: flex-end;
-  color: black;
+  color: ${(props) => props.theme.colors.primary};
   font-weight: 500;
   width: 100%;
 
@@ -122,7 +122,7 @@ export const ForgotPasswordButton = styled.div`
   }
 
   p:hover {
-    color: #00000050;
+    color: ${(props) => props.theme.colors.secondary};
     cursor: pointer;
   }
 
@@ -159,7 +159,7 @@ export const CreateAccountTitle = styled.div`
   width: 100%;
   margin-top: 0px;
   padding: 15px 0px;
-  color: black;
+  color: ${(props) => props.theme.colors.primary};
   font-size: 1em;
 
   @media only screen and ${width[1000]} {
@@ -174,7 +174,7 @@ export const CreateAccountButton = styled.button`
   padding: 15px 0px;
   border: none;
   background-color: #070708;
-  color: white;
+  color: ${(props) => props.theme.colors.background};
   font-size: 1em;
   border-radius: 5px;
 
@@ -202,7 +202,7 @@ export const CreateAccountLowResolution = styled.div`
 
   span:hover {
     cursor: pointer;
-    color: #00000050;
+    color: ${(props) => props.theme.colors.secondary};
   }
 
   @media only screen and ${width[1000]} {

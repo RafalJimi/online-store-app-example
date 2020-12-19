@@ -38,11 +38,11 @@ export const NewletterInput = styled.input`
   border: none;
   font-size: 0.9em;
   width: 100%;
-  border-bottom: 1px solid #00000050;
+  border-bottom: ${(props) => props.theme.borders.secondary};
 
   :focus {
     outline: none;
-    border-bottom: 1px solid #000000;
+    border-bottom: ${(props) => props.theme.borders.primary};
   }
 `;
 
@@ -74,7 +74,7 @@ export const NewsletterFormCheckboxContainer = styled.div`
     position: relative;
     width: 24px;
     height: 24px;
-    color: black;
+    color: ${(props) => props.theme.colors.primary};
     border: 0.1px solid black;
     border-radius: 0px;
     margin-right: 10px;
@@ -90,15 +90,15 @@ export const NewsletterFormCheckboxContainer = styled.div`
       width: 8px;
       height: 14px;
       border-style: solid;
-      border-color: black;
+      border-color: ${(props) => props.theme.colors.primary};
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
       opacity: 0;
     }
     &:checked {
-      color: black;
-      border-color: black;
-      background: white;
+      color: ${(props) => props.theme.colors.primary};
+      border-color: ${(props) => props.theme.colors.primary};
+      background: ${(props) => props.theme.colors.background};
       &::before {
         opacity: 1;
       }
@@ -121,7 +121,7 @@ export const NewsletterFormCheckboxContainer = styled.div`
     line-height: 15px;
 
     b:hover {
-      color: #00000050;
+      color: ${(props) => props.theme.colors.secondary};
     }
   }
 `;
@@ -131,14 +131,14 @@ export const NewsletterFormSubmitButton = styled.button`
   margin-top: 30px;
   padding: 15px 0px;
   border: none;
-  background-color: black;
-  color: white;
+  background-color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.background};
   font-size: 1em;
   border-radius: 5px;
 
   :hover {
     cursor: pointer;
-    background-color: #00000050;
+    background-color: ${(props) => props.theme.colors.secondary};
   }
 `;
 
@@ -166,7 +166,7 @@ export const NewsletterFormRulesContainer = styled.div`
     position: relative;
     width: 24px;
     height: 24px;
-    color: black;
+    color: ${(props) => props.theme.colors.primary};
     border: 0.1px solid black;
     border-radius: 0px;
     margin-right: 10px;
@@ -182,15 +182,15 @@ export const NewsletterFormRulesContainer = styled.div`
       width: 8px;
       height: 14px;
       border-style: solid;
-      border-color: black;
+      border-color: ${(props) => props.theme.colors.primary};
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
       opacity: 0;
     }
     &:checked {
-      color: black;
-      border-color: black;
-      background: white;
+      color: ${(props) => props.theme.colors.primary};
+      border-color: ${(props) => props.theme.colors.primary};
+      background: ${(props) => props.theme.colors.background};
       &::before {
         opacity: 1;
       }

@@ -14,7 +14,7 @@ export const RegisterContainer = styled.div<Prop>`
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  color: #000000;
+  color: ${(props) => props.theme.colors.primary};
   width: 100%;
   height: 100%;
   text-align: left;
@@ -26,7 +26,7 @@ export const RegisterContainer = styled.div<Prop>`
       : "opacity .5s ease-in-out, transform .01s ease-in .4s"};
   transform: translateX(-100%);
   transform: ${({ prop }) => (prop ? "translateX(0%)" : "translateX(100%)")};
-  font-family: "Ubuntu", sans-serif;
+  font-family: ${(props) => props.theme.fonts.secondary};
 
   @media only screen and ${width[750]}, ${maxHeight[750]} {
     transition: none;
@@ -40,7 +40,7 @@ export const CloseRegisterMenu = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #00000050;
+  background-color: ${(props) => props.theme.colors.modalBackground};
 `;
 
 export const RegisterMenuContainer = styled.main`
@@ -48,7 +48,7 @@ export const RegisterMenuContainer = styled.main`
   flex-direction: column;
   width: 750px;
   height: auto;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.background};
   align-items: center;
   justify-content: start;
   -webkit-box-shadow: none;
@@ -78,7 +78,7 @@ export const CloseRegisterMenuButton = styled.div`
 
   :hover {
     cursor: pointer;
-    color: #00000050;
+    color: ${(props) => props.theme.colors.secondary};
   }
 
   @media only screen and ${width[750]}, ${maxHeight[750]} {

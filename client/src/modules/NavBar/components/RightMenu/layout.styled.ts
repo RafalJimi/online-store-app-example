@@ -42,18 +42,18 @@ export const RightMenuItem = styled.div<RightMenuItemProps>`
   height: 100%;
 
   :hover {
-    color: #00000050;
+    color: ${(props) => props.theme.colors.secondary};
     cursor: pointer;
   }
 
   i {
-    display: ${({ showIcon }) => ((showIcon ? "inline-block" : "none"))};
+    display: ${({ showIcon }) => (showIcon ? "inline-block" : "none")};
   }
 
   @media only screen and ${width[1300]} {
     font-size: 1.5em;
     width: 30px;
-    
+
     flex: 0 0 auto;
 
     i {
@@ -74,7 +74,7 @@ export const BurgerButtonContainer = styled.div`
   font-size: 0.85em;
   font-weight: 400;
   text-align: center;
-  color: black;
+  color: ${(props) => props.theme.colors.primary};
   word-spacing: 2px;
   flex: 1 1 auto;
   padding-top: 2px;
@@ -82,7 +82,7 @@ export const BurgerButtonContainer = styled.div`
   display: none;
 
   :hover {
-    color: #00000050;
+    color: ${(props) => props.theme.colors.secondary};
     cursor: pointer;
   }
 
@@ -105,7 +105,7 @@ export const BurgerButton = styled.button<BurgerButtonProps>`
   width: 18px;
   overflow: hidden;
   height: 18px;
-  background: white;
+  background: ${(props) => props.theme.colors.background};
   border: none;
   cursor: pointer;
   padding: 0;

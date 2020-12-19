@@ -14,7 +14,7 @@ export const LoginMenuWrapped = styled.div<Prop>`
   justify-content: flex-end;
   align-items: flex-end;
   background-color: transparent;
-  color: #000000;
+  color: ${(props) => props.theme.colors.primary};
   width: 100%;
   height: 100%;
   text-align: left;
@@ -53,7 +53,7 @@ export const CloseLoginMenu = styled.div`
   background-color: transparent;
 
   @media only screen and ${width[1000]} {
-    background-color: #00000050;
+    background-color: #${(props) => props.theme.colors.secondBackground};
   }
 `;
 
@@ -62,7 +62,7 @@ export const LoginMenuContainer = styled.main`
   flex-direction: column;
   width: 500px;
   height: 100%;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.background};
   align-items: center;
   justify-content: start;
   -webkit-box-shadow: 3px 16px 20px 2px #000000;
@@ -99,7 +99,7 @@ export const CloseLoginMenuButton = styled.div`
 
   :hover {
     cursor: pointer;
-    color: #00000050;
+    color: ${(props) => props.theme.colors.secondary};
   }
 
   @media only screen and ${width[750]}, ${maxHeight[750]} {

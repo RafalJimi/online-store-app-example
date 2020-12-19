@@ -9,12 +9,12 @@ export const LeftMenuContainer = styled.div`
   width: 240px;
   height: 100%;
   padding: 0px;
+  background-color: ${(props) => props.theme.colors.background};
 
   @media only screen and ${width[1300]} {
     position: fixed;
     left: 0;
     top: 50px;
-    background-color: white;
     width: 100vw;
     height: 50px;
   }
@@ -26,7 +26,6 @@ export const LeftMenuSection = styled.nav`
   font-weight: 700;
   text-align: center;
   list-style-type: none;
-  background-color: white;
 
   :hover {
     cursor: pointer;
@@ -45,14 +44,14 @@ export const LeftMenuSection = styled.nav`
   }
 
   header::after {
+    content: "";
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
-    content: "";
     display: block;
     height: 2px;
     left: 0%;
     position: absolute;
-    background: black;
+    background: ${(props) => props.theme.colors.primary};
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
   }
@@ -117,8 +116,8 @@ export const DropdownMenu = styled.menu`
   margin-top: 0px;
   height: 0px;
   width: 100vw;
-  background-color: white;
-  padding-left: 63px;
+  background-color: ${(props) => props.theme.colors.background};
+  padding-left: 60px;
   overflow: hidden;
   transition: height 0.1;
 
@@ -144,22 +143,19 @@ export const DropdownMenuSection = styled.section`
   height: 677px;
   justify-content: start;
   align-items: start;
-  font-family: "Ubuntu", sans-serif;
+  font-family: ${(props) => props.theme.fonts.secondary};
 `;
 
-type DropdownMenuColumnTitleProps = {
-  onHoverEffect: boolean;
-};
-
-export const DropdownMenuSectionHeader = styled.div<DropdownMenuColumnTitleProps>`
+export const DropdownMenuSectionHeader = styled.div`
   font-size: 1.2em;
   font-weight: 700;
   margin-bottom: 25px;
   text-align: left;
+  color: ${(props ) => props.theme.colors.primary};
 
   :hover {
-    color: ${({ onHoverEffect }) => (onHoverEffect ? "#00000050" : "#000000")};
-    cursor: ${({ onHoverEffect }) => (onHoverEffect ? "pointer" : "default")};
+    color: ${(props) => props.theme.colors.secondary};
+    cursor: pointer;
   }
 `;
 
@@ -170,7 +166,7 @@ export const DropdownMenuSectionItem = styled.div`
   font-weight: 300;
 
   :hover {
-    color: #00000050;
+    color: ${(props) => props.theme.colors.secondary};
     cursor: pointer;
   }
 `;

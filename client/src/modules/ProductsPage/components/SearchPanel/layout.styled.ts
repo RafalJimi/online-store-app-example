@@ -32,7 +32,7 @@ export const SearchPanelContainer = styled.div`
 
   ul > li:hover {
     cursor: pointer;
-    color: #00000070;
+    color: ${(props) => props.theme.colors.modalBackground};
   }
 
   @media only screen and ${width[1300]} {

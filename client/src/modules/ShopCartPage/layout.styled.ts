@@ -81,7 +81,7 @@ export const OrderSummaryHeader = styled.header`
   height: 20px;
   margin-top: 40px;
   padding: 25px 0px;
-  border-bottom: 1px solid #00000050;
+  border-bottom: ${(props) => props.theme.borders.secondary}0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -96,7 +96,7 @@ export const OrderSummaryContainerElement = styled.div`
   flex-direction: row;
   justify-content: space-between;
   font-size: 0.9em;
-  font-family: "Ubuntu", sans-serif;
+  font-family: ${(props) => props.theme.fonts.secondary};
   margin-bottom: 10px;
 `;
 
@@ -107,7 +107,7 @@ export const TotalPrice = styled.div`
   flex-direction: row;
   justify-content: space-between;
   font-size: 0.9em;
-  font-family: "Ubuntu", sans-serif;
+  font-family: ${(props) => props.theme.fonts.secondary};
   margin-top: 50px;
 
   span {
@@ -124,14 +124,14 @@ export const TotalPrice = styled.div`
 export const OrderButton = styled.button`
   width: 100%;
   height: 45px;
-  background-color: black;
-  color: white;
+  background-color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.background};
   border: none;
   margin-top: 20px;
   font-size: 0.95em;
 
   :hover {
-    background-color: #00000099;
+    background-color: #${(props) => props.theme.colors.modalBackground};
     cursor: pointer;
   }
 `;
@@ -139,7 +139,7 @@ export const OrderButton = styled.button`
 export const InfoContainer = styled.div`
   width: 100%;
   height: 45px;
-  color: red;
+  color: ${(props) => props.theme.colors.warning};
   font-weight: 100;
   border: none;
   margin-top: 20px;

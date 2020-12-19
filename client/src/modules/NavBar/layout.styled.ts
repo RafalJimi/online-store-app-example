@@ -9,9 +9,8 @@ export const NavContainer = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 12px 40px;
-  background-color: white;
-  box-sizing: border-box;
   z-index: 5;
+  background-color: ${(props) => props.theme.colors.background};
 
   @media only screen and ${width[1300]} {
     justify-content: flex-end;

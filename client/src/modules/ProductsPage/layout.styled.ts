@@ -20,7 +20,7 @@ export const ProductsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.background};
 
   @media only screen and ${width[1000]} {
     width: 100%;

@@ -10,10 +10,10 @@ export const BurgerMenuContainer = styled.nav<BurgerMenuProps>`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: ${(props) => props.theme.colors.secondBackground};
   left: 0;
   top: 50px;
-  color: #000000;
+  color: ${(props) => props.theme.colors.primary};
   width: 100%;
   height: 100%;
   text-align: left;
@@ -36,14 +36,14 @@ export const MenuElement = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #00000050;
-  color: #00000050;
+  border-bottom: ${(props) => props.theme.borders.secondary};
+  color: ${(props) => props.theme.colors.secondary};
   padding: 15px 0px;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.background};
 
   :hover {
-    border-bottom: 1px solid #000000;
-    color: #000000;
+    border-bottom: ${(props) => props.theme.borders.primary};
+    color: ${(props) => props.theme.colors.primary};
   }
 `;
 
@@ -53,11 +53,10 @@ export const RegisterOrLoginReference = styled.div`
   align-items: center;
   justify-content: flex-start;
   border-bottom: none;
-  color: #000000;
+  color: ${(props) => props.theme.colors.primary};
   padding: 15px 50px;
-  box-sizing: border-box;
   font-size: 0.85em;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.background};
 `;
 
 export const CollectionMenu = styled.ul`
@@ -66,9 +65,8 @@ export const CollectionMenu = styled.ul`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  color: #000000;
+  color: ${(props) => props.theme.colors.primary};
   padding: 20px 50px;
-  box-sizing: border-box;
   font-size: 1em;
   margin-top: 10px;
   margin: 0px;
@@ -106,9 +104,8 @@ export const Contact = styled.ul`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  color: #000000;
+  color: ${(props) => props.theme.colors.primary};
   padding: 5px 50px;
-  box-sizing: border-box;
   font-size: 1em;
   margin-top: 10px;
   margin: 0px;

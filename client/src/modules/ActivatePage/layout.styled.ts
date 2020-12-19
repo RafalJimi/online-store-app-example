@@ -58,14 +58,14 @@ export const ActivatePageButton = styled.button`
   align-items: center;
   justify-content: center;
   border: none;
-  background-color: black;
-  color: white;
+  background-color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.background};
   font-size: 1em;
   border-radius: 5px;
   padding: 10px 20px;
 
   :hover {
     cursor: pointer;
-    background-color: #00000050;
+    background-color: ${(props) => props.theme.colors.secondary};
   }
 `;

@@ -43,7 +43,7 @@ export const OrderFormInputContainer = styled.div<Prop>`
     width: 100%;
 
     border-bottom: ${({ prop }) =>
-      prop ? "1px solid #000000" : "1px solid #00000050"};
+      prop ? "1px solid #000000" : "1px solid #808080"};
 
     :focus {
       outline: none;
@@ -56,7 +56,7 @@ export const OrderFormInputContainer = styled.div<Prop>`
     margin-top: 5px;
     width: 100%;
     font-weight: 100;
-    color: red;
+    color: ${(props) => props.theme.colors.warning};
     display: flex;
     align-items: center;
   }

@@ -18,7 +18,6 @@ export const DetailPageContainer = styled.div`
 `;
 
 export const ProductImagesContainer = styled.div`
-  box-sizing: border-box;
   height: 100%;
   width: 65%;
   display: flex;
@@ -61,7 +60,6 @@ export const ImgContainer = styled.div`
 `;
 
 export const ProductDetailsContainer = styled.div`
-  box-sizing: border-box;
   height: 100%;
   width: 35%;
   display: flex;
@@ -125,14 +123,14 @@ export const AddToCartButton = styled.button`
   width: 350px;
   height: 50px;
   text-align: center;
-  background-color: #000000;
+  background-color: ${(props) => props.theme.colors.primary};
   border: none;
   outline: none;
-  color: white;
+  color: ${(props) => props.theme.colors.background};
 
   :hover {
     cursor: pointer;
-    background-color: #00000080;
+    background-color: ${(props) => props.theme.colors.modalBackground};
   }
 
   @media only screen and (max-width: 1050px) {

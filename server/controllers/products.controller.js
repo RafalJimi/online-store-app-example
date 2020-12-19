@@ -72,3 +72,18 @@ exports.getProductDetailsController = (req, res) => {
   else return res.json({getProductDetails: false,
           error: "Something went wrong, please try again.",})
 }
+
+exports.searchByTermController = (req, res) => {
+  console.log(req.query)
+  
+  const term = req.query.term
+
+  Product.find({ productName: { $regex: term, $options: "i" } })
+      .skip(0)
+      .limit(4)
+      .exec((err, products) => {
+        if (err) return res.json({ searchByTerm: false, err });
+        res
+          .json({ searchByTerm: true, products });
+      });
+}

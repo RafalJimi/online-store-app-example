@@ -21,6 +21,9 @@ import {
 } from "./shopCart/sagas";
 import { paymentSaga } from "./payment/saga";
 import { getUserAddressSaga } from "./getUserAddress/saga";
+import { getTransactionHistorySaga } from "./getTransactionHistory/saga";
+import { getTransactionDetailsSaga } from "./getTransactionDetails/saga";
+import { searchByTermSaga } from "./searchByTerm/saga";
 
 export function* rootSaga(services = {}) {
   yield fork(registerUserSaga);
@@ -43,4 +46,8 @@ export function* rootSaga(services = {}) {
   yield fork(setQuantitySaga);
   yield fork(paymentSaga);
   yield fork(getUserAddressSaga);
+  yield fork(getTransactionHistorySaga);
+  yield fork(getTransactionDetailsSaga);
+  yield fork(searchByTermSaga);
+  
 }

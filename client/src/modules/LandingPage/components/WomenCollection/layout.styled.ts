@@ -6,7 +6,7 @@ export const CollectionContainer = styled.div`
   flex-direction: row;
   width: 100%;
   height: 800px;
-  background-color: #00000050;
+  background-color: ${(props) => props.theme.colors.secondBackground};
   flex-wrap: wrap;
 `;
 

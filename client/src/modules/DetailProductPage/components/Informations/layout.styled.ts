@@ -6,10 +6,10 @@ type Props = {
 };
 
 export const DetailsContainer = styled.div<Props>`
-  border-bottom: 1px solid #00000020;
+  border-bottom: ${(props) => props.theme.borders.secondary};
   width: 350px;
   outline: none;
-  color: black;
+  color: ${(props) => props.theme.colors.primary};
   font-weight: 100;
   font-size: 0.8em;
   margin-top: 40px;
@@ -54,9 +54,9 @@ export const ContainerTitle = styled.span`
 export const SupplyContainer = styled.div<Props>`
   width: 350px;
   text-align: center;
-  border-bottom: 1px solid #00000020;
+  border-bottom: ${(props) => props.theme.borders.secondary};
   outline: none;
-  color: black;
+  color: ${(props) => props.theme.colors.primary};
   padding: 0px;
   font-weight: 100;
   font-size: 0.8em;
@@ -101,9 +101,9 @@ export const SupplyInformationsContainer = styled.div`
 export const ReturnContainer = styled.div<Props>`
   width: 350px;
   text-align: center;
-  border-bottom: 1px solid #00000020;
+  border-bottom: ${(props) => props.theme.borders.secondary};
   outline: none;
-  color: black;
+  color: ${(props) => props.theme.colors.primary};
   padding: 0px;
   font-weight: 100;
   font-size: 0.8em;

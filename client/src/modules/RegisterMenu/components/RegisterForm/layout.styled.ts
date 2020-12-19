@@ -79,16 +79,16 @@ export const RadioInputContainer = styled.label`
     top: 0;
     width: 24px;
     height: 24px;
-    border: 1px solid #00000050;
+    border: 1px solid ${(props) => props.theme.colors.secondary};
     border-radius: 100%;
-    background: #fff;
+    background: ${(props) => props.theme.colors.background};
   }
   [type="radio"]:checked + span:after,
   [type="radio"]:not(:checked) + span:after {
     content: "";
     width: 6px;
     height: 6px;
-    background: black;
+    background: ${(props) => props.theme.colors.primary};
     position: absolute;
     top: 10px;
     left: 10px;
@@ -140,7 +140,7 @@ export const FullNameInput = styled.input<FirstNameInputProps>`
   font-size: 1em;
   width: 100%;
   border-bottom: ${({ prop }) =>
-    prop ? "1px solid #000000" : "1px solid #00000050"};
+    prop ? "1px solid #000000" : "1px solid #808080"};
 
   :focus {
     outline: none;
@@ -156,7 +156,7 @@ export const FullNameInputError = styled.div`
   padding-top: 5px;
   font-size: 0.6em;
   border: none;
-  color: red;
+  color: ${(props) => props.theme.colors.warning};
   margin: 0px 0px;
   height: 22px;
 
@@ -179,10 +179,10 @@ export const RegisterFormInputContainer = styled.div<
   justify-content: start;
   align-items: center;
   border: none;
-  border-bottom: 1px solid #00000050;
+  border-bottom: 1px solid #808080;
 
   border-bottom: ${({ prop }) =>
-    prop ? "1px solid #000000" : "1px solid #00000050"};
+    prop ? "1px solid #000000" : "1px solid #808080"};
 
   :focus {
     border: 1px solid #000000;
@@ -219,7 +219,7 @@ export const RegisterFormInputErrorMessage = styled.div`
   padding-bottom: 15px;
   font-size: 0.6em;
   border: none;
-  color: red;
+  color: ${(props) => props.theme.colors.warning};
   margin: 0px 0px;
   height: 27px;
 
@@ -244,8 +244,8 @@ export const RegisterFormCheckboxContainer = styled.label`
     position: relative;
     width: 24px;
     height: 24px;
-    color: black;
-    border: 1px solid black;
+    color: ${(props) => props.theme.colors.primary};
+    border: ${(props) => props.theme.borders.primary};
     border-radius: 4px;
     appearance: none;
     outline: 0;
@@ -259,14 +259,14 @@ export const RegisterFormCheckboxContainer = styled.label`
       width: 8px;
       height: 14px;
       border-style: solid;
-      border-color: black;
+      border-color: ${(props) => props.theme.colors.primary};
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
       opacity: 0;
     }
     &:checked {
-      color: black;
-      border-color: black;
+      color: ${(props) => props.theme.colors.primary};
+      border-color: ${(props) => props.theme.colors.primary};
       background: white;
       &::before {
         opacity: 1;
@@ -300,7 +300,7 @@ export const RegisterFormSubmitButton = styled.button`
   padding: 15px 0px;
   border: none;
   background-color: #ceba97;
-  color: white;
+  color: ${(props) => props.theme.colors.background};
   font-size: 1em;
   border-radius: 5px;
 
@@ -316,7 +316,7 @@ export const LoginButton = styled.button`
   padding: 15px 0px;
   border: none;
   background-color: #070708;
-  color: white;
+  color: ${(props) => props.theme.colors.background};
   font-size: 1em;
   border-radius: 5px;
 

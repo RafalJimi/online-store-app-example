@@ -68,12 +68,12 @@ export const AdminPanelSectionName = styled.div`
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #00000050;
-  color: #00000050;
+  color: ${(props) => props.theme.colors.secondary};
 
   :hover {
     border-bottom: 1px solid black;
     cursor: pointer;
-    color: #000000;
+    color: ${(props) => props.theme.colors.primary};
   }
 
   @media only screen and ${width[750]} {
