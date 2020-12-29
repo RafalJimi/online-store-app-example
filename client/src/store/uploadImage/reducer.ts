@@ -34,7 +34,6 @@ export const uploadImage = (
         isLoading: true,
       };
     case UPLOAD_IMAGE.success:
-      console.log("UploadImageSuccessfully", action.payload);
       return {
         ...state,
         images: [

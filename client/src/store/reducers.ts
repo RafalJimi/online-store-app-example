@@ -34,6 +34,23 @@ import {
 } from "./getTransactionDetails/reducer";
 import { SearchMenuState, searchMenu } from "./searchMenu/reducer";
 import { SearchByTermState, searchByTerm } from "./searchByTerm/reducer";
+import { CheckAuthState, checkAuth } from "./checkAuth/reducer";
+import {
+  GetUserInformationsState,
+  getUserInformations,
+} from "./getUserInformations/reducer";
+import {
+  UpdateUserInformationsState,
+  updateUserInformations,
+} from "./updateUserInformations/reducer";
+import {
+  GetUserTransactionHistoryState,
+  getUserTransactionHistory,
+} from "./getUserTransactionHistory/reducer";
+import {
+  GetUserTransactionDetailsState,
+  getUserTransactionDetails,
+} from "./getUserTransactionDetails/reducer";
 
 export type AppState = {
   burgerMenu: BurgerMenuState;
@@ -61,6 +78,11 @@ export type AppState = {
   getTransactionDetails: GetTransactionDetailsState;
   searchMenu: SearchMenuState;
   searchByTerm: SearchByTermState;
+  checkAuth: CheckAuthState;
+  getUserInformations: GetUserInformationsState;
+  updateUserInformations: UpdateUserInformationsState;
+  getUserTransactionHistory: GetUserTransactionHistoryState;
+  getUserTransactionDetails: GetUserTransactionDetailsState;
 };
 
 export const reducer = combineReducers<AppState>({
@@ -89,6 +111,11 @@ export const reducer = combineReducers<AppState>({
   getTransactionDetails,
   searchMenu,
   searchByTerm,
+  checkAuth,
+  getUserInformations,
+  updateUserInformations,
+  getUserTransactionHistory,
+  getUserTransactionDetails,
 });
 
 export type RootState = ReturnType<typeof reducer>;

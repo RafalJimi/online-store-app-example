@@ -64,7 +64,9 @@ export const ForgetPasswordPage = () => {
   useEffect(() => {
     if (forgetPasswordMessage) {
       toast.dark(forgetPasswordMessage);
-      history.push("/");
+      setTimeout(() => {
+        history.push("/");
+      }, 3000);
     }
   }, [forgetPasswordMessage]);
 

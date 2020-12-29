@@ -6,3 +6,6 @@ export const shopCartIsLoadingRX = (state: AppState): boolean =>
 
 export const shopCartItemsRX = (state: AppState): ShopCartItem[] =>
   state.shopCart.cart;
+
+export const itemsQuantityRX = (state: AppState): number =>
+  state.shopCart.numbersOfItems;

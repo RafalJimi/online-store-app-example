@@ -18,7 +18,7 @@ export const LoginMenuWrapped = styled.div<Prop>`
   width: 100%;
   height: 100%;
   text-align: left;
-  z-index: 5;
+  z-index: 12;
   opacity: ${({ prop }) => (prop ? "1" : "0")};
   transition: ${({ prop }) =>
     prop

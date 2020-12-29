@@ -13,8 +13,6 @@ export const CartPageItem = ({ cartItem }: CartPageItemProps) => {
   const [Quantity, setQuantity] = useState(1);
   const [SumPrice, setSumPrice] = useState(0);
 
-  console.log(SumPrice);
-
   const dispatch = useDispatch();
 
   const handleOnSelect = (e: ChangeEvent<HTMLSelectElement>) => {

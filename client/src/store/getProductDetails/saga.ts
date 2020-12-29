@@ -13,25 +13,23 @@ export function* getProductDetails({
 }: ReturnType<typeof getProductDetailsStarted>) {
   try {
     const { productId } = payload;
-    console.log();
     const request = yield call(
       axiosPut,
       `/products/getProductDetails?productId=${productId}`
     );
-    console.log("getProducts result", request);
-    if (request.getProductDetails) {
+    if (request.status === 200) {
       yield put({
         type: GET_PRODUCT_DETAILS.success,
-        payload: { product: request.product },
+        payload: { product: request.data.product },
       });
       let galleryImages: any[] = [];
-      for (let i = 0; i < request.product.images.length; i++) {
-        let thumbnail = request.product.images[i].path.replace(
-          request.product.images[i].fileName,
-          `thumbnail-${request.product.images[i].fileName}`
+      for (let i = 0; i < request.data.product.images.length; i++) {
+        let thumbnail = request.data.product.images[i].path.replace(
+          request.data.product.images[i].fileName,
+          `thumbnail-${request.data.product.images[i].fileName}`
         );
         galleryImages.push({
-          original: `${process.env.REACT_APP_SERVER_URL}${request.product.images[i].path}`,
+          original: `${process.env.REACT_APP_SERVER_URL}${request.data.product.images[i].path}`,
           thumbnail: `${process.env.REACT_APP_SERVER_URL}${thumbnail}`,
         });
       }
@@ -39,13 +37,12 @@ export function* getProductDetails({
         type: ADD_IMAGES_TO_GALLERY,
         payload: { images: galleryImages },
       });
-    } else if (!request.getProducts)
-      yield put({
-        type: GET_PRODUCT_DETAILS.failure,
-        payload: { error: request.error },
-      });
+    }
   } catch (e) {
-    yield put({ type: GET_PRODUCT_DETAILS.failure, message: e });
+    yield put({
+      type: GET_PRODUCT_DETAILS.failure,
+      message: "Something went wrong - please try again",
+    });
   }
 }
 

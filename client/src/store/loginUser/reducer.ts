@@ -5,22 +5,13 @@ import { getType } from "typesafe-actions";
 import { Action } from "../types/actions";
 import { loginUserStarted } from "./actions";
 
-export type User = {
-  _id: string;
-  name: string;
-  email: string;
-  role: string;
-};
-
 export type LoginUserState = {
-  user: User;
   token: string;
   isError: string;
   isLoading: boolean;
 };
 
 export const initialState = {
-  user: { _id: "", name: "", email: "", role: "" },
   token: "",
   isError: "",
   isLoading: false,
@@ -41,7 +32,6 @@ export const loginUser = (
       return {
         ...state,
         isLoading: false,
-        user: action.payload.user,
         token: action.payload.token,
       };
     case LOGIN_USER.failure:
@@ -53,7 +43,6 @@ export const loginUser = (
     case CLEAR_LOGIN_USER_STATE:
       return {
         ...state,
-        user: { _id: "", name: "", email: "", role: "" },
         token: "",
         isError: "",
         isLoading: false,

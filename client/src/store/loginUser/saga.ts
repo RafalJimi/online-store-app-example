@@ -11,21 +11,20 @@ export function* loginUser({ payload }: ReturnType<typeof loginUserStarted>) {
   try {
     const { login } = payload;
     const request = yield call(axiosPost, `/login`, login);
-    console.log(request);
-    if (request.loginResult) {
+    if (request.status === 200) {
       yield put({
         type: LOGIN_USER.success,
-        payload: { user: request.user, token: request.token },
+        payload: { token: request.data.token },
       });
-    } else
+    } else if (request.status === 202)
       yield put({
         type: LOGIN_USER.failure,
-        payload: { error: request.error },
+        payload: { error: request.data.error },
       });
   } catch (e) {
     yield put({
       type: LOGIN_USER.failure,
-      payload: { errors: "Something went wrong, try again." },
+      payload: { errors: "Something went wrong - please try again" },
     });
   }
 }

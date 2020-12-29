@@ -41,6 +41,10 @@ export const ImgContainer = styled.div`
     height: 100%;
   }
 
+  img:hover {
+    cursor: pointer;
+  }
+
   @media only screen and ${width[1000]} {
     height: 55vw;
 

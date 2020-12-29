@@ -11,22 +11,21 @@ export function* forgetPassword({
   payload,
 }: ReturnType<typeof forgetPasswordStarted>) {
   try {
-    const request = yield call(axiosPut, `/forgotpassword`, payload);
-    console.log(request);
-    if (request.forgotPasswordResult) {
+    const request = yield call(axiosPut, `/forgotPassword`, payload);
+    if (request.status === 200) 
       yield put({
         type: FORGET_PASSWORD.success,
-        payload: { message: request.message },
+        payload: { message: request.data.message },
       });
-    } else if (!request.forgotPasswordResult)
+     else if (request.status === 202)
       yield put({
         type: FORGET_PASSWORD.failure,
-        payload: { error: request.error },
+        payload: { error: request.data.error },
       });
   } catch (e) {
     yield put({
       type: FORGET_PASSWORD.failure,
-      payload: { error: e.request.errors },
+      payload: { error: "Something went wrong - please try again" },
     });
   }
 }

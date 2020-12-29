@@ -6,7 +6,7 @@ import { networkHandlerPost } from "../../common/networkHandler";
 import { PAYMENT } from "./consts";
 import { paymentStarted } from "./actions";
 import { getType } from "typesafe-actions";
-import { getLocalStorage } from "../../helpers/auth";
+import { getLocalStorage, removeLocalStorage } from "../../helpers/auth";
 
 export function* payment({ payload }: ReturnType<typeof paymentStarted>) {
   try {
@@ -17,15 +17,16 @@ export function* payment({ payload }: ReturnType<typeof paymentStarted>) {
       products,
     };
     const request = yield call(networkHandlerPost, `/user/payment`, data);
-    if (request.paymentSuccess)
+    if (request.status === 200) {
       yield put({
         type: PAYMENT.success,
-        payload: { message: `Payment went well` },
+        payload: { message: request.data.message },
       });
-    else if (!request.paymentSuccess)
+      removeLocalStorage("basket");
+    } else if (request.status === 203)
       yield put({
-        type: PAYMENT.success,
-        payload: { error: `Something went wrong, please try again` },
+        type: PAYMENT.failure,
+        payload: { error: request.data.error },
       });
   } catch (e) {
     yield put({

@@ -48,11 +48,11 @@ export const shopCart = (
         isLoading: true,
       };
     case GET_CART_ITEMS.success:
-      console.log(action.payload);
       return {
         ...state,
         isLoading: false,
         cart: action.payload.cart,
+        numbersOfItems: action.payload.cartLength,
       };
     case GET_CART_ITEMS.failure:
       return {
@@ -69,6 +69,7 @@ export const shopCart = (
       return {
         ...state,
         isLoading: false,
+        numbersOfItems: state.numbersOfItems + 1,
       };
     case ADD_TO_CART.failure:
       return {
@@ -86,6 +87,7 @@ export const shopCart = (
         cart: state.cart.filter(
           (cartItem) => cartItem.key !== action.payload.id
         ),
+        numbersOfItems: state.numbersOfItems - 1,
       };
     case REMOVE_CART_ITEM.failure:
       return {
@@ -97,7 +99,6 @@ export const shopCart = (
         ...state,
       };
     case SET_QUANTITY.success:
-      console.log(action.payload);
       return {
         ...state,
         cart: state.cart.map((cartItem) =>

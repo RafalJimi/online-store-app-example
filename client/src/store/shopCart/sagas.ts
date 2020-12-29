@@ -25,8 +25,10 @@ export function* getCartItems({}: ReturnType<typeof getCartItemsStarted>) {
   try {
     const getItems = localStorage.getItem(basketLS);
     let basket = getItems ? JSON.parse(getItems) : [];
-    console.log(basket);
-    yield put({ type: GET_CART_ITEMS.success, payload: { cart: basket } });
+    yield put({
+      type: GET_CART_ITEMS.success,
+      payload: { cart: basket, cartLength: basket.length },
+    });
   } catch (e) {
     yield put({ type: GET_CART_ITEMS.failure, payload: { message: e } });
   }
@@ -34,7 +36,6 @@ export function* getCartItems({}: ReturnType<typeof getCartItemsStarted>) {
 
 export function* addToCart({ payload }: ReturnType<typeof addToCartStarted>) {
   try {
-    console.log("addToCartProductPayload", payload);
     addItemToLS(payload.itemData);
     yield put({
       type: ADD_TO_CART.success,

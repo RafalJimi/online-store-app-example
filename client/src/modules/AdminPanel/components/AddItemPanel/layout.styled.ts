@@ -5,7 +5,7 @@ type Prop = {
   prop: string;
 };
 
-export const AddItemPanelContainer = styled.form`
+export const AddItemPanelContainer = styled.div`
   width: 100%;
   height: auto;
   display: flex;

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  validSign,
+  validRegister,
   validLogin,
   forgotPasswordValidator,
   resetPasswordValidator,
@@ -14,17 +14,22 @@ const {
   loginController,
   forgotPasswordController,
   resetPasswordController,
+  checkAuth
 } = require('../controllers/auth.controller')
 
-router.post("/register", validSign, registerController);
+const { authMiddleware } = require('../middleware/authMiddleware')
+
+router.post("/register", validRegister, registerController);
 router.post("/login", validLogin, loginController);
 router.post("/activation", activationController);
 
 router.put(
-  "/forgotpassword",
+  "/forgotPassword",
   forgotPasswordValidator,
   forgotPasswordController
 );
-router.put("/resetpassword", resetPasswordValidator, resetPasswordController);
+router.put("/resetPassword", resetPasswordValidator, resetPasswordController);
+
+router.get("/auth", authMiddleware, checkAuth)
 
 module.exports = router;

@@ -13,26 +13,20 @@ export function* registerUser({
   try {
     const { user } = payload;
     const request = yield call(axiosPost, `/register`, user);
-    if (request.registerResult)
+    if (request.status === 200)
       yield put({
         type: REGISTER_USER.success,
-        payload: { message: request.message },
+        payload: { message: request.data.message },
       });
-    else if (!request.registerResult)
-      if (request.error === "password must contain a number") {
-        yield put({
-          type: REGISTER_USER.failure,
-          payload: { error: "Password must contain a number." },
-        });
-      } else
-        yield put({
-          type: REGISTER_USER.failure,
-          payload: { error: request.error },
-        });
+    else if (request.status === 202)
+      yield put({
+        type: REGISTER_USER.failure,
+        payload: { error: request.data.error },
+      });
   } catch (e) {
     yield put({
       type: REGISTER_USER.failure,
-      payload: { error: "Something went wrong, try again later" },
+      payload: { error: "Something went wrong - please try again" },
     });
   }
 }

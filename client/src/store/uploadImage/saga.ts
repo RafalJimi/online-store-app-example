@@ -21,21 +21,23 @@ export function* uploadImage({
       `/admin/uploadImage?directoryName=${directoryName}`,
       img
     );
-    console.log(request);
-    if (request.uploadImage) {
+    if (request.status === 200) {
       const slash = "/";
-      const path = request.path.replace(/\\/g, slash);
+      const path = request.data.path.replace(/\\/g, slash);
       yield put({
         type: UPLOAD_IMAGE.success,
-        payload: { id: id, fileName: request.fileName, path: path },
+        payload: { id: id, fileName: request.data.fileName, path: path },
       });
-    } else if (!request.uploadImage)
+    } else if (request.status === 203)
       yield put({
         type: UPLOAD_IMAGE.failure,
-        payload: { id: id, error: request.error },
+        payload: { error: request.data.error },
       });
   } catch (e) {
-    yield put({ type: UPLOAD_IMAGE.failure, message: e });
+    yield put({
+      type: UPLOAD_IMAGE.failure,
+      message: "Something went wrong - please try again",
+    });
   }
 }
 
@@ -49,19 +51,21 @@ export function* deleteImage({
       uploadHandlerPost,
       `/admin/deleteImage?directoryName=${directoryName}&fileName=${fileName}`
     );
-    console.log(request);
-    if (request.deleteImage)
+    if (request.status === 200)
       yield put({
         type: DELETE_IMAGE.success,
         payload: { id: id },
       });
-    else
+    else if (request.status === 203)
       yield put({
         type: DELETE_IMAGE.failure,
-        payload: { id: id, error: request.error },
+        payload: { error: request.data.error },
       });
   } catch (e) {
-    yield put({ type: DELETE_IMAGE.failure, message: e });
+    yield put({
+      type: DELETE_IMAGE.failure,
+      error: "Something went wrong - please try again",
+    });
   }
 }
 

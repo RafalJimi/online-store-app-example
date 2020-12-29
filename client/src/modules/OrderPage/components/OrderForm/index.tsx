@@ -40,6 +40,15 @@ export const OrderForm = memo(() => {
       address: userAddress.address,
       postCode: userAddress.postCode,
     });
+    
+    setErrors({
+      ...Errors,
+      email: userAddress.email ? "" : "Email is required",
+      fullName: userAddress.fullName ? "" : "Full name is required",
+      city: userAddress.city ? "" : "This field must be completed",
+      address: userAddress.address ? "" : "This field must be completed",
+      postCode: userAddress.postCode ? "" : "This field must be completed",
+    });
   }, [userAddress]);
 
   const handleOnChange = (text: string) => (

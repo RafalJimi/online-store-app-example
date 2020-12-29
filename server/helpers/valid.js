@@ -1,5 +1,5 @@
 const { check } = require("express-validator");
-exports.validSign = [
+exports.validRegister = [
   check("firstName", "First name is required")
     .notEmpty()
     .isLength({
@@ -50,5 +50,7 @@ exports.resetPasswordValidator = [
     .not()
     .isEmpty()
     .isLength({ min: 6 })
-    .withMessage("Password must be at least 6 characters long"),
+    .withMessage("Password must be at least 6 characters long")
+    .matches(/\d/)
+    .withMessage("password must contain a number"),
 ];

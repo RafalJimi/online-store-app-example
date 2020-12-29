@@ -12,20 +12,20 @@ export function* activationUser({
 }: ReturnType<typeof activationUserStarted>) {
   try {
     const request = yield call(axiosPost, `/activation`, payload);
-    if (request.activationResult)
+    if (request.status === 200)
       yield put({
         type: ACTIVATION_USER.success,
-        payload: { message: request.message, user: request.user },
+        payload: { message: request.data.message },
       });
-    else if (!request.activationResult)
+    else if (request.status === 202)
       yield put({
         type: ACTIVATION_USER.failure,
-        payload: { error: request.error },
+        payload: { error: request.data.error },
       });
   } catch (e) {
     yield put({
       type: ACTIVATION_USER.failure,
-      payload: { error: "Error happening, please try again." },
+      payload: { error: "Something went wrong - please try again" },
     });
   }
 }

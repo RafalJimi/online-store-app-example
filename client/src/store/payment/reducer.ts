@@ -1,4 +1,4 @@
-import { PAYMENT } from "./consts";
+import { PAYMENT, CLEAR_PAYMENT_STATE } from "./consts";
 import { getType } from "typesafe-actions";
 import { Action } from "../types/actions";
 import { paymentStarted } from "./actions";
@@ -35,6 +35,13 @@ export const payment = (state = initialState, action: Action): PaymentState => {
         ...state,
         isLoading: false,
         isError: action.payload.error,
+      };
+    case CLEAR_PAYMENT_STATE:
+      return {
+        ...state,
+        message: "",
+        isLoading: false,
+        isError: "",
       };
     default:
       return { ...state };

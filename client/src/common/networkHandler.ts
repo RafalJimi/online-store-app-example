@@ -1,11 +1,10 @@
 import { AxiosRequestConfig } from "axios";
 import { axiosCustom } from "./axios";
+import { getLocalStorage } from "../helpers/auth";
 
 axiosCustom.interceptors.request.use(
   (config) => {
-    const getToken = localStorage.getItem(`SE_token`);
-    //@ts-ignore
-    const token = JSON.parse(getToken);
+    const token = getLocalStorage("token");
 
     config.headers.authorization = `Bearer ${token}`;
     return config;
@@ -15,29 +14,26 @@ axiosCustom.interceptors.request.use(
   }
 );
 
-export const networkHandlerGet = (
-  url: string,
-  dataToSubmit?: AxiosRequestConfig
-) =>
+export const networkHandlerGet = (url: string, dataToSubmit?: AxiosRequestConfig) =>
   axiosCustom
     .get(url, dataToSubmit)
-    .then((res) => res.data)
+    .then((res) => res)
     .catch((err) => Promise.reject(err));
 
 export const networkHandlerPost = (url: string, dataToSubmit?: any) =>
   axiosCustom
     .post(url, dataToSubmit)
-    .then((res) => res.data)
+    .then((res) => res)
     .catch((err) => Promise.reject(err));
 
 export const networkHandlerPut = (url: string, dataToSubmit?: any) =>
   axiosCustom
     .put(url, dataToSubmit)
-    .then((res) => res.data)
+    .then((res) => res)
     .catch((err) => Promise.reject(err));
 
 export const networkHandlerDelete = (url: string, dataToSubmit?: any) =>
   axiosCustom
     .delete(url, dataToSubmit)
-    .then((res) => res.data)
+    .then((res) => res)
     .catch((err) => Promise.reject(err));

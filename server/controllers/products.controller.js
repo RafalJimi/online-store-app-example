@@ -7,8 +7,6 @@ exports.getProductsController = (req, res) => {
   const skip = parseInt(req.query.skip)
   const limit = parseInt(req.query.limit)
   
-  console.log(gender, category, subCategory, skip, limit)
-  
   if (category !== "undefined" && subCategory !== "undefined")
     Product.find({ gender: gender })
     .find({category: category})
@@ -17,10 +15,10 @@ exports.getProductsController = (req, res) => {
     .skip(skip)
     .limit(limit)
     .exec((err, products) => {
-      if (err) return res.json({ getProducts: false, error: err });
+      if (err || !products) return res.status(202).json({ error: "Products not found" });
       if(products.length === 2)
-        res.json({ getProducts: true, products: products, loadMore: true });
-      else if(products.length < 2) res.json({ getProducts: true, products, loadMore: false });
+        res.status(200).json({ products: products, loadMore: true });
+      else if(products.length < 2) res.status(200).json({ products, loadMore: false });
     });
   else if (category !== "undefined" && subCategory === "undefined")
   Product.find({ gender: gender })
@@ -29,10 +27,10 @@ exports.getProductsController = (req, res) => {
     .skip(skip)
     .limit(limit)
     .exec((err, products) => {
-      if (err) return res.json({ getProducts: false, error: err });
+      if (err || !products) return res.status(202).json({ error: "Products not found" });
       if(products.length === 2)
-        res.json({ getProducts: true, products: products, loadMore: true });
-      else if(products.length < 2) res.json({ getProducts: true, products, loadMore: false });
+        res.status(200).json({ products: products, loadMore: true });
+      else if(products.length < 2) res.status(200).json({ products, loadMore: false });
     });
   else if (category === "undefined" && subCategory === "undefined")
     Product.find({ gender: gender })
@@ -40,17 +38,15 @@ exports.getProductsController = (req, res) => {
     .skip(skip)
     .limit(limit)
     .exec((err, products) => {
-      if (err) return res.json({ getProducts: false, error: err });
+      if (err || !products) return res.status(202).json({ error: "Products not found" });
       if(products.length === 2)
-        res.json({ getProducts: true, products: products, loadMore: true });
-      else if(products.length < 2) res.json({ getProducts: true, products, loadMore: false });
+        res.status(200).json({ products: products, loadMore: true });
+      else if(products.length < 2) res.status(200).json({ products, loadMore: false });
     });
-  else res.json({ getProducts: false, error: "Something went wrong, please try again." });
+  else res.status(409).json({ error: "Something went wrong - please try again" });
 }
 
 exports.getProductDetailsController = (req, res) => {
-  console.log(req.query)
-  
   const productId = req.query.productId
   
   if (productId)
@@ -59,31 +55,25 @@ exports.getProductDetailsController = (req, res) => {
       { $inc: { "views": 1 } },
       (err, product) => {
       if (err || !product) {
-        return res.json({
-          getProductDetails: false,
-          error: "Product with that ID does not exist.",
+        return res.status(404).json({
+          error: "Product with that ID does not exist",
         });
       }
-      else return res.json({
-        getProductDetails: true,
+      else return res.status(200).json({
         product: product
       })  
     })
-  else return res.json({getProductDetails: false,
-          error: "Something went wrong, please try again.",})
+  else return res.status(409).json({ error: "Something went wrong - please try again",})
 }
 
 exports.searchByTermController = (req, res) => {
-  console.log(req.query)
-  
   const term = req.query.term
 
   Product.find({ productName: { $regex: term, $options: "i" } })
       .skip(0)
       .limit(4)
       .exec((err, products) => {
-        if (err) return res.json({ searchByTerm: false, err });
-        res
-          .json({ searchByTerm: true, products });
+        if (err || !products) return res.status(202).json({ error: "Products not found" });
+        res.status(200).json({ products });
       });
 }

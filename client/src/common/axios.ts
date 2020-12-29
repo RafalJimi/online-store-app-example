@@ -20,17 +20,17 @@ export const axiosCustom = axios.create({
 export const axiosGet = (url: string, dataToSubmit?: AxiosRequestConfig) =>
   axiosCustom
     .get(url, dataToSubmit)
-    .then((res) => res.data)
+    .then((res) => res)
     .catch((err) => Promise.reject(err));
 
 export const axiosPost = (url: string, dataToSubmit?: any) =>
   axiosCustom
     .post(url, dataToSubmit)
-    .then((res) => res.data)
+    .then((res) => res)
     .catch((err) => Promise.reject(err));
 
 export const axiosPut = (url: string, dataToSubmit?: any) =>
   axiosCustom
     .put(url, dataToSubmit)
-    .then((res) => res.data)
+    .then((res) => res)
     .catch((err) => Promise.reject(err));

@@ -97,11 +97,12 @@ userSchema.methods = {
     }
   },
 
-  generateToken: function (id) {
+  generateToken: function (id, role) {
     
     const token = jwt.sign(
       {
-        userID: id
+          id: id,
+          role: role
       },
       process.env.JWT_ACCOUNT_ACTIVATION,
       {

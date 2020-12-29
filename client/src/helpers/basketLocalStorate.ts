@@ -30,7 +30,6 @@ export const addItemToLS = (item: ShopCartItem) => {
 };
 
 export const removeItemFromLS = (item: ShopCartItem) => {
-  console.log("test");
   if (!item) {
     toast.dark("Something went wrong, please try again");
   } else {

@@ -15,16 +15,13 @@ exports.registerController = (req, res) => {
     const firstError = errors.array().map((error) => error.msg)[0];
     const errorMessage = firstError.toString();
     const message = errorMessage.slice
-    console.log(message)
-    return res.json({
-      registerResult: false,
+    return res.status(409).json({
       error: errorMessage,
     });
   } else {
     User.findOne({ email }).exec((err, user) => {
       if (user) {
-        return res.json({
-          registerResult: false,
+        return res.status(202).json({
           error: "Email is taken",
         });
       }
@@ -67,9 +64,9 @@ exports.registerController = (req, res) => {
 
     transporter.sendMail(emailData, function (err, data) {
       if (err) {
-        res.json({ registerResult: false, error: "Email not send!" });
+        res.status(500).json({ error: "Internal server error - please try again" });
       } else {
-        res.json({ registerResult: true, message: `Email has been sent to ${email}` });
+        res.status(200).json({ message: `Email has been sent to ${email}` });
       }
     });
   }
@@ -81,10 +78,8 @@ exports.activationController = (req, res) => {
   if (token) {
     jwt.verify(token, process.env.JWT_ACCOUNT_ACTIVATION, (err, decoded) => {
       if (err) {
-        console.log("Activation error");
-        return res.json({
-          activationResult: false,
-          error: "Expired link. Signup again",
+        return res.status(202).json({
+          error: "Token expired - sign up again",
         });
       } else {
         const {
@@ -94,7 +89,6 @@ exports.activationController = (req, res) => {
         email,
         password } = jwt.decode(token);
 
-        console.log(email);
         const user = new User({
           gender,
           firstName,
@@ -105,25 +99,20 @@ exports.activationController = (req, res) => {
 
         user.save((err, user) => {
           if (err) {
-            console.log("Save error", errorHandler(err));
-            return res.json({
-              activationResult: false,
+            return res.status(409).json({
               error: errorHandler(err),
             });
           } else {
-            return res.json({
-              activationResult: true,
-              user: user,
-              message: "Your account has been activated successfully. You can now login."
+            return res.status(200).json({
+              message: "Your account has been activated successfully - you can sign in now"
             });
           }
         });
       }
     });
   } else {
-    return res.json({
-      activationResult: false,
-      error: "Error happening, please try again.",
+    return res.status(404).json({
+      error: "Something went wrong - please try again",
     });
   }
 };
@@ -131,14 +120,11 @@ exports.activationController = (req, res) => {
 exports.loginController = (req, res) => {
   const { email, password } = req.body;
   
-  console.log(req.body)
-  
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const firstError = errors.array().map((error) => error.msg)[0];
-    return res.json({
-      errors: firstError,
-      loginResult: false
+    return res.status(202).json({
+      error: firstError,
     });
   } else {
     // check if user exist
@@ -146,35 +132,26 @@ exports.loginController = (req, res) => {
       email,
     }).exec((err, user) => {
       if (err || !user) {
-        return res.json({
-          error: "User with that email does not exist. Please signup.",
-          loginResult: false
+        return res.status(202).json({
+          error: "User with that email does not exist",
         });
       }
       // authenticate
       if (!user.authenticate(password)) {
-        return res.json({
-          error: "Incorrect password.",
-          loginResult: false
+        return res.status(202).json({
+          error: "Incorrect password",
         });
       }
+      
       // generate a token and send to client
       
-      const { _id, name, email, role } = user
-      
-      const userID = _id.toString();
-      
-      const token = user.generateToken(userID)
-  
-      return res.json({
-        loginResult: true,
+      const { _id, role } = user
+ 
+      const token = user.generateToken(_id.toString(), role)
+
+      res.status(200).json({
+          loginResult: true,
           token,
-          user: {
-          _id,
-          name,
-          email,
-          role: role === 1 ? "admin" : "user",
-        },
       });
     });
   }
@@ -186,7 +163,7 @@ exports.forgotPasswordController = (req, res) => {
 
   if (!errors.isEmpty()) {
     const firstError = errors.array().map((error) => error.msg)[0];
-    return res.json({
+    return res.status(403).json({
       error: `${firstError}.`,
     });
   } else {
@@ -196,9 +173,8 @@ exports.forgotPasswordController = (req, res) => {
       },
       (err, user) => {
         if (err || !user) {
-          return res.json({
-            forgotPasswordResult: false,
-            error: "User with that email does not exist.",
+          return res.status(202).json({
+            error: "User with that email does not exist",
           });
         }
 
@@ -228,7 +204,7 @@ exports.forgotPasswordController = (req, res) => {
                     <h1>Please use the following link to reset your password</h1>
                     <p>${process.env.CLIENT_URL}/users/password/reset/${token}</p>
                     <hr />
-                    <p>This email may contain sensetive information</p>
+                    <p>This email may contain sensitive information</p>
                     <p>${process.env.CLIENT_URL}</p>
                 `,
         };
@@ -239,23 +215,19 @@ exports.forgotPasswordController = (req, res) => {
           },
           (err, success) => {
             if (err) {
-              console.log("RESET PASSWORD LINK ERROR", err);
-              return res.json({
-                forgotPasswordResult: false,
+              return res.status(500).json({
                 error:
-                  "Database connection error on user password forgot request.",
+                  "Internal server error - please try again",
               });
             } else {
               transporter.sendMail(emailData, function (err, data) {
                 if (err) {
-                  return res.json({
-                    forgotPasswordResult: false,
-                    error: "Email not send, something went wrong. Please try again.",
+                  return res.status(500).json({
+                    error: "Internal server error - please try again",
                   });
                 } else {
-                  return res.json({
-                    forgotPasswordResult: true,
-                    message: `Email has been sent to ${email}. Follow the instruction to activate your account.`,
+                  return res.status(200).json({
+                    message: `Email has been sent to ${email} - follow the instruction to activate your account`,
                   });
                 }
               });
@@ -274,8 +246,7 @@ exports.resetPasswordController = (req, res) => {
 
   if (!errors.isEmpty()) {
     const firstError = errors.array().map((error) => error.msg)[0];
-    return res.json({
-      resetPasswordResult: false,
+    return res.status(409).json({
       errors: firstError,
     });
   } else {
@@ -285,9 +256,8 @@ exports.resetPasswordController = (req, res) => {
         decoded
       ) {
         if (err) {
-          return res.json({
-            resetPasswordResult: false,
-            error: "Expired link. Try again.",
+          return res.status(202).json({
+            error: "Token expired - please try again",
           });
         }
 
@@ -297,9 +267,8 @@ exports.resetPasswordController = (req, res) => {
           },
           (err, user) => {
             if (err || !user) {
-              return res.json({
-                resetPasswordResult: false,
-                error: "Something went wrong. Try again later.",
+              return res.status(404).json({
+                error: "Something went wrong - please try again",
               });
             }
 
@@ -311,15 +280,13 @@ exports.resetPasswordController = (req, res) => {
             user = _.extend(user, updatedFields);
 
             user.save((err, result) => {
-              if (err) {
-                return res.json({
-                  resetPasswordResult: false,
-                  error: "Error resetting user password.",
+              if (err || !result) {
+                return res.status(409).json({
+                  error: "Internal server error - please try again",
                 });
-              }
-              res.json({
-                resetPasswordResult: true,
-                message: `Great! Now you can login with your new password.`,
+              } else
+              res.status(200).json({
+                message: `Now you can login with your new password`,
               });
             });
           }
@@ -327,4 +294,12 @@ exports.resetPasswordController = (req, res) => {
       });
     }
   }
+};
+
+exports.checkAuth = (req, res) => {
+  const role = req.profile.role ? "admin" : "user"
+  
+  res.status(200).json({
+    role: role,
+  });
 };

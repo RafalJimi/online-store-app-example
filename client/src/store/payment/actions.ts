@@ -1,5 +1,5 @@
 import { createAction } from "typesafe-actions";
-import { PAYMENT } from "./consts";
+import { PAYMENT, CLEAR_PAYMENT_STATE } from "./consts";
 
 export type PaymentStartedProps = {
   paymentData: {
@@ -18,4 +18,9 @@ export type PaymentStartedProps = {
 export const paymentStarted = createAction(
   PAYMENT.started,
   (paymentData): PaymentStartedProps => ({ paymentData })
+)();
+
+export const clearPaymentState = createAction(
+  CLEAR_PAYMENT_STATE,
+  () => ({})
 )();

@@ -104,7 +104,7 @@ export const AddItemPanelLayout = ({
         Product details :
         {details.map((detail) => {
           return (
-            <li>
+            <li key={Date.now()}>
               - {detail.text}{" "}
               <button onClick={handleDeleteDetail(detail.id)}>Delete</button>
             </li>

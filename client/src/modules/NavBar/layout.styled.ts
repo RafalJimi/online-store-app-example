@@ -9,7 +9,7 @@ export const NavContainer = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 12px 40px;
-  z-index: 5;
+  z-index: 6;
   background-color: ${(props) => props.theme.colors.background};
 
   @media only screen and ${width[1300]} {

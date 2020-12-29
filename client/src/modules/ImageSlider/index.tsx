@@ -16,17 +16,6 @@ export const ImageGallery = () => {
     dispatch(toggleImageGallery());
   }, []);
 
-  /* useEffect(() => {
-    var x = window.scrollX;
-    var y = window.scrollY;
-    window.onscroll = function () {
-      window.scrollTo(x, y);
-    };
-    return () => {
-      window.onscroll = function () {};
-    };
-  }, []); */
-
   return (
     <ImageGalleryLayout
       Images={images}

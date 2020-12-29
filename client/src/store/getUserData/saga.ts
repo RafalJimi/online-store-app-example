@@ -12,32 +12,30 @@ export function* getUserData({
 }: ReturnType<typeof getUserDataStarted>) {
   try {
     const { email } = payload;
-    console.log(email);
     const request = yield call(
       networkHandlerGet,
       `/admin/getUserData?email=${email}`
     );
-    console.log(request);
-    if (request.getUserData)
+    if (request.status === 200)
       yield put({
         type: GET_USER_DATA.success,
-        payload: { user: request.user },
+        payload: { user: request.data.user },
       });
-    else if (!request.isAdmin)
+    else if (request.status === 202)
       yield put({
         type: GET_USER_DATA.failure,
-        payload: { error: request.error },
+        payload: { error: request.data.error },
       });
-    else if (!request.getUserData)
+    else if (request.status === 203)
       yield put({
         type: GET_USER_DATA.failure,
-        payload: { error: request.error },
+        payload: { error: request.data.error },
       });
   } catch (e) {
-    yield put({
-      type: GET_USER_DATA.failure,
-      payload: { error: "Error happening, please try again." },
-    });
+      yield put({
+        type: GET_USER_DATA.failure,
+        payload: { error: "Something went wrong - please try again" },
+      });
   }
 }
 

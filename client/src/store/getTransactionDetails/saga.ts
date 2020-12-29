@@ -12,25 +12,26 @@ export function* getTransactionDetails({
 }: ReturnType<typeof getTransactionDetailsStarted>) {
   try {
     const { transactionId } = payload;
-    console.log(transactionId);
-
     const request = yield call(
       networkHandlerGet,
       `/admin/getTransactionDetails?id=${transactionId}`
     );
 
-    if (request.getTransactionDetails)
+    if (request.status === 200)
       yield put({
         type: GET_TRANSACTION_DETAILS.success,
-        payload: { details: request.details },
+        payload: { details: request.data.details },
       });
-    else if (!request.getTransactionDetails)
+    else if (request.status === 203)
       yield put({
         type: GET_TRANSACTION_DETAILS.failure,
-        payload: { error: request.error },
+        payload: { error: request.data.error },
       });
   } catch (e) {
-    yield put({ type: GET_TRANSACTION_DETAILS.failure, payload: { error: e } });
+    yield put({
+      type: GET_TRANSACTION_DETAILS.failure,
+      payload: { error: "Something went wrong, please try again" },
+    });
   }
 }
 

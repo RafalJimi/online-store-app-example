@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { paymentStarted } from "../../store/payment/actions";
+import { clearPaymentState, paymentStarted } from "../../store/payment/actions";
 import {
   paymentResultRX,
   paymentIsErrorRX,
@@ -11,11 +11,21 @@ import { PaymentDataProps } from "../../modules/OrderPage/components/OrderForm/l
 import { PaymentLayout } from "./layout";
 import { toast } from "react-toastify";
 
+type Errors = {
+    email: string;
+    fullName: string;
+    phoneNumber: string;
+    city: string;
+    address: string;
+    postCode: string;
+}
+
 type PaymentProps = {
   shippingData: PaymentDataProps;
+  errors: Errors;
 };
 
-export const Payment = ({ shippingData }: PaymentProps) => {
+export const Payment = ({ shippingData, errors }: PaymentProps) => {
   const [TotalPrice, setTotalPrice] = useState(0);
 
   const paymentResult = useSelector(paymentResultRX);
@@ -41,18 +51,23 @@ export const Payment = ({ shippingData }: PaymentProps) => {
   };
 
   const onSuccess = (data: any) => {
-    dispatch(paymentStarted(paymentData));
+    if (!errors)
+      dispatch(paymentStarted(paymentData));
+    else toast.dark("Payment not went well - you have to fill all fields")
   };
 
   useEffect(() => {
+    dispatch(clearPaymentState());
     setTotalPrice(getLocalStorage("totalPrice"));
   }, []);
 
   useEffect(() => {
-    if (paymentResult) toast.dark(paymentResult);
-    setTimeout(() => {
-      history.push("/");
-    }, 3000);
+    if (paymentResult) {
+      toast.dark(paymentResult);
+        setTimeout(() => {
+          history.push("/");
+        }, 3000);
+    }
   }, [paymentResult]);
 
   useEffect(() => {

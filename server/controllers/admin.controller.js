@@ -4,27 +4,19 @@ const Payment = require('../models/payment.model')
 const { uploadImage } = require('../utils/uploadImage')
 const { thumbnailIMG } = require('../utils/resizeImage')
 const fs = require('fs');
-const { json } = require("body-parser");
-const { request } = require("http");
 
 exports.getUserDataController = (req, res) => {
   const { email } = req.query
 
-    // check if user exist
     User.findOne({
       email,
     }).exec((err, user) => {
       if (err || !user) {
-        return res.json({
-          error: "User with that email does not exist. Please try again.",
-          getUserData: false
+        return res.status(202).json({
+          error: "User with that email does not exist",
         });
-      }
-      // authenticate
-      // generate a token and send to client
-  
-      return res.json({
-        getUserData: true,
+      } else
+      return res.status(200).json({
           user,
       });
   });
@@ -32,17 +24,18 @@ exports.getUserDataController = (req, res) => {
 
 exports.updateUserDataController = (req, res) => {
   const { user } = req.body
+  const role = user.role === "admin" ? 1 : 0;
+  const gender = user.gender === "man" ? "man" : "woman";
   
   User.findOneAndUpdate(
           { email: user.email },
-          { firstName: user.firstName, lastName: user.lastName, city: user.city, address: user.address, postCode: user.postCode },
+          { firstName: user.firstName, lastName: user.lastName, city: user.city, address: user.address, postCode: user.postCode, role: role, gender: gender},
           (err, user) => {
-              if (err) {
-                  return res.json({ updateUserData: false, error: "Update user error. Please try again." })
+              if (err || !user) {
+                  return res.status(409).json({ error: "Update user error - please try again" })
               } else {
-                  return res.json({
-                      updateUserData: true,
-                      message: "User data updated successfully."
+                  return res.status(200).json({
+                      message: "User data has been updated successfully"
                   });
               }
           }
@@ -51,17 +44,15 @@ exports.updateUserDataController = (req, res) => {
 
 exports.deleteUserController = (req, res) => {
   const { email } = req.query
-  console.log('asdasd', req.query)
   
   User.findOneAndDelete(
     { email: email },
-      (err, doc) => {
-        if (err) {
-          return res.json({ deleteUser: false, error: "Something went wrong. Please try again." })
+      (err, user) => {
+        if (err || !user) {
+          return res.status(409).json({ deleteUser: false, error: "Something went wrong - please try again" })
         } else {
-          return res.json({
-            deleteUser: true,
-            message: "User has been deleted successfully."
+          return res.status(200).json({
+            message: "User has been deleted successfully"
           });
         }
        }
@@ -70,7 +61,6 @@ exports.deleteUserController = (req, res) => {
 
 exports.uploadImageController = (req, res) => {
   const { directoryName } = req.query
-  console.log('directoryName', directoryName)
   
   const path = `server/images/${directoryName}`
   
@@ -80,12 +70,10 @@ exports.uploadImageController = (req, res) => {
   
   uploadImage(req, res, (err) => {
     if (err) {
-      console.log("uploadErr", err);
-      return res.json({ uploadImage: false, error: err });
+      return res.status(500).json({ error: "Internal server error - please try again" });
     }
     thumbnailIMG(req.file.path, directoryName, req.file.originalname);
-    return res.json({
-      uploadImage: true,
+    return res.status(200).json({
       path: res.req.file.path,
       fileName: res.req.file.filename,
     });
@@ -96,27 +84,25 @@ exports.deleteImageController = (req, res) => {
   const { directoryName, fileName } = req.query
   const img = `server/images/${directoryName}/${fileName}`
   const thumbnail = `server/images/${directoryName}/thumbnail-${fileName}`
-  
-  console.log(img, thumbnail)
-  
+
   fs.unlinkSync(img);
   fs.unlinkSync(thumbnail);
   
   fs.readdir(`server/images/${directoryName}`, function(err, files) {
     if (err) {
-       return res.json({deleteImage: false, error: "Something went wrong, please try again."})
+       return res.status(500).json({ error: "Internal server error - please try again"})
     } else {
        if (!files.length) {
            fs.rmdir(`server/images/${directoryName}`, { recursive: true }, (err) => {
-             if (err) return res.json({ deleteImage: false, error: "Something went wrong, please try again." })
+             if (err) return res.status(500).json({ error: "Internal server error - please try again" })
              else {
-               return res.json({ deleteImage: true })
+               return res.status(200).json({ message: "Image has been deleted successfully" })
              }
           });
        } else if(!fs.existsSync(img) && !fs.existsSync(thumbnail)) {
-        return res.json({deleteImage: true})
+        return res.status(200).json({deleteImage: true})
       } else if (fs.existsSync(img) && fs.existsSync(thumbnail)){
-        return res.json({deleteImage: false, error: "Something went wrong, please try again."})
+        return res.status(500).json({ error: "Internal server error - please try again"})
       }
     }
   });
@@ -130,19 +116,18 @@ exports.uploadProductController = (req, res) => {
   const product = new Product(newProduct);
 
   product.save((err) => {
-    if (err) return res.json({ uploadProduct: false, error: err });
-    return res.status(200).json({ uploadProduct: true, message: "Product uploaded successfully." });
+    if (err) return res.status(409).json({ error: "Internal server error - please try again" });
+    return res.status(200).json({ message: "Product has been uploaded successfully." });
   });
 };
 
 exports.getTransactionHistory = (req, res) => {
-  console.log(req)
-  
+
   Payment.find({})
     .sort([["_id", "descending"]])
     .exec((err, transactions) => {
-      if (err) return res.json({ getTransactionHistory: false, error: err });
-      else res.json({ getTransactionHistory: true, transactions});
+      if (err || !transactions) return res.status(500).json({ error: err });
+      else res.status(200).json({ transactions});
     });
 };
 
@@ -151,13 +136,11 @@ exports.getTransactionDetails = (req, res) => {
   
   Payment.findOne({ _id: transactionId }, (err, transactionDetails) => {
     if (err) {
-      return res.json({
-        getTransactionDetails: false,
-        error: "Product with that ID does not exist.",
+      return res.status(404).json({
+        error: "Transaction with that ID does not exist",
       });
     } else
-      return res.json({
-        getTransactionDetails: true,
+      return res.status(200).json({
         details: transactionDetails,
       });
   })

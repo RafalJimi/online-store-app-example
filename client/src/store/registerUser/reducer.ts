@@ -21,20 +21,17 @@ export const registerUser = (
 ): RegisterUserState => {
   switch (action.type) {
     case getType(registerUserStarted):
-      console.log(action);
       return {
         ...state,
         isLoading: true,
       };
     case REGISTER_USER.success:
-      console.log(action);
       return {
         ...state,
         message: action.payload.message,
         isLoading: false,
       };
     case REGISTER_USER.failure:
-      console.log(action);
       return {
         ...state,
         message: "",
@@ -42,7 +39,6 @@ export const registerUser = (
         isError: action.payload.error,
       };
     case CLEAR_REGISTER_USER_STATE:
-      console.log(action);
       return {
         ...state,
         message: "",

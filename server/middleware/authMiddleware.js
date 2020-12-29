@@ -7,32 +7,23 @@ exports.authMiddleware = (req, res, next) => {
   
   jwt.verify(token, process.env.JWT_ACCOUNT_ACTIVATION, (err, decoded) => {
     if (err) {
-        return res.json({
-          IsAuth: false,
-          error: "Session expired, please log in again."
+        return res.status(203).json({
+          error: "Session expired - please log in again"
         });
       } else {
-        const { userID } = jwt.decode(token);
+        const { id } = jwt.decode(token);
         
-        if (userID)
+        if (id)
           User.findOne({
-            _id: userID
+            _id: id
           }).exec((err, user) => {
             if (err || !user) {
-              return res.json({
-                isAuth: false,
-                error: 'Something went wrong, please try again.'
+              return res.status(203).json({
+                error: 'User not found'
               });
             }
             
-            req.userData = {
-              _id: user._id,
-              email: user.email,
-              fullName: `${user.firstName} ${user.lastName}`,
-              city: user.city,
-              address: user.address,
-              postCode: user.postCode,
-            };
+            req.profile = user;
             next();
         });
       }

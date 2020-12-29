@@ -100,13 +100,15 @@ export const ResetPasswordPage = ({ match }: ResetPasswordPageProps) => {
 
   useEffect(() => {
     if (resetPasswordMessage) {
-      toast.success(resetPasswordMessage);
-      history.push("/");
+      toast.dark(resetPasswordMessage);
+      setTimeout(() => {
+        history.push("/");
+      }, 3000);
     }
   }, [resetPasswordMessage]);
 
   useEffect(() => {
-    if (resetPasswordIsError) toast.error(resetPasswordIsError);
+    if (resetPasswordIsError) toast.dark(resetPasswordIsError);
   }, [resetPasswordIsError]);
 
   useEffect(() => {

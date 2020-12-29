@@ -10,21 +10,15 @@ import { getType } from "typesafe-actions";
 export function* getUserAddress() {
   try {
     const request = yield call(networkHandlerGet, `/user/order`);
-    console.log(request);
-    if (request.getUserAddress)
+    if (request.status === 200)
       yield put({
         type: GET_USER_ADDRESS.success,
-        payload: { user: request.data },
-      });
-    else if (!request.isAuth)
-      yield put({
-        type: GET_USER_ADDRESS.failure,
-        payload: { error: request.error },
+        payload: { user: request.data.userData },
       });
   } catch (e) {
     yield put({
       type: GET_USER_ADDRESS.failure,
-      payload: { error: "Error happening, please try again." },
+      payload: { error: "Something went wrong - please try again" },
     });
   }
 }

@@ -37,7 +37,7 @@ export const ResetPasswordPageLayout = ({
         <ResetPasswordInputContainer prop={password}>
           <ResetPasswordInput
             type={showPassword ? "text" : "password"}
-            placeholder="Password *"
+            placeholder="New password *"
             onChange={handlePasswordInput("value")}
             value={password}
           />

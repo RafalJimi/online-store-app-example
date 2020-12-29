@@ -16,26 +16,20 @@ export function* updateUserData({
       `/admin/updateUserData`,
       payload
     );
-    console.log(request);
-    if (request.updateUserData)
+    if (request.status === 200)
       yield put({
         type: UPDATE_USER_DATA.success,
-        payload: { message: request.message },
+        payload: { message: request.data.message },
       });
-    else if (!request.isAdmin)
+    else if (request.status === 203)
       yield put({
         type: UPDATE_USER_DATA.failure,
-        payload: { error: request.error },
-      });
-    else if (!request.updateUserData)
-      yield put({
-        type: UPDATE_USER_DATA.failure,
-        payload: { error: request.error },
+        payload: { error: request.data.error },
       });
   } catch (e) {
     yield put({
       type: UPDATE_USER_DATA.failure,
-      payload: { error: "Error happening, please try again." },
+      payload: { error: "Something went wrong - please try again" },
     });
   }
 }

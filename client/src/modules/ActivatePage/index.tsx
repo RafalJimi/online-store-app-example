@@ -30,15 +30,13 @@ export const ActivatePage = ({ match }: ActivatePageProps) => {
   const activationUserIsError = useSelector(activationUserIsErrorRX);
 
   useEffect(() => {
-    let token = match.params.token;
+    const token = match.params.token;
     //@ts-ignore
-    let { firstName } = jwt.decode(token);
+    const { firstName } = jwt.decode(token);
 
     if (token) {
       setFormData({ ...formData, token, firstName });
     }
-
-    console.log(token);
   }, [match.params]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

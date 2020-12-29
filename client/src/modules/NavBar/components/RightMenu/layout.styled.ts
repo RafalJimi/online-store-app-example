@@ -1,4 +1,3 @@
-import { NONAME } from "dns";
 import styled from "styled-components";
 import { width } from "../../../../helpers/mediaQueries";
 
@@ -7,18 +6,20 @@ export const RightMenuContainer = styled.menu`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 400px;
+  width: 280px;
+  z-index: 10;
 
   @media only screen and ${width[1300]} {
     font-size: 0.7em;
     margin-top: 10px;
     margin-left: 10px;
-    width: 250px;
+    width: 200px;
     margin-right: 20px;
   }
 
   @media only screen and ${width[500]} {
     width: 160px;
+    margin-right: 10px;
   }
 `;
 
@@ -50,6 +51,14 @@ export const RightMenuItem = styled.div<RightMenuItemProps>`
     display: ${({ showIcon }) => (showIcon ? "inline-block" : "none")};
   }
 
+  :hover div {
+    display: flex;
+  }
+
+  div {
+    display: none;
+  }
+
   @media only screen and ${width[1300]} {
     font-size: 1.5em;
     width: 30px;
@@ -67,6 +76,31 @@ export const RightMenuItem = styled.div<RightMenuItemProps>`
 
   @media only screen and ${width[500]} {
     width: 20px;
+  }
+`;
+
+export const DropdownMenu = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  top: 50px;
+  background-color: ${(props) => props.theme.colors.background};
+  border: ${(props) => props.theme.borders.primary};
+`;
+
+export const DropdownMenuItem = styled.div`
+  width: 100%;
+  font-size: 0.9em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  color: ${(props) => props.theme.colors.primary};
+
+  :hover {
+    color: ${(props) => props.theme.colors.secondary};
   }
 `;
 

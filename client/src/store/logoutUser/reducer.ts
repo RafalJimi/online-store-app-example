@@ -29,7 +29,7 @@ export const logoutUser = (
     case LOGOUT_USER.success:
       return {
         ...state,
-        logoutSuccess: action.payload.success,
+        logoutSuccess: true,
         isError: false,
       };
     case LOGOUT_USER.failure:

@@ -13,20 +13,20 @@ export function* getTransactionHistory() {
       networkHandlerGet,
       `/admin/getTransactionHistory`
     );
-    if (request.getTransactionHistory)
+    if (request.status === 200)
       yield put({
         type: GET_TRANSACTION_HISTORY.success,
-        payload: { transactions: request.transactions },
+        payload: { transactions: request.data.transactions },
       });
-    else if (!request.getTransactionHistory)
+    else if (request.status === 203)
       yield put({
         type: GET_TRANSACTION_HISTORY.failure,
-        payload: { error: request.error },
+        payload: { error: request.data.error },
       });
   } catch (e) {
     yield put({
       type: GET_TRANSACTION_HISTORY.failure,
-      payload: { error: e },
+      payload: { error: "Something went wrong - please try again" },
     });
   }
 }

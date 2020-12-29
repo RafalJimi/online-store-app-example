@@ -14,21 +14,15 @@ export function* deleteUser({ payload }: ReturnType<typeof deleteUserStarted>) {
       networkHandlerDelete,
       `/admin/deleteUser?email=${email}`
     );
-    console.log(request);
-    if (request.deleteUser)
+    if (request.status === 200)
       yield put({
         type: DELETE_USER.success,
-        payload: { user: request.message },
+        payload: { user: request.data.message },
       });
-    else if (!request.isAdmin)
+    else if (request.status === 203)
       yield put({
         type: DELETE_USER.failure,
-        payload: { error: request.error },
-      });
-    else if (!request.deleteUser)
-      yield put({
-        type: DELETE_USER.failure,
-        payload: { error: request.error },
+        payload: { error: request.data.error },
       });
   } catch (e) {
     yield put({

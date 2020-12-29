@@ -14,19 +14,21 @@ export function* searchByTerm({
     const { term } = payload;
     const queries = `?term=${term}`;
     const request = yield call(axiosGet, `/products/searchByTerm${queries}`);
-    console.log(request);
-    if (request.searchByTerm)
+    if (request.status === 200)
       yield put({
         type: SEARCH_BY_TERM.success,
-        payload: { searchResults: request.products },
+        payload: { searchResults: request.data.products },
       });
-    else if (!request.searchByTerm)
+    else if (request.status === 202)
       yield put({
         type: SEARCH_BY_TERM.failure,
-        payload: { error: request.error },
+        payload: { error: request.data.error },
       });
   } catch (e) {
-    yield put({ type: SEARCH_BY_TERM.failure, message: e });
+    yield put({
+      type: SEARCH_BY_TERM.failure,
+      message: "Something went wrong - please try again",
+    });
   }
 }
 

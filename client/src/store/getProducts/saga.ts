@@ -21,20 +21,23 @@ export function* getProducts({
     } = payload.getProductsQueries;
     const queries = `?gender=${gender}&category=${category}&subCategory=${subCategory}&skip=${skip}&limit=${limit}`;
     const request = yield call(axiosGet, `/products/getProducts${queries}`);
-      if (request.getProducts)
-        for (x of request.products) {
+      if (request.status === 200)
+        for (x of request.data.products) {
           yield put({
             type: GET_PRODUCTS.success,
-            payload: { product: x, loadMore: request.loadMore },
+            payload: { product: x, loadMore: request.data.loadMore },
           });
         }
-      else if (!request.getProducts)
+      else if (request.status === 202)
         yield put({
           type: GET_PRODUCTS.failure,
-          payload: { error: request.error },
+          payload: { error: request.data.error },
         });
   } catch (e) {
-    yield put({ type: GET_PRODUCTS.failure, message: e });
+    yield put({
+      type: GET_PRODUCTS.failure,
+      message: "Something went wrong - please try again",
+    });
   }
 }
 

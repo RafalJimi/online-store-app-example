@@ -22,8 +22,10 @@ import { ShopCartPage } from './modules/ShopCartPage/index'
 import { OrderPage } from "./modules/OrderPage/index";
 import { TransactionHistoryPage } from "./modules/TransactionHistoryPage/index";
 import { TransactionDetailsPage } from "./modules/TransactionDetailsPage/index";
+import { UserPanel } from "./modules/UserPanel/index";
+import { UserTransactionHistoryPage } from "./modules/UserTransactionHistoryPage/index";
+import { UserTransactionDetailsPage } from "./modules/UserTransactionDetailsPage/index";
 
-/* import "./index.css"; */
 import { GlobalStyle } from './styles/globalStyles'
 import "react-toastify/dist/ReactToastify.css";
 
@@ -126,6 +128,17 @@ ReactDOM.render<Renderer>(
               path="/admin/transactionDetails/:transactionID"
               exact
               render={(props) => <TransactionDetailsPage {...props} />}
+            />
+            <Route path="/user/informations" exact component={UserPanel} />
+            <Route
+              path="/user/transactionHistory"
+              exact
+              component={UserTransactionHistoryPage}
+            />
+            <Route
+              path="/user/transaction/:transactionID"
+              exact
+              render={(props) => <UserTransactionDetailsPage {...props} />}
             />
             <Route path="/" component={SearchMenu} />
             <Route component={Footer} />

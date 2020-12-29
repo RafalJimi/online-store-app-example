@@ -135,7 +135,11 @@ export const EditUserPanelButtonsContainer = styled.div`
   }
 
   button:hover {
-    background-color: #${(props) => props.theme.borders.secondary};
+    background-color: ${(props) => props.theme.colors.secondary};
+  }
+
+  button:focus {
+    outline: none;
   }
 
   @media only screen and ${width[1000]} {

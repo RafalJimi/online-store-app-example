@@ -8,24 +8,26 @@ const nodemailer = require("nodemailer");
 const { errorHandler } = require('../helpers/dbErrorHandling')
 
 exports.getUserAddress = (req, res) => {
-  const { userData } = req;
+  const user = req.profile
   
-  return res.json({
-          getUserAddress: true,
-          data: userData
+  const userData = {
+    email: user.email,
+    fullName: `${user.firstName} ${user.lastName}`,
+    city: user.city,
+    address: user.address,
+    postCode: user.postCode,
+  }
+  
+  return res.status(200).json({
+          userData: userData
         });
 }
 
 exports.payment = (req, res) => {
   const { paymentData, products } = req.body
-  const { userData } = req
-  
-  console.log(userData)
-  console.log(paymentData)
-  console.log(products)
-  
+  const userID = req.profile._id
+
   let productsList = []
-  const userID = userData._id
   
   products.forEach(product => productsList.push({
     quantity: product.quantity,
@@ -52,9 +54,18 @@ exports.payment = (req, res) => {
       $push: { history: transaction },
     },
     (err, user) => {
-      if (err) {
-        return res.json({ paymentSuccess: false, error: err })
+      if (err || !user) {
+        return res.status(500).json({ error: "Internal server error - please try again" })
       } else {
+        
+        const userData = {
+          _id: user._id,
+          email: user.email,
+          fullName: `${user.firstName} ${user.lastName}`,
+          city: user.lastName,
+          address: user.address,
+          postCode: user.postCode,
+        }
         
         const payment = new Payment({
           user: userData,
@@ -64,9 +75,8 @@ exports.payment = (req, res) => {
         })
         
         payment.save((err, payment) => {
-          if (err) {
-            return res.json({
-              paymentSuccess: false,
+          if (err || !payment) {
+            return res.status(409).json({
               error: errorHandler(err),
             });
           }
@@ -87,8 +97,7 @@ exports.payment = (req, res) => {
                 );
               },
               (err) => {
-                if (err) return res.json({
-                  paymentSuccess: false,
+                if (err) return res.status(500).json({
                   error: errorHandler(err),
                 })
               }
@@ -119,13 +128,11 @@ exports.payment = (req, res) => {
             
             transporter.sendMail(emailData, function (err, data) {
                 if (err) {
-                  return res.json({
-                    paymentSuccess: false,
-                    error: "Email not send, something went wrong. Please try again.",
+                  return res.status(500).json({
+                    error: "Internal server error - please try again",
                   });
                 } else {
-                  return res.json({
-                    paymentSuccess: true,
+                  return res.status(200).json({
                     message: `Payment went well`,
                   });
                 }
@@ -137,3 +144,72 @@ exports.payment = (req, res) => {
     }
   );  
 };
+
+exports.getUserInformations = (req, res) => {
+  const user = req.profile
+  
+  const userData = {
+    firstName: user.firstName,
+    lastName: user.lastName,
+    city: user.city,
+    address: user.address,
+    postCode: user.postCode,
+  }
+  
+  return res.status(200).json({
+          userData: userData
+        });
+}
+
+exports.updateUserInformations = (req, res) => {
+  const user = req.profile
+  const newData = req.body
+  
+  User.findOneAndUpdate(
+          { _id: user._id },
+          { firstName: newData.firstName, lastName: newData.lastName, city: newData.city, address: newData.address, postCode: newData.postCode},
+          (err, user) => {
+              if (err || !user) {
+                  return res.status(409).json({ error: "Update user informations error - please try again" })
+              } else {
+                  return res.status(200).json({
+                      message: "User informations updated successfully"
+                  });
+              }
+          }
+      );  
+}
+
+exports.getTransactionHistory = (req, res) => {
+  const userId = req.profile._id
+  
+  Payment.find({
+            "user._id": userId
+          }).exec((err, transactions) => {
+            if (err | !transactions) {
+              return res.status(401).json({
+                error: 'Transactions not found'
+              });
+            } else
+              return res.status(200).json({
+                transactions: transactions
+              });
+        });
+}
+
+exports.getTransactionDetails = (req, res) => {
+  const paymentId = req.query.id
+  
+  Payment.find({
+            _id: paymentId
+          }).exec((err, transaction) => {
+            if (err || !transaction) {
+              return res.status(401).json({
+                error: 'Transaction not found'
+              });
+            } else
+              return res.status(200).json({
+                details: transaction
+              });
+        });
+}

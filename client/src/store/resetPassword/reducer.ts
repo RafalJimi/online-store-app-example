@@ -21,7 +21,6 @@ export const resetPassword = (
 ): ResetPasswordState => {
   switch (action.type) {
     case getType(resetPasswordStarted):
-      console.log(action);
       return {
         ...state,
         isLoading: true,
@@ -29,21 +28,18 @@ export const resetPassword = (
         message: "",
       };
     case RESET_PASSWORD.success:
-      console.log(action);
       return {
         ...state,
         message: action.payload.message,
         isLoading: false,
       };
     case RESET_PASSWORD.failure:
-      console.log(action);
       return {
         ...state,
         isLoading: false,
         isError: action.payload.error,
       };
     case CLEAR_RESET_PASSWORD_STATE:
-      console.log(action);
       return {
         ...state,
         message: "",

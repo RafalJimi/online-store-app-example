@@ -12,21 +12,21 @@ export function* resetPassword({
 }: ReturnType<typeof resetPasswordStarted>) {
   try {
     const { resetPasswordData } = payload;
-    const request = yield call(axiosPut, `/resetpassword`, resetPasswordData);
-    if (request.resetPasswordResult) {
+    const request = yield call(axiosPut, `/resetPassword`, resetPasswordData);
+    if (request.status === 200) {
       yield put({
         type: RESET_PASSWORD.success,
-        payload: { message: request.message },
+        payload: { message: request.data.message },
       });
-    } else if (!request.resetPasswordResult)
+    } else if (request.status === 202)
       yield put({
         type: RESET_PASSWORD.failure,
-        payload: { error: request.error },
+        payload: { error: request.data.error },
       });
   } catch (e) {
     yield put({
       type: RESET_PASSWORD.failure,
-      payload: { error: e.request.errors },
+      payload: { error: "Something went wrong - please try again" },
     });
   }
 }

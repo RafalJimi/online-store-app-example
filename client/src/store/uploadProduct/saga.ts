@@ -12,25 +12,26 @@ export function* uploadProduct({
 }: ReturnType<typeof uploadProductStarted>) {
   try {
     const { productData } = payload;
-    console.log(productData);
     const request = yield call(
       networkHandlerPost,
       `/admin/uploadProduct`,
       productData
     );
-    console.log(request);
-    if (request.uploadProduct) {
+    if (request.status === 200)
       yield put({
         type: UPLOAD_PRODUCT.success,
-        payload: { message: request.message },
+        payload: { message: request.data.message },
       });
-    } else if (!request.uploadProduct)
+    else if (request.status === 203)
       yield put({
         type: UPLOAD_PRODUCT.failure,
-        payload: { error: request.error },
+        payload: { error: request.data.error },
       });
   } catch (e) {
-    yield put({ type: UPLOAD_PRODUCT.failure, message: e });
+    yield put({
+      type: UPLOAD_PRODUCT.failure,
+      message: "Something went wrong, please try again",
+    });
   }
 }
 

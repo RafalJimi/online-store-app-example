@@ -25,6 +25,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar {
-      visibility: hidden;
+      display: none;
   }
 `;

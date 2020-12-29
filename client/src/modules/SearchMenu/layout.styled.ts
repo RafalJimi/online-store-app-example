@@ -18,7 +18,7 @@ export const SearchContainer = styled.div<Prop>`
   width: 100%;
   height: 100%;
   text-align: left;
-  z-index: 5;
+  z-index: 12;
   opacity: ${({ prop }) => (prop ? "1" : "0")};
   transition: ${({ prop }) =>
     prop
@@ -42,7 +42,7 @@ export const ContentContainer = styled.div`
   height: 800px;
   max-width: 1000px;
   width: 1000px;
-  margin-top: 50px;
+  margin-top: 70px;
 `;
 
 export const InputContainer = styled.div`
@@ -84,4 +84,6 @@ export const SearchResultsContainer = styled.div`
   padding: 40px 0px;
   flex-wrap: wrap;
   justify-content: space-around;
+  overflow-y: scroll;
+  transform: translate(10px, 0px);
 `;

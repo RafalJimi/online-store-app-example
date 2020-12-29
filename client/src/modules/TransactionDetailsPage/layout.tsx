@@ -23,7 +23,9 @@ export const TransactionDetailsLayout = ({
       transactionDetails.products.map((product) => (
         <TableRow key={product.key}>
           <Column1>{product.quantity}</Column1>
-          <Column2>{product.product.productName}</Column2>
+          <Column2>
+            {product.product.productName} <i>{product.size}</i>
+          </Column2>
         </TableRow>
       )),
     [transactionDetails]

@@ -59,7 +59,7 @@ export const RegisterOrLoginReference = styled.div`
   background-color: ${(props) => props.theme.colors.background};
 `;
 
-export const CollectionMenu = styled.ul`
+export const CollectionMenu = styled.ul<Props>`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -82,7 +82,7 @@ export const CollectionMenu = styled.ul`
     margin-left: 30px;
     list-style-type: none;
     margin-top: 10px;
-    height: 0px;
+    height: ${({ prop }) => (prop ? "150px" : "0px")};
     transition: height 1s;
     overflow: hidden;
   }
@@ -90,11 +90,6 @@ export const CollectionMenu = styled.ul`
   div > li {
     padding: 10px 0px;
     font-weight: 100;
-  }
-
-  :hover div {
-    height: 200px;
-    transition: height 1s;
   }
 `;
 
@@ -111,3 +106,7 @@ export const Contact = styled.ul`
   margin: 0px;
   font-weight: 100;
 `;
+
+type Props = {
+  prop: boolean;
+};
