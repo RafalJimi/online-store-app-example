@@ -73,7 +73,7 @@ export const ProductsPage = memo(() => {
       ...GetProductsVariables,
       skip: GetProductsVariables.skip + 2,
     });
-  }, [GetProductsVariables.skip]);
+  }, [GetProductsVariables.skip, productsList]);
 
   return (
     <ProductsPageLayout

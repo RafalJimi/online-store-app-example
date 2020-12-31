@@ -88,7 +88,7 @@ export const OrderFormLayout = ({
       <div>{errors.postCode}</div>
     </OrderFormInputContainer>
     <OrderFormButtonsContainer>
-      <Payment shippingData={values} errors={errors} />
+      <Payment shippingData={values} />
     </OrderFormButtonsContainer>
   </OrderFormContainer>
 );

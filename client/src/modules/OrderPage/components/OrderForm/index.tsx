@@ -83,19 +83,14 @@ export const OrderForm = memo(() => {
   }, [UserData.fullName]);
 
   useEffect(() => {
-    if (!onlyDigits.test(UserData.phoneNumber))
+    const userNumber = UserData.phoneNumber.replace(/\s/g, "");
+    console.log (userNumber)
+    if (!onlyDigits.test(userNumber))
       handleError("phoneNumber", "Required only digits");
-    else if (UserData.phoneNumber.length < 7)
+    else if (userNumber.length < 7)
       handleError("phoneNumber", "Required min 7 digits");
     else handleError("phoneNumber", "");
-  }, [UserData.phoneNumber]);
-
-  useEffect(() => {
-    if (!onlyDigits.test(UserData.phoneNumber))
-      handleError("phoneNumber", "Required only digits");
-    else if (UserData.phoneNumber.length < 7)
-      handleError("phoneNumber", "Required min 7 digits");
-    else handleError("phoneNumber", "");
+    
   }, [UserData.phoneNumber]);
 
   useEffect(() => {

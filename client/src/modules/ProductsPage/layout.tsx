@@ -41,8 +41,12 @@ export const ProductsPageLayout = ({
           next={handleNext}
           hasMore={loadMore}
           loader
+          scrollThreshold={0.8}
+          scrollableTarget={Node}
+          pullDownToRefreshThreshold={200}
+          initialScrollY={100}
         >
-          {products && productsList}
+          {productsList}
         </InfiniteScroll>
       </ProductsContainer>
     </ProductsPageContainer>

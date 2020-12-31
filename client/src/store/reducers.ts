@@ -51,6 +51,7 @@ import {
   GetUserTransactionDetailsState,
   getUserTransactionDetails,
 } from "./getUserTransactionDetails/reducer";
+import { UserMenuState, userMenu } from "./userMenu/reducer";
 
 export type AppState = {
   burgerMenu: BurgerMenuState;
@@ -83,6 +84,7 @@ export type AppState = {
   updateUserInformations: UpdateUserInformationsState;
   getUserTransactionHistory: GetUserTransactionHistoryState;
   getUserTransactionDetails: GetUserTransactionDetailsState;
+  userMenu: UserMenuState;
 };
 
 export const reducer = combineReducers<AppState>({
@@ -116,6 +118,7 @@ export const reducer = combineReducers<AppState>({
   updateUserInformations,
   getUserTransactionHistory,
   getUserTransactionDetails,
+  userMenu,
 });
 
 export type RootState = ReturnType<typeof reducer>;

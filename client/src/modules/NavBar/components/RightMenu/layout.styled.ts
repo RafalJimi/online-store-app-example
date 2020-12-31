@@ -51,14 +51,6 @@ export const RightMenuItem = styled.div<RightMenuItemProps>`
     display: ${({ showIcon }) => (showIcon ? "inline-block" : "none")};
   }
 
-  :hover div {
-    display: flex;
-  }
-
-  div {
-    display: none;
-  }
-
   @media only screen and ${width[1300]} {
     font-size: 1.5em;
     width: 30px;
@@ -79,9 +71,15 @@ export const RightMenuItem = styled.div<RightMenuItemProps>`
   }
 `;
 
-export const DropdownMenu = styled.div`
+type MenuIsOpen = {
+  isOpen: boolean;
+}
+
+export const DropdownMenu =
+  styled.div<
+  MenuIsOpen>`
   position: absolute;
-  display: flex;
+  display: ${({isOpen}) => isOpen ? "flex" : "none"};
   flex-direction: column;
   width: 200px;
   top: 50px;
@@ -148,26 +146,28 @@ export const BurgerButton = styled.button<BurgerButtonProps>`
   &:focus {
     outline: none;
   }
-@media only screen and ${width[1300]} {
-  button {
-    display: none;
-  }
-  div {
-    width: 20px;
-    height: 2px;
-    background: black;
-    border-radius: 10px;
-    transition: all 0.3s linear;
-    position: relative;
-    transform-origin: 1px;
-    :first-child {
-      transform: ${({ isOpen }) => (isOpen ? "rotate(43deg)" : "rotate(0)")};
-    }
-    :nth-child(2) {
-      opacity: ${({ isOpen }) => (isOpen ? "0" : "1")};
-    }
-    :nth-child(3) {
-      transform: ${({ isOpen }) => (isOpen ? "rotate(-43deg)" : "rotate(0)")};
-    }
+
+  @media only screen and ${width[1300]} {
+      button {
+        display: none;
+      }
+      div {
+        width: 20px;
+        height: 2px;
+        background: black;
+        border-radius: 10px;
+        transition: all 0.3s linear;
+        position: relative;
+        transform-origin: 1px;
+        :first-child {
+          transform: ${({ isOpen }) => (isOpen ? "rotate(43deg)" : "rotate(0)")};
+        }
+        :nth-child(2) {
+          opacity: ${({ isOpen }) => (isOpen ? "0" : "1")};
+        }
+        :nth-child(3) {
+          transform: ${({ isOpen }) => (isOpen ? "rotate(-43deg)" : "rotate(0)")};
+        }
+      }
   }
 `;

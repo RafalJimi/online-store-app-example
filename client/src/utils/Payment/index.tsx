@@ -11,21 +11,11 @@ import { PaymentDataProps } from "../../modules/OrderPage/components/OrderForm/l
 import { PaymentLayout } from "./layout";
 import { toast } from "react-toastify";
 
-type Errors = {
-    email: string;
-    fullName: string;
-    phoneNumber: string;
-    city: string;
-    address: string;
-    postCode: string;
-}
-
 type PaymentProps = {
   shippingData: PaymentDataProps;
-  errors: Errors;
 };
 
-export const Payment = ({ shippingData, errors }: PaymentProps) => {
+export const Payment = ({ shippingData }: PaymentProps) => {
   const [TotalPrice, setTotalPrice] = useState(0);
 
   const paymentResult = useSelector(paymentResultRX);
@@ -51,9 +41,7 @@ export const Payment = ({ shippingData, errors }: PaymentProps) => {
   };
 
   const onSuccess = (data: any) => {
-    if (!errors)
-      dispatch(paymentStarted(paymentData));
-    else toast.dark("Payment not went well - you have to fill all fields")
+    dispatch(paymentStarted(paymentData));
   };
 
   useEffect(() => {
@@ -64,9 +52,9 @@ export const Payment = ({ shippingData, errors }: PaymentProps) => {
   useEffect(() => {
     if (paymentResult) {
       toast.dark(paymentResult);
-        setTimeout(() => {
-          history.push("/");
-        }, 3000);
+      setTimeout(() => {
+        history.push("/");
+      }, 3000);
     }
   }, [paymentResult]);
 

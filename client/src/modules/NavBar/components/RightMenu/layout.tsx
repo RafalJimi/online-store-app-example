@@ -17,6 +17,8 @@ type RightMenuLayoutProps = {
   handleLogoutUser: (e: React.MouseEvent) => void;
   role: string;
   handleOnClick: (location: string) => (e: React.MouseEvent) => void;
+  handleUserMenu: (e: React.MouseEvent) => void;
+  userMenuIsOpen: boolean;
 };
 
 export const RightMenuLayout = ({
@@ -28,6 +30,8 @@ export const RightMenuLayout = ({
   handleLogoutUser,
   role,
   handleOnClick,
+  handleUserMenu,
+  userMenuIsOpen,
 }: RightMenuLayoutProps) => (
   <RightMenuContainer>
     <RightMenuItem showIcon={true} onClick={handleToggleSearchMenu}>
@@ -39,9 +43,9 @@ export const RightMenuLayout = ({
       </RightMenuItem>
     )}
     {role === "user" && (
-      <RightMenuItem showIcon={false}>
+      <RightMenuItem onClick={handleUserMenu} showIcon={false}>
         <i className="fas fa-user-cog"></i> <span>Account</span>
-        <DropdownMenu>
+        <DropdownMenu isOpen={userMenuIsOpen}>
           <DropdownMenuItem onClick={handleOnClick("/user/informations")}>
             Account settings
           </DropdownMenuItem>
@@ -55,9 +59,9 @@ export const RightMenuLayout = ({
       </RightMenuItem>
     )}
     {role === "admin" && (
-      <RightMenuItem showIcon={false}>
+      <RightMenuItem onClick={handleUserMenu} showIcon={false}>
         <i className="fas fa-cog"></i> <span>Account</span>
-        <DropdownMenu>
+        <DropdownMenu isOpen={userMenuIsOpen}>
           <DropdownMenuItem onClick={handleOnClick("/admin")}>
             Admin panel
           </DropdownMenuItem>
