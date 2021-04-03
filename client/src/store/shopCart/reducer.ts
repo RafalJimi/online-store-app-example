@@ -69,7 +69,7 @@ export const shopCart = (
       return {
         ...state,
         isLoading: false,
-        numbersOfItems: state.numbersOfItems + 1,
+        numbersOfItems: action.payload.quantity,
       };
     case ADD_TO_CART.failure:
       return {

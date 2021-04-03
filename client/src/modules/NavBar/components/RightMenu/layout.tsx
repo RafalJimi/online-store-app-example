@@ -19,6 +19,7 @@ type RightMenuLayoutProps = {
   handleOnClick: (location: string) => (e: React.MouseEvent) => void;
   handleUserMenu: (e: React.MouseEvent) => void;
   userMenuIsOpen: boolean;
+  itemsQuantity: number;
 };
 
 export const RightMenuLayout = ({
@@ -32,6 +33,7 @@ export const RightMenuLayout = ({
   handleOnClick,
   handleUserMenu,
   userMenuIsOpen,
+  itemsQuantity,
 }: RightMenuLayoutProps) => (
   <RightMenuContainer>
     <RightMenuItem showIcon={true} onClick={handleToggleSearchMenu}>
@@ -78,6 +80,7 @@ export const RightMenuLayout = ({
     )}
     <RightMenuItem showIcon={false} onClick={handleBasketButton("/shop-cart")}>
       <i className="fas fa-shopping-bag"></i> <span>My basket</span>
+      {itemsQuantity > 0 && <div className="number">{itemsQuantity}</div>}
     </RightMenuItem>
     <BurgerButtonContainer>
       <BurgerButton

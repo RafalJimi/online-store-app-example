@@ -51,6 +51,21 @@ export const RightMenuItem = styled.div<RightMenuItemProps>`
     display: ${({ showIcon }) => (showIcon ? "inline-block" : "none")};
   }
 
+  .number {
+    position: absolute;
+    background-color: red;
+    height: 20px;
+    width: 20px;
+    transform: translate(35px, 10px);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: ${(props) => props.theme.colors.background};
+    font-size: 0.9em;
+  }
+
   @media only screen and ${width[1300]} {
     font-size: 1.5em;
     width: 30px;
@@ -63,6 +78,10 @@ export const RightMenuItem = styled.div<RightMenuItemProps>`
 
     span {
       display: none;
+    }
+
+    .number {
+      transform: translate(10px, 10px);
     }
   }
 

@@ -114,6 +114,7 @@ export const RightMenu = memo(() => {
       handleOnClick={handleOnClick}
       handleUserMenu={handleUserMenu}
       userMenuIsOpen={userMenuIsOpen}
+      itemsQuantity={itemsQuantity}
     />
   );
 });
