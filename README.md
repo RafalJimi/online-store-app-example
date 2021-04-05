@@ -2,7 +2,7 @@
 
 Client side of the online-store-app-example was created in the Create-React-App and the server side was created in Node.js with Express.
 
-My main goal during creating this app was to build simple version of the online store app with basic functions like: <br /><br />
+My main goal during creating this app was to build simple version of the online store app with basic functions like: <br />
 
 • registration,<br />
 • confirmation email,<br />
