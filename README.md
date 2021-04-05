@@ -17,7 +17,6 @@ My main goal during creating this app was to build simple version of the online 
 ## Technologies and libraries
 
 **On the client side of my app I used the following technologies:**<br />
-
 • Typescript,<br />
 • redux to manage state,<br />
 • redux-saga to handle asynchronous actions (i.e. data fetching),<br />
@@ -35,7 +34,6 @@ My main goal during creating this app was to build simple version of the online 
 <br />
 
 **On the server side I used:**<br />
-
 • express,<br />
 • express-validator,<br />
 • cors,<br />
