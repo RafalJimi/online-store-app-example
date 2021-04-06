@@ -44,7 +44,7 @@ My main goal during creating this app was to build simple version of the online 
 <br />
 
 ## How to run this app?
-1. Clone repository with `git clone https://github.com/rafalzzz/spotify-app-example.git`<br />
+1. Clone repository with `git clone https://github.com/rafalzzz/online-store-app-example.git`<br />
 2. Fetch all dependencies on the server side using `npm install` or `yarn install` and then go to the client - `./client` and fetch all dependiences using also `npm` or `yarn`.<br />
 3. Paste .env files on server and client side.<br />
 4. Run app using `npm run dev` or `yarn dev`.<br />
